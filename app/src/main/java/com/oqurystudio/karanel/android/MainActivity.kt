@@ -1,12 +1,17 @@
 package com.oqurystudio.karanel.android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.oqurystudio.karanel.android.base.BaseNavigationActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseNavigationActivity() {
+
+    override fun setupNavigation() {
+        val navController = navHostFragment.navController
+        navController.setGraph(R.navigation.main_nav_graph, intent.extras)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.Theme_KaranelAndroid)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_navigation)
     }
 }
