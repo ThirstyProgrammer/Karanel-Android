@@ -1,19 +1,19 @@
-package com.oqurystudio.karanel.android.ui.home
+package com.oqurystudio.karanel.android.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.oqurystudio.karanel.android.databinding.FragmentHomeBinding
+import com.oqurystudio.karanel.android.databinding.FragmentProfileBinding
 
-class HomeFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
-    private lateinit var mViewBinding: FragmentHomeBinding
+    private lateinit var mViewBinding: FragmentProfileBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        mViewBinding = FragmentHomeBinding.inflate(inflater)
+        mViewBinding = FragmentProfileBinding.inflate(inflater)
         return mViewBinding.root
     }
 }

@@ -1,17 +1,23 @@
 package com.oqurystudio.karanel.android
 
 import android.os.Bundle
+import android.os.PersistableBundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.oqurystudio.karanel.android.base.BaseNavigationActivity
 
-class MainActivity : BaseNavigationActivity() {
-
-    override fun setupNavigation() {
-        val navController = navHostFragment.navController
-        navController.setGraph(R.navigation.main_nav_graph, intent.extras)
-    }
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_navigation)
+        setTheme(R.style.Theme_KaranelAndroid)
+        setContentView(R.layout.activity_main)
+
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        navView.setupWithNavController(navController)
     }
 }
