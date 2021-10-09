@@ -12,6 +12,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/selector_color_bottom_navigation"
+        app:itemTextColor="@color/selector_color_bottom_navigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

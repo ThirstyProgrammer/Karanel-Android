@@ -4,4 +4,7 @@
     <string name="data_orang_tua">Data Orang Tua</string>
     <string name="profile">Profile</string>
     <string name="retake">Retake</string>
+    <string name="add_parent">add parent</string>
+    <string name="male">Laki-Laki</string>
+    <string name="female">Perempuan</string>
 </resources>

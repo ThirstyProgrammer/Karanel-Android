@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_8"
-                android:text="Posyandu 1 Bangunasri"
+                android:text="Randi Apriansyah"
                 android:textAlignment="center"
                 android:textColor="@color/text_primary_color"
                 android:textSize="@dimen/big_text_size"
@@ -34,7 +34,16 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bangunasri, Magetan"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:text="14 April 1996"
+                android:textAlignment="center"
+                android:textColor="@color/text_primary_color"
+                android:textSize="@dimen/normal_text_size" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kasihan, Bantul, DI Yogyakarta"
                 android:textAlignment="center"
                 android:textColor="@color/text_primary_color"
                 android:textSize="@dimen/normal_text_size" />
