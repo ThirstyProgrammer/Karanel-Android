@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oqurystudio.karanel.android.network.NetworkRequestType
 import com.oqurystudio.karanel.android.network.ViewState
-import com.oqurystudio.karanel.android.repository.KaranelRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,8 +13,6 @@ import retrofit2.HttpException
 import java.io.IOException
 
 abstract class BaseViewModel : ViewModel() {
-
-    val repo = KaranelRepository()
 
     private val _viewState = MutableLiveData<Pair<ViewState, NetworkRequestType>>()
     val viewState: LiveData<Pair<ViewState, NetworkRequestType>> = _viewState
