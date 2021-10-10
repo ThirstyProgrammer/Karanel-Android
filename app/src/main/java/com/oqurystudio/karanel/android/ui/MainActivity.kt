@@ -1,5 +1,6 @@
 package com.oqurystudio.karanel.android.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -8,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.oqurystudio.karanel.android.R
+import com.oqurystudio.karanel.android.ui.auth.AuthActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         mViewModel.isLogin.observe(this, {
             if (!it){
                 Toast.makeText(this, "NOT LOGIN", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, AuthActivity::class.java)
+                startActivity(intent)
                 // TODO GO TO LOGIN ACTIVITY
             }
         })
