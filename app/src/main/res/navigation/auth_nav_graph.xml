@@ -2,10 +2,25 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/auth_nav_graph"
-    app:startDestination="@id/SignInFragment">
+    app:startDestination="@id/signInOptionsFragment">
 
     <fragment
-        android:id="@+id/SignInFragment"
-        android:name="com.oqurystudio.karanel.android.ui.auth.SignInFragment"
-        android:label="SIgnInFragment" />
+        android:id="@+id/signInOptionsFragment"
+        android:name="com.oqurystudio.karanel.android.ui.auth.SignInOptionsFragment"
+        android:label="SignInOptionsFragment">
+        <action
+            android:id="@+id/action_signInOptionsFragment_to_signInParentFragment"
+            app:destination="@id/signInParentFragment" />
+        <action
+            android:id="@+id/action_signInOptionsFragment_to_signInPosyanduFragment"
+            app:destination="@id/signInPosyanduFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInPosyanduFragment"
+        android:name="com.oqurystudio.karanel.android.ui.auth.SignInPosyanduFragment"
+        android:label="SignInPosyanduFragment" />
+    <fragment
+        android:id="@+id/signInParentFragment"
+        android:name="com.oqurystudio.karanel.android.ui.auth.SignInParentFragment"
+        android:label="SignInParentFragment" />
 </navigation>

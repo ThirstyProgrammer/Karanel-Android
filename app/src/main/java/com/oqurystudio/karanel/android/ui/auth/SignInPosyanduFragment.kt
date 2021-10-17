@@ -2,23 +2,21 @@ package com.oqurystudio.karanel.android.ui.auth
 
 import android.os.Bundle
 import android.text.InputType
-import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.oqurystudio.karanel.android.databinding.FragmentSignInBinding
+import com.oqurystudio.karanel.android.databinding.FragmentSignInPosyanduBinding
 import com.oqurystudio.karanel.android.widget.hidePassword
 import com.oqurystudio.karanel.android.widget.setupEditText
-import com.oqurystudio.karanel.android.widget.showPassword
 
-class SignInFragment : Fragment() {
+class SignInPosyanduFragment : Fragment() {
 
-    private lateinit var mViewBinding: FragmentSignInBinding
+    private lateinit var mViewBinding: FragmentSignInPosyanduBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        mViewBinding = FragmentSignInBinding.inflate(inflater)
+        mViewBinding = FragmentSignInPosyanduBinding.inflate(inflater)
         return mViewBinding.root
     }
 

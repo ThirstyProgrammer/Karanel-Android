@@ -28,4 +28,5 @@
     <color name="yellow_light">#FFFBEC</color>
 
     <color name="text_primary_color">#22215B</color>
+    <color name="text_secondary_color">#7B7F9E</color>
 </resources>
