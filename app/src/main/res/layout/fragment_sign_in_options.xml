@@ -56,30 +56,25 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_parent"
+        style="@style/ButtonSecondary.R10"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
         android:layout_marginEnd="@dimen/margin_8"
-        android:background="@drawable/state_button_secondary_r10"
         android:drawableStart="@drawable/ic_fingerprint"
-        android:padding="@dimen/margin_16"
         android:text="Orang Tua"
-        android:textColor="@color/primary_color"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_app_description" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_posyandu"
+        style="@style/ButtonPrimary.R10"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/margin_8"
         android:layout_marginEnd="@dimen/margin_16"
-        android:background="@drawable/state_button_primary_r10"
-        android:padding="@dimen/margin_16"
         android:text="Posyandu"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/btn_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"

@@ -52,15 +52,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_app_name" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/btn_sign_in"
+        style="@style/ButtonPrimary"
         android:layout_marginHorizontal="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_32"
-        android:background="@drawable/state_button_primary_rounded"
-        android:padding="@dimen/margin_16"
+        android:enabled="false"
         android:text="Masuk"
-        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/custom_til_id_parent" />
 
     <androidx.constraintlayout.widget.Guideline

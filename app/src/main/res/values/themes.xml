@@ -18,4 +18,30 @@
         <item name="android:windowBackground">@drawable/splash_image</item>
         <item name="android:statusBarColor">@color/background_logo</item>
     </style>
+
+    <style name="ButtonPrimary" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/big_text_size</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/state_button_primary_rounded</item>
+    </style>
+
+    <style name="ButtonPrimary.R10" parent="ButtonPrimary">
+        <item name="android:padding">@dimen/margin_16</item>
+        <item name="android:background">@drawable/state_button_primary_r10</item>
+    </style>
+
+    <style name="ButtonSecondary" parent="ButtonPrimary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/big_text_size</item>
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:background">@drawable/state_button_secondary_rounded</item>
+    </style>
+
+    <style name="ButtonSecondary.R10" parent="ButtonSecondary">
+        <item name="android:padding">@dimen/margin_16</item>
+        <item name="android:background">@drawable/state_button_secondary_r10</item>
+    </style>
 </resources>
