@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_rect_rounded_grey">
+    android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/et_custom"
-        android:layout_width="fill_parent"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16"
-        android:layout_marginVertical="@dimen/margin_16"
-        android:background="@android:color/transparent"
-        android:gravity="start"
-        android:maxLines="1"
+        android:layout_marginTop="@dimen/margin_8"
+        android:textColor="@color/text_primary_color"
+        android:textSize="@dimen/big_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Email" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4"
+        android:background="@drawable/bg_rect_rounded_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_custom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginVertical="@dimen/margin_16"
+            android:background="@android:color/transparent"
+            android:gravity="start"
+            android:maxLines="1" />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

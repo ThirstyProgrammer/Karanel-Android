@@ -23,12 +23,10 @@ class SignInParentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mViewBinding.apply {
-            customTilEmail.apply {
-                setupEditText("Email", InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
-            }
-            customTilPassword.apply {
-                setupEditText("Password", InputType.TYPE_CLASS_TEXT)
-                hidePassword()
+            customTilIdParent.apply {
+                setupEditText(
+                    title = "ID Orang Tua",
+                )
             }
         }
     }

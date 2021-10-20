@@ -24,10 +24,16 @@ class SignInPosyanduFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mViewBinding.apply {
             customTilEmail.apply {
-                setupEditText("Email", InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+                setupEditText(
+                    title = "Email",
+                    inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                )
             }
             customTilPassword.apply {
-                setupEditText("Password", InputType.TYPE_CLASS_TEXT)
+                setupEditText(
+                    title = "Password",
+                    inputType = InputType.TYPE_CLASS_TEXT
+                )
                 hidePassword()
             }
         }

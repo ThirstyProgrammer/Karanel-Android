@@ -12,7 +12,8 @@ fun LayoutTextInputBinding.hidePassword() {
     etCustom.transformationMethod = PasswordTransformationMethod.getInstance()
 }
 
-fun LayoutTextInputBinding.setupEditText(hint: String, inputType: Int = InputType.TYPE_CLASS_TEXT) {
+fun LayoutTextInputBinding.setupEditText(title: String, hint: String = "", inputType: Int = InputType.TYPE_CLASS_TEXT) {
+    tvTitle.text = title
     etCustom.apply {
         this.hint = hint
         this.inputType = inputType
