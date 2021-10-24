@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/form_nav_graph"
+    app:startDestination="@id/formParentFragment">
+
+    <fragment
+        android:id="@+id/formParentFragment"
+        android:name="com.oqurystudio.karanel.android.ui.form.FormParentFragment"
+        android:label="FormParentFragment" >
+        <action
+            android:id="@+id/action_formParentFragment_to_formChildFragment"
+            app:destination="@id/formChildFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formChildFragment"
+        android:name="com.oqurystudio.karanel.android.ui.form.FormChildFragment"
+        android:label="FormChildFragment" />
+</navigation>

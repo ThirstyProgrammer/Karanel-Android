@@ -14,10 +14,13 @@
 
     <color name="grey">#66000000</color>
     <color name="grey2">#F5F4F2</color>
+    <color name="grey3">#E5E5E5</color>
 
     <color name="blue">#415EB6</color>
     <color name="blue_light">#EEF7FE</color>
 
+    <color name="error">#80F45656</color>
+    <color name="error_light">#1AF45656</color>
     <color name="red">#AC4040</color>
     <color name="red_light">#FEEEEE</color>
 

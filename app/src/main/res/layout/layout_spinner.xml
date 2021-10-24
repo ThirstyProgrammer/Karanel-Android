@@ -15,10 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Email" />
+        tools:text="Jenis Kelamin" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_input_text"
+        android:id="@+id/container_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_4"
@@ -27,41 +27,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_custom"
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_custom"
+            style="@style/Widget.AppCompat.Spinner.DropDown.ActionBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginVertical="@dimen/margin_16"
             android:background="@android:color/transparent"
-            android:gravity="start"
-            android:maxLines="1"
+            android:inputType="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/barrier_suffix"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <RelativeLayout
-            android:id="@+id/container_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/bg_rect_rounded_grey3"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_24"
-                android:layout_marginVertical="@dimen/margin_16"
-                android:background="@android:color/transparent"
-                tools:text="cm" />
-        </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_suffix"
@@ -74,15 +52,36 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_search" />
+            app:srcCompat="@drawable/ic_chevron_down" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier_suffix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="left"
-            app:constraint_referenced_ids="container_indicator, btn_suffix" />
+            app:constraint_referenced_ids="btn_suffix" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    <RelativeLayout-->
+    <!--        android:id="@+id/container_spinner"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="@dimen/margin_4"-->
+    <!--        android:background="@drawable/bg_rect_rounded_grey"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_title">-->
+
+    <!--        <androidx.appcompat.widget.AppCompatSpinner-->
+    <!--            android:id="@+id/sp_custom"-->
+    <!--            style="@style/Widget.AppCompat.Spinner.DropDown.ActionBar"-->
+    <!--            android:layout_width="fill_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginHorizontal="@dimen/margin_16"-->
+    <!--            android:layout_marginVertical="@dimen/margin_16"-->
+    <!--            android:background="@android:color/transparent"-->
+    <!--            android:inputType="none" />-->
+    <!--    </RelativeLayout>-->
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_error_message"
@@ -94,8 +93,8 @@
         android:textColor="@color/red"
         android:textSize="@dimen/small_text_size"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/container_input_text"
-        app:layout_constraintStart_toStartOf="@+id/container_input_text"
-        app:layout_constraintTop_toBottomOf="@id/container_input_text"
+        app:layout_constraintEnd_toEndOf="@+id/container_spinner"
+        app:layout_constraintStart_toStartOf="@+id/container_spinner"
+        app:layout_constraintTop_toBottomOf="@id/container_spinner"
         tools:text="Silahkan Masukkan Email yang Valid" />
 </androidx.constraintlayout.widget.ConstraintLayout>

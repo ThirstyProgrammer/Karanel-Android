@@ -15,6 +15,7 @@ import com.oqurystudio.karanel.android.databinding.FragmentSignInPosyanduBinding
 import com.oqurystudio.karanel.android.ui.MainActivity
 import com.oqurystudio.karanel.android.widget.hidePassword
 import com.oqurystudio.karanel.android.widget.setupEditText
+import com.oqurystudio.karanel.android.widget.setupErrorState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +38,7 @@ class SignInPosyanduFragment : Fragment() {
                     title = "Email",
                     inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
                 )
+                setupErrorState("Silahkan Masukkan Email yang Valid")
                 etCustom.doOnTextChanged { text, _, _, _ ->
                     mViewModel.updateEmail(text.toString())
                 }

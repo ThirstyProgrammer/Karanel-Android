@@ -42,7 +42,6 @@ class SignInParentFragment : Fragment() {
             }
             btnSignIn.setOnClickListener {
                 mViewModel.signIn()
-                val intent = Intent(requireActivity(), MainActivity::class.java)
                 requireActivity().setResult(Activity.RESULT_OK)
                 requireActivity().finish()
             }
