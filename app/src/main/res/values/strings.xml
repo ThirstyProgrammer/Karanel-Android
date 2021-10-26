@@ -7,6 +7,15 @@
     <string name="add_parent">add parent</string>
     <string name="male">Laki-Laki</string>
     <string name="female">Perempuan</string>
+    <string name="title_code_tracking">Pastikan anda menyimpan Kode Tracking Berikut:</string>
+    <string name="description_code_tracking">Kode berikut bisa anda screenshot atau download pada menu di bawah</string>
+    <string name="download">Download</string>
+    <string name="child_data">Data Anak</string>
+    <string name="add_new_child">Input Anak Baru</string>
+    <string name="my_graphic">Grafik-Ku</string>
+    <string name="add_progress">Input Data Perkembangan</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Simpan</string>
     <string-array name="gender">
         <item>Laki-Laki</item>
         <item>Perempuan</item>

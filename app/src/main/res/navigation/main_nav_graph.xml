@@ -10,11 +10,13 @@
         android:name="com.oqurystudio.karanel.android.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
+
     <fragment
         android:id="@+id/parentsFragment"
         android:name="com.oqurystudio.karanel.android.ui.parents.ParentsFragment"
         android:label="ParentsFragment"
         tools:layout="@layout/fragment_parents" />
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.oqurystudio.karanel.android.ui.profile.ProfileFragment"

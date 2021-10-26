@@ -15,6 +15,14 @@ fun View.setOnSafeClickListener(interval: Int, onSafeClick: (View?) -> Unit) {
     setOnClickListener(SafeClickListener(interval) { v -> onSafeClick(v) })
 }
 
+fun View.setViewVisibility(show: Boolean) {
+    visibility = if (show) View.VISIBLE else View.GONE
+}
+
+fun View.setViewVisibility(show: Boolean, isGone: Boolean) {
+    visibility = if (show) View.VISIBLE else if (isGone) View.GONE else View.INVISIBLE
+}
+
 fun EditText.transformIntoDatePicker(context: Context, format: String, maxDate: Date? = null) {
     isFocusableInTouchMode = false
     isClickable = true

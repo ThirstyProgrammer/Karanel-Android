@@ -5,6 +5,37 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <RelativeLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_8"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/margin_8"
+            app:srcCompat="@drawable/ic_arrow_back" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_toEndOf="@id/btn_back"
+            android:text="Data Anak"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/big_text_size"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -13,7 +44,7 @@
         app:cardCornerRadius="@dimen/margin_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/container_toolbar">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -21,34 +52,48 @@
             android:orientation="vertical"
             android:padding="@dimen/margin_16">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/il_profile_male" />
+
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
                 android:layout_marginBottom="@dimen/margin_8"
-                android:text="Randi Apriansyah"
+                android:text="Randi"
                 android:textAlignment="center"
                 android:textColor="@color/text_primary_color"
                 android:textSize="@dimen/big_text_size"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:text="14 April 1996"
-                android:textAlignment="center"
-                android:textColor="@color/text_primary_color"
-                android:textSize="@dimen/normal_text_size" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Kasihan, Bantul, DI Yogyakarta"
+                android:text="4 Bulan"
                 android:textAlignment="center"
                 android:textColor="@color/text_primary_color"
                 android:textSize="@dimen/normal_text_size" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title_childs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_8"
+        android:text="@string/my_graphic"
+        android:textColor="@color/text_primary_color"
+        android:textSize="@dimen/big_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_total_child"
@@ -58,7 +103,7 @@
         app:cardCornerRadius="@dimen/margin_16"
         app:layout_constraintEnd_toStartOf="@+id/center_horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_childs">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -67,19 +112,23 @@
             android:orientation="vertical"
             android:padding="@dimen/margin_16">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:text="Jumlah Anak"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/normal_text_size"
-                android:textStyle="bold" />
+                android:layout_marginBottom="@dimen/margin_16"
+                app:srcCompat="@drawable/ic_folder_blue" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="19.876"
+                android:text="BB/U"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/big_text_size" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gizi Baik"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/small_text_size" />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -93,7 +142,7 @@
         app:cardCornerRadius="@dimen/margin_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/center_horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_childs">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -102,19 +151,23 @@
             android:orientation="vertical"
             android:padding="@dimen/margin_16">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:text="Jumlah Orangtua"
-                android:textColor="@color/yellow"
-                android:textSize="@dimen/normal_text_size"
-                android:textStyle="bold" />
+                android:layout_marginBottom="@dimen/margin_16"
+                app:srcCompat="@drawable/ic_folder_yellow" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="11.084"
+                android:text="PB/U"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/big_text_size" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tinggi Normal"
                 android:textColor="@color/yellow"
                 android:textSize="@dimen/small_text_size" />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -137,19 +190,23 @@
             android:orientation="vertical"
             android:padding="@dimen/margin_16">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:text="Jumlah Stunting"
-                android:textColor="@color/green"
-                android:textSize="@dimen/normal_text_size"
-                android:textStyle="bold" />
+                android:layout_marginBottom="@dimen/margin_16"
+                app:srcCompat="@drawable/ic_folder_green" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1.000"
+                android:text="LK/U"
+                android:textColor="@color/green"
+                android:textSize="@dimen/big_text_size" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Normal"
                 android:textColor="@color/green"
                 android:textSize="@dimen/small_text_size" />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -173,23 +230,39 @@
             android:orientation="vertical"
             android:padding="@dimen/margin_16">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:text="Jumlah Anak Sehat"
-                android:textColor="@color/red"
-                android:textSize="@dimen/normal_text_size"
-                android:textStyle="bold" />
+                android:layout_marginBottom="@dimen/margin_16"
+                app:srcCompat="@drawable/ic_folder_red" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="18.876"
+                android:text="BB/TB"
+                android:textColor="@color/red"
+                android:textSize="@dimen/big_text_size" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status Normal"
                 android:textColor="@color/red"
                 android:textSize="@dimen/small_text_size" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_new_child"
+        style="@style/ButtonPrimary.R10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/add_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_total_stunting" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/center_horizontal"

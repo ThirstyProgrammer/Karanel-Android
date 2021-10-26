@@ -1,15 +1,20 @@
 package com.oqurystudio.karanel.android.ui.form
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentFormChildBinding
+import com.oqurystudio.karanel.android.listener.AlertDialogButtonListener
+import com.oqurystudio.karanel.android.util.setOnSafeClickListener
 import com.oqurystudio.karanel.android.util.transformIntoDatePicker
+import com.oqurystudio.karanel.android.widget.DialogFactory
 import com.oqurystudio.karanel.android.widget.setupEditText
 import com.oqurystudio.karanel.android.widget.setupSpinner
 import java.util.*
@@ -86,6 +91,24 @@ class FormChildFragment : Fragment() {
                 setupEditText(
                     title = "Urutan Anak"
                 )
+            }
+            btnSubmit.setOnSafeClickListener {
+                // TODO HIT API
+                // ON SUCCESS SHOW DIALOG
+                DialogFactory.createDialogCodeTracking(
+                    requireContext(),
+                    "29467ajdhauh4935438",
+                    object : AlertDialogButtonListener {
+                        override fun onPositiveButtonClicked(dialog: Dialog) {
+                            Toast.makeText(requireContext(), "Download Card", Toast.LENGTH_LONG).show()
+                            dialog.dismiss()
+                        }
+
+                        override fun onNegativeButtonCLicked(dialog: Dialog) {
+                        }
+
+                    }
+                ).show()
             }
         }
     }

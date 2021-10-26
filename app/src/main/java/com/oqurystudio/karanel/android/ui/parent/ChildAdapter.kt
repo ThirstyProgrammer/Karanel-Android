@@ -1,13 +1,14 @@
-package com.oqurystudio.karanel.android.ui.parents
+package com.oqurystudio.karanel.android.ui.parent
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.oqurystudio.karanel.android.databinding.ItemParentsBinding
+import com.oqurystudio.karanel.android.databinding.ItemChildBinding
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
+import com.oqurystudio.karanel.android.ui.parents.ParentsAdapter
 
-class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
+class ChildAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val TYPE_ITEM = 0
@@ -18,17 +19,17 @@ class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
     private var items: ArrayList<String> = arrayListOf()
     private var isLoading: Boolean = false
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentsViewHolder {
-        val mViewBinding: ItemParentsBinding = ItemParentsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val mViewBinding: ItemChildBinding = ItemChildBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return when (viewType) {
-            TYPE_ITEM -> ParentsViewHolder(mViewBinding)
-            else -> ParentsViewHolder(mViewBinding)
+            TYPE_ITEM -> ChildViewHolder(mViewBinding)
+            else -> ChildViewHolder(mViewBinding)
         }
     }
 
-    override fun onBindViewHolder(holder: ParentsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ParentsViewHolder -> {
+            is ChildViewHolder -> {
                 holder.bind(items[position])
                 holder.itemView.setOnClickListener {
                     mItemClickListener.onItemClicked(it, position)
@@ -38,8 +39,8 @@ class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
     }
 
     override fun getItemCount(): Int = items.size
-    override fun getItemViewType(position: Int): Int = TYPE_ITEM
-    //    override fun getItemViewType(position: Int): Int = items[position].typeItem
+    override fun getItemViewType(position: Int): Int = ParentsAdapter.TYPE_ITEM
+//    override fun getItemViewType(position: Int): Int = items[position].typeItem
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         mItemClickListener = listener

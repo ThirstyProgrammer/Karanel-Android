@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/posyandu_nav_graph"
+    app:startDestination="@id/parentFragment">
+
+    <fragment
+        android:id="@+id/parentFragment"
+        android:name="com.oqurystudio.karanel.android.ui.parent.ParentFragment"
+        android:label="ParentFragment"
+        tools:layout="@layout/fragment_parent">
+        <action
+            android:id="@+id/action_parentFragment_to_formChildFragment2"
+            app:destination="@id/formChildFragment2" />
+        <action
+            android:id="@+id/action_parentFragment_to_childFragment"
+            app:destination="@id/childFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/formChildFragment2"
+        android:name="com.oqurystudio.karanel.android.ui.form.FormChildFragment"
+        android:label="FormChildFragment"
+        tools:layout="@layout/fragment_form_child" />
+    <fragment
+        android:id="@+id/childFragment"
+        android:name="com.oqurystudio.karanel.android.ui.child.ChildFragment"
+        android:label="ChildFragment"
+        tools:layout="@layout/fragment_child">
+        <action
+            android:id="@+id/action_childFragment_to_formProgressFragment"
+            app:destination="@id/formProgressFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/formProgressFragment"
+        android:name="com.oqurystudio.karanel.android.ui.child.FormProgressFragment"
+        android:label="FormProgressFragment"
+        tools:layout="@layout/fragment_form_progress" />
+</navigation>
