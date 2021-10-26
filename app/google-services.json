@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "285737473220",
+    "project_id": "karanel-35a51",
+    "storage_bucket": "karanel-35a51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285737473220:android:c10447e3675efdf172a591",
+        "android_client_info": {
+          "package_name": "com.oqurystudio.karanel.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285737473220-h179kqsli8d75vg0ia2h83g5ghl15cif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBapl_FyK3JJ3g7a1AYS8hDXnlhoCrwjGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285737473220-h179kqsli8d75vg0ia2h83g5ghl15cif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
