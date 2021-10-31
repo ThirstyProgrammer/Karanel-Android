@@ -21,8 +21,8 @@ class LoginPosyandu {
     @Serializable
     data class Data(
         val token: String? = "",
-        @SerialName("expired_date") val expDate: String,
-        @SerialName("refresh_token") val refreshToken: String,
-        @SerialName("refresh_expired_date") val refreshExpDate: String,
+        @SerialName("expired_date") val expDate: String? = "",
+        @SerialName("refresh_token") val refreshToken: String? = "",
+        @SerialName("refresh_expired_date") val refreshExpDate: String? = "",
     )
 }

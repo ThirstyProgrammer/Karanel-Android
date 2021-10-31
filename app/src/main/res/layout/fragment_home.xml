@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -22,22 +23,24 @@
             android:padding="@dimen/margin_16">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_posyandu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_8"
-                android:text="Posyandu 1 Bangunasri"
                 android:textAlignment="center"
                 android:textColor="@color/text_primary_color"
                 android:textSize="@dimen/big_text_size"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="Posyandu 1 Bangunasri" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bangunasri, Magetan"
                 android:textAlignment="center"
                 android:textColor="@color/text_primary_color"
-                android:textSize="@dimen/normal_text_size" />
+                android:textSize="@dimen/normal_text_size"
+                tools:text="Bangunasri, Magetan" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
 
@@ -62,17 +65,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_8"
-                android:text="Jumlah Anak"
+                android:text="@string/total_child"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/normal_text_size"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_child"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="19.876"
                 android:textColor="@color/blue"
-                android:textSize="@dimen/small_text_size" />
+                android:textSize="@dimen/small_text_size"
+                tools:text="19.876" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
 
@@ -97,17 +101,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_8"
-                android:text="Jumlah Orangtua"
+                android:text="@string/total_parent"
                 android:textColor="@color/yellow"
                 android:textSize="@dimen/normal_text_size"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="11.084"
                 android:textColor="@color/yellow"
-                android:textSize="@dimen/small_text_size" />
+                android:textSize="@dimen/small_text_size"
+                tools:text="11.084" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
 
@@ -132,17 +137,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_8"
-                android:text="Jumlah Stunting"
+                android:text="@string/total_stunting"
                 android:textColor="@color/green"
                 android:textSize="@dimen/normal_text_size"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_stunting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1.000"
                 android:textColor="@color/green"
-                android:textSize="@dimen/small_text_size" />
+                android:textSize="@dimen/small_text_size"
+                tools:text="1.000" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
 
@@ -168,17 +174,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_8"
-                android:text="Jumlah Anak Sehat"
+                android:text="@string/total_healthy"
                 android:textColor="@color/red"
                 android:textSize="@dimen/normal_text_size"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_healthy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="18.876"
                 android:textColor="@color/red"
-                android:textSize="@dimen/small_text_size" />
+                android:textSize="@dimen/small_text_size"
+                tools:text="18.876" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
 

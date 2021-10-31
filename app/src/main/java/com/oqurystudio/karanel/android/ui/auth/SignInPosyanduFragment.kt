@@ -20,6 +20,7 @@ import com.oqurystudio.karanel.android.widget.setupEditText
 import com.oqurystudio.karanel.android.widget.setupErrorState
 import com.oqurystudio.karanel.android.widget.setupNormalState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class SignInPosyanduFragment : Fragment() {
@@ -73,7 +74,7 @@ class SignInPosyanduFragment : Fragment() {
     private fun handleViewModelObserver() {
         mViewModel.users.observe(viewLifecycleOwner, {
             if (it.data != null) {
-                mViewModel.updateUserPreferences(it.data, UserType.POSYANDU)
+                mViewModel.updateUserPreferences(it.data, UserType.PARENT)
                 requireActivity().setResult(Activity.RESULT_OK)
                 requireActivity().finish()
             } else {

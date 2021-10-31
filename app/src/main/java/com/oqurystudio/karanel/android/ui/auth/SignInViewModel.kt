@@ -15,7 +15,7 @@ import com.oqurystudio.karanel.android.util.DataStoreManager
 import com.oqurystudio.karanel.android.util.defaultDash
 import com.oqurystudio.karanel.android.util.defaultEmpty
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -66,13 +66,12 @@ class SignInViewModel @Inject constructor(
         }
     }
 
-    fun updateUserPreferences(data: LoginPosyandu.Data, userType: UserType) {
-        viewModelScope.launch {
-            dataStore.storeValue(booleanPreferencesKey(DataStoreManager.IS_LOGIN), true)
-            dataStore.storeValue(stringPreferencesKey(DataStoreManager.USER_TYPE), userType.value)
-            dataStore.storeValue(stringPreferencesKey(DataStoreManager.TOKEN), data.token.defaultEmpty())
-            dataStore.storeValue(stringPreferencesKey(DataStoreManager.REFRESH_TOKEN), data.refreshToken.defaultEmpty())
-        }
+    fun updateUserPreferences(data: LoginPosyandu.Data, userType: UserType): Job = viewModelScope.launch {
+        dataStore.storeUserPreference(data, userType)
+//        dataStore.storeValue(booleanPreferencesKey(DataStoreManager.IS_LOGIN), true)
+//        dataStore.storeValue(stringPreferencesKey(DataStoreManager.USER_TYPE), userType.value)
+//        dataStore.storeValue(stringPreferencesKey(DataStoreManager.TOKEN), data.token.defaultEmpty())
+//        dataStore.storeValue(stringPreferencesKey(DataStoreManager.REFRESH_TOKEN), data.refreshToken.defaultEmpty())
     }
 
     private fun isSignInEnable(): Boolean =

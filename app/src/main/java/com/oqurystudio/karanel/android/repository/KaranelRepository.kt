@@ -1,5 +1,6 @@
 package com.oqurystudio.karanel.android.repository
 
+import com.oqurystudio.karanel.android.model.DashboardPosyandu
 import com.oqurystudio.karanel.android.model.LoginParent
 import com.oqurystudio.karanel.android.model.LoginPosyandu
 import com.oqurystudio.karanel.android.network.ApiService
@@ -14,5 +15,9 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
 
     suspend fun loginParent(body: LoginParent.Request): LoginPosyandu.Response {
         return service.loginPosyandu(NetworkUtil.createJsonRequestBody("id_karnel" to body.idParent))
+    }
+
+    suspend fun getDashboardPosyandu(token: String): DashboardPosyandu.Response {
+        return service.getDashboardPosyandu("Bearer $token")
     }
 }

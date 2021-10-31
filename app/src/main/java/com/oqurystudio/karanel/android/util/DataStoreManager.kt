@@ -2,11 +2,12 @@ package com.oqurystudio.karanel.android.util
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
+import com.oqurystudio.karanel.android.model.LoginPosyandu
+import com.oqurystudio.karanel.android.model.UserType
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
@@ -50,9 +51,32 @@ class DataStoreManager @Inject constructor(@ApplicationContext private val conte
         }
     }
 
+    suspend fun storeUserPreference(data: LoginPosyandu.Data, userType: UserType) {
+        context.dataStore.edit {
+            it[booleanPreferencesKey(IS_LOGIN)] = true
+            it[stringPreferencesKey(USER_TYPE)] = userType.value
+            it[stringPreferencesKey(TOKEN)] = data.token.defaultEmpty()
+            it[stringPreferencesKey(REFRESH_TOKEN)] = data.refreshToken.defaultEmpty()
+        }
+    }
+
+    suspend fun <T> storeValue(keyList: HashMap<Preferences.Key<T>, T>,) {
+        context.dataStore.edit {
+            for (key in keyList.keys){
+                it[key] = keyList.getValue(key)
+            }
+        }
+    }
+
     suspend fun <T> readValue(key: Preferences.Key<T>, defaultValue: T, responseFunc: T.() -> Unit) {
         context.dataStore.getFromLocalStorage(key, defaultValue) {
             responseFunc.invoke(this)
+        }
+    }
+
+    fun <T> readValue(key: Preferences.Key<T>, defaultValue: T): Flow<T> {
+        return context.dataStore.data.map {
+            it[key] ?: defaultValue
         }
     }
 }

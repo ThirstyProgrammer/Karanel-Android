@@ -1,11 +1,11 @@
 package com.oqurystudio.karanel.android.base
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.lifecycle.*
 import com.oqurystudio.karanel.android.network.NetworkRequestType
 import com.oqurystudio.karanel.android.network.ViewState
+import com.oqurystudio.karanel.android.util.DataStoreManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -36,6 +36,32 @@ abstract class BaseViewModel : ViewModel() {
                 } catch (throwable: Throwable) {
                     handleNetworkError(throwable)
                     if (viewStateActive) _viewState.postValue(Pair(ViewState.ERROR, requestType))
+                }
+            }
+        }
+    }
+
+    fun <T> requestAPIWithToken(
+        dataStore: DataStoreManager,
+        data: MutableLiveData<T>,
+        requestType: NetworkRequestType,
+        viewStateActive: Boolean = true,
+        apiMethod: suspend (token: String) -> T
+    ) {
+        viewModelScope.launch {
+            dataStore.readValue(stringPreferencesKey(DataStoreManager.TOKEN), "") {
+                viewModelScope.launch {
+                    if (viewStateActive) _viewState.postValue(Pair(ViewState.LOADING, requestType))
+                    withContext(Dispatchers.IO) {
+                        try {
+                            val result = apiMethod(this@readValue)
+                            data.postValue(result)
+                            if (viewStateActive) _viewState.postValue(Pair(ViewState.SUCCESS, requestType))
+                        } catch (throwable: Throwable) {
+                            handleNetworkError(throwable)
+                            if (viewStateActive) _viewState.postValue(Pair(ViewState.ERROR, requestType))
+                        }
+                    }
                 }
             }
         }

@@ -16,6 +16,10 @@
     <string name="add_progress">Input Data Perkembangan</string>
     <string name="cancel">Cancel</string>
     <string name="save">Simpan</string>
+    <string name="total_stunting">Jumlah Stunting</string>
+    <string name="total_healthy">Jumlah Anak Sehat</string>
+    <string name="total_child">Jumlah Anak</string>
+    <string name="total_parent">Jumlah Orangtua</string>
     <string-array name="gender">
         <item>Laki-Laki</item>
         <item>Perempuan</item>

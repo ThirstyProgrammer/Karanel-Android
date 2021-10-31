@@ -19,6 +19,7 @@ import com.oqurystudio.karanel.android.util.setErrorMessage
 import com.oqurystudio.karanel.android.widget.hidePassword
 import com.oqurystudio.karanel.android.widget.setupEditText
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class SignInParentFragment : Fragment() {
@@ -52,10 +53,13 @@ class SignInParentFragment : Fragment() {
 
     private fun handleViewModelObserver() {
         mViewModel.users.observe(viewLifecycleOwner, {
-            if (it.data != null){
-                mViewModel.updateUserPreferences(it.data, UserType.PARENT)
-                requireActivity().setResult(Activity.RESULT_OK)
-                requireActivity().finish()
+            if (it.data != null) {
+                runBlocking {
+                    val job = mViewModel.updateUserPreferences(it.data, UserType.PARENT)
+                    job.join()
+                    requireActivity().setResult(Activity.RESULT_OK)
+                    requireActivity().finish()
+                }
             }
         })
         mViewModel.viewState.observe(viewLifecycleOwner, {
