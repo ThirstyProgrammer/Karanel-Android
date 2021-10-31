@@ -14,6 +14,7 @@ class LoginPosyandu {
     data class Response(
         override var stat_code: Int,
         override var stat_msg: String,
+        override var meta: Meta? = null,
         val data: Data? = null
     ) : BaseResponseModel()
 

@@ -42,10 +42,9 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     private fun handleNetworkError(throwable: Throwable) {
-        when (throwable) {
+        val message: String = when (throwable) {
             is IOException -> {
-
-                _error.postValue("Network Error")
+                "Network Error"
             }
             is HttpException -> {
                 val code = throwable.code()
@@ -53,8 +52,9 @@ abstract class BaseViewModel : ViewModel() {
                 "Error $code $errorResponse"
             }
             else -> {
-                _error.postValue("Unknown Error")
+                "Unknown Error"
             }
         }
+        _error.postValue(message)
     }
 }

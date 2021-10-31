@@ -35,10 +35,8 @@ class MainActivity : AppCompatActivity() {
     private fun handleViewModelObserver() {
         mViewModel.isLogin.observe(this, {
             if (!it){
-                Toast.makeText(this, "NOT LOGIN", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, AuthActivity::class.java)
                 startActivity(intent)
-                // TODO GO TO LOGIN ACTIVITY
             }
         })
     }
