@@ -37,7 +37,8 @@ fun ViewStateBinding.setOnRetakeClicked(onClick: () -> Unit) {
 }
 
 private fun ViewStateBinding.handleLoadingType(requestType: NetworkRequestType) {
-    when (requestType) {
+    containerLoading.visibility = View.VISIBLE
+//    when (requestType) {
 //        NetworkRequestType.USER_DETAIL -> {
 //            layoutShimmerUsers.containerMain.visibility = View.GONE
 //            layoutShimmerUserDetail.containerMain.visibility = View.VISIBLE
@@ -46,5 +47,5 @@ private fun ViewStateBinding.handleLoadingType(requestType: NetworkRequestType) 
 //            layoutShimmerUsers.containerMain.visibility = View.VISIBLE
 //            layoutShimmerUserDetail.containerMain.visibility = View.GONE
 //        }
-    }
+//    }
 }

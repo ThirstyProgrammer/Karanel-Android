@@ -12,10 +12,13 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.oqurystudio.karanel.android.databinding.FragmentSignInPosyanduBinding
+import com.oqurystudio.karanel.android.model.UserType
 import com.oqurystudio.karanel.android.ui.MainActivity
+import com.oqurystudio.karanel.android.util.*
 import com.oqurystudio.karanel.android.widget.hidePassword
 import com.oqurystudio.karanel.android.widget.setupEditText
 import com.oqurystudio.karanel.android.widget.setupErrorState
+import com.oqurystudio.karanel.android.widget.setupNormalState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,9 +41,13 @@ class SignInPosyanduFragment : Fragment() {
                     title = "Email",
                     inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
                 )
-                setupErrorState("Silahkan Masukkan Email yang Valid")
                 etCustom.doOnTextChanged { text, _, _, _ ->
                     mViewModel.updateEmail(text.toString())
+                    if (RegexUtil.checkRegex(text.toString(), RegexUtil.EMAIL_PATTERN)) {
+                        setupNormalState()
+                    } else {
+                        setupErrorState("Silahkan Masukkan Email yang Valid")
+                    }
                 }
             }
             customTilPassword.apply {
@@ -54,13 +61,31 @@ class SignInPosyanduFragment : Fragment() {
                 hidePassword()
             }
             btnSignIn.setOnClickListener {
-                mViewModel.signIn()
-                requireActivity().setResult(Activity.RESULT_OK)
-                requireActivity().finish()
+                mViewModel.signInPosyandu()
             }
         }
         mViewModel.isSignInEnable.observe(viewLifecycleOwner, {
             mViewBinding.btnSignIn.isEnabled = it
+        })
+        handleViewModelObserver()
+    }
+
+    private fun handleViewModelObserver() {
+        mViewModel.users.observe(viewLifecycleOwner, {
+            if (it.data != null) {
+                mViewModel.updateUserPreferences(it.data, UserType.POSYANDU)
+                requireActivity().setResult(Activity.RESULT_OK)
+                requireActivity().finish()
+            } else {
+                makeToast(it.stat_msg)
+            }
+        })
+        mViewModel.viewState.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.handleViewState(it.first, it.second)
+        })
+
+        mViewModel.error.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.setErrorMessage(it)
         })
     }
 }

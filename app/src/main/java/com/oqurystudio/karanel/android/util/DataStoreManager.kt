@@ -15,6 +15,13 @@ import javax.inject.Inject
 
 class DataStoreManager @Inject constructor(@ApplicationContext private val context: Context) {
 
+    companion object {
+        const val IS_LOGIN = "is_login"
+        const val USER_TYPE = "user_type"
+        const val TOKEN = "token"
+        const val REFRESH_TOKEN = "refresh_token"
+    }
+
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("karanel")
 
     private suspend fun <T> DataStore<Preferences>.getFromLocalStorage(

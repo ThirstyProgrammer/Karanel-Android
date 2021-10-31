@@ -25,7 +25,7 @@ object NetworkModule {
     @Singleton
     internal fun provideBaseUrl(): String {
         // TODO Update
-        return "https://api.github.com"
+        return "http://104.248.151.102:3000"
     }
 
     @Provides

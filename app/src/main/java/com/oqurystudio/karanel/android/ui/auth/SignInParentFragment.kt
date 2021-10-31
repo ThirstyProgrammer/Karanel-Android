@@ -12,7 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.oqurystudio.karanel.android.databinding.FragmentSignInParentBinding
+import com.oqurystudio.karanel.android.model.UserType
 import com.oqurystudio.karanel.android.ui.MainActivity
+import com.oqurystudio.karanel.android.util.handleViewState
+import com.oqurystudio.karanel.android.util.setErrorMessage
 import com.oqurystudio.karanel.android.widget.hidePassword
 import com.oqurystudio.karanel.android.widget.setupEditText
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,10 +44,26 @@ class SignInParentFragment : Fragment() {
                 }
             }
             btnSignIn.setOnClickListener {
-                mViewModel.signIn()
+                mViewModel.signInParent()
+            }
+        }
+        handleViewModelObserver()
+    }
+
+    private fun handleViewModelObserver() {
+        mViewModel.users.observe(viewLifecycleOwner, {
+            if (it.data != null){
+                mViewModel.updateUserPreferences(it.data, UserType.PARENT)
                 requireActivity().setResult(Activity.RESULT_OK)
                 requireActivity().finish()
             }
-        }
+        })
+        mViewModel.viewState.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.handleViewState(it.first, it.second)
+        })
+
+        mViewModel.error.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.setErrorMessage(it)
+        })
     }
 }
