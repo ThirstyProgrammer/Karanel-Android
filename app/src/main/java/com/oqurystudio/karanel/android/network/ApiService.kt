@@ -1,9 +1,6 @@
 package com.oqurystudio.karanel.android.network
 
-import com.oqurystudio.karanel.android.model.DashboardPosyandu
-import com.oqurystudio.karanel.android.model.LoginParent
-import com.oqurystudio.karanel.android.model.LoginPosyandu
-import com.oqurystudio.karanel.android.model.Parents
+import com.oqurystudio.karanel.android.model.*
 import com.oqurystudio.karanel.android.util.Constant
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -32,4 +29,10 @@ interface ApiService {
         @Query("limit") limit: Int,
         @Query("search") query: String
     ): Parents.Response
+
+    @GET("/v1/api/parent/id/{id_parent}")
+    suspend fun getParent(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Path("id_parent") idParent: String
+    ): Parent.Response
 }

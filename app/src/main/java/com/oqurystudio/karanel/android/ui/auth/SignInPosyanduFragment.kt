@@ -65,16 +65,16 @@ class SignInPosyanduFragment : Fragment() {
                 mViewModel.signInPosyandu()
             }
         }
-        mViewModel.isSignInEnable.observe(viewLifecycleOwner, {
-            mViewBinding.btnSignIn.isEnabled = it
-        })
         handleViewModelObserver()
     }
 
     private fun handleViewModelObserver() {
+        mViewModel.isSignInEnable.observe(viewLifecycleOwner, {
+            mViewBinding.btnSignIn.isEnabled = it
+        })
         mViewModel.users.observe(viewLifecycleOwner, {
             if (it.data != null) {
-                mViewModel.updateUserPreferences(it.data, UserType.PARENT)
+                mViewModel.updateUserPreferences(it.data, UserType.POSYANDU)
                 requireActivity().setResult(Activity.RESULT_OK)
                 requireActivity().finish()
             } else {

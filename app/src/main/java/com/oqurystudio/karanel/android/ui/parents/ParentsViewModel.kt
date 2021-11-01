@@ -53,13 +53,13 @@ class ParentsViewModel @Inject constructor(
     val response: LiveData<Parents.Response> = _response
 
     fun getParents(token: String = this.token.value.defaultEmpty(), page: Int = 1) {
-        requestAPI(_response, NetworkRequestType.DASHBOARD) {
+        requestAPI(_response, NetworkRequestType.PARENTS) {
             repo.getParents(token, page, ITEM_LIMIT, query)
         }
     }
 
     fun loadMoreParents() {
-        requestAPI(_response, NetworkRequestType.DASHBOARD) {
+        requestAPI(_response, NetworkRequestType.PARENTS_LOAD_MORE) {
             repo.getParents(token.value.defaultEmpty(), nextPage, ITEM_LIMIT, query)
         }
     }

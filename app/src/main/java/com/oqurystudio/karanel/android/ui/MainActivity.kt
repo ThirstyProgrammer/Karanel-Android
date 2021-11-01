@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.oqurystudio.karanel.android.R
+import com.oqurystudio.karanel.android.model.UserType
 import com.oqurystudio.karanel.android.ui.auth.AuthActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,15 +21,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_KaranelAndroid)
-        setContentView(R.layout.activity_main)
-
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        navView.setupWithNavController(navController)
+//        setContentView(R.layout.activity_main)
+//
+//        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        val navController = navHostFragment.navController
+//        navView.setupWithNavController(navController)
 
         handleViewModelObserver()
-//        mViewModel.saveAuth()
         mViewModel.getAuth()
     }
 
@@ -37,7 +37,24 @@ class MainActivity : AppCompatActivity() {
             if (!it){
                 val intent = Intent(this, AuthActivity::class.java)
                 startActivity(intent)
+            }else{
+                mViewModel.getUserType()
             }
+        })
+        mViewModel.userType.observe(this, {
+            when (it) {
+                UserType.PARENT -> {
+                    setContentView(R.layout.activity_main_parent)
+                }
+                UserType.POSYANDU -> {
+                    setContentView(R.layout.activity_main)
+                }
+            }
+
+            val navView: BottomNavigationView = findViewById(R.id.nav_view)
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            val navController = navHostFragment.navController
+            navView.setupWithNavController(navController)
         })
     }
 

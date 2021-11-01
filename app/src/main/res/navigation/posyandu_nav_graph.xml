@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_parentFragment_to_childFragment"
             app:destination="@id/childFragment" />
+        <argument
+            android:name="idParent"
+            app:argType="string" />
     </fragment>
 
     <fragment

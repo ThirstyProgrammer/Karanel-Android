@@ -5,22 +5,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentParentBinding
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
-import com.oqurystudio.karanel.android.util.setOnSafeClickListener
+import com.oqurystudio.karanel.android.model.Parent
+import com.oqurystudio.karanel.android.util.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ParentFragment : Fragment(), OnItemClickListener {
 
     private lateinit var mViewBinding: FragmentParentBinding
     private lateinit var mAdapter: ChildAdapter
+    private val mViewModel: ParentViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         mViewBinding = FragmentParentBinding.inflate(inflater)
         return mViewBinding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        savedInstanceState?.getString(Constant.Extras.PARENT_ID)
     }
 
     override fun onItemClicked(v: View, position: Int) {
@@ -29,6 +39,9 @@ class ParentFragment : Fragment(), OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (arguments != null) {
+            mViewModel.parentId = ParentFragmentArgs.fromBundle(arguments as Bundle).idParent.defaultEmpty()
+        }
         mAdapter = ChildAdapter()
         mAdapter.setOnItemClickListener(this)
         mViewBinding.apply {
@@ -40,17 +53,35 @@ class ParentFragment : Fragment(), OnItemClickListener {
                 layoutManager = gridLayoutManager
                 adapter = mAdapter
             }
-            mAdapter.setData(
-                arrayListOf(
-                    "Randi",
-                    "Andi",
-                    "Apri",
-                    "Rian"
-                )
-            )
             btnAddNewChild.setOnSafeClickListener {
                 findNavController().navigate(R.id.action_parentFragment_to_formChildFragment2)
             }
         }
+        mViewModel.getToken()
+        handleViewModelObserver()
+    }
+
+    private fun handleViewModelObserver() {
+        mViewModel.token.observe(viewLifecycleOwner, {
+            mViewModel.getParent(it)
+        })
+        mViewModel.response.observe(viewLifecycleOwner, {
+            if (it.data != null) setupView(it.data)
+        })
+        mViewModel.viewState.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.handleViewState(it.first, it.second)
+        })
+
+        mViewModel.error.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.setErrorMessage(it)
+        })
+    }
+
+    private fun setupView(data: Parent.Data) {
+        mViewBinding.apply {
+            tvMotherName.text = data.motherName
+            tvAddress.text = data.address
+        }
+        mAdapter.setData(data.children ?: arrayListOf())
     }
 }

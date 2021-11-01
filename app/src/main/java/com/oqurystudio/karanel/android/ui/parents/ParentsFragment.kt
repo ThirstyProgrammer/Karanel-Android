@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -30,8 +31,10 @@ class ParentsFragment : Fragment(), OnItemClickListener {
     private var isLoading: Boolean = false
 
     override fun onItemClicked(v: View, position: Int) {
-        val intent = Intent(requireActivity(), PosyanduActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(requireActivity(), PosyanduActivity::class.java)
+//        startActivity(intent, bundleOf(Constant.Extras.PARENT_ID to mAdapter.getItem(position).id))
+        val toPosyanduActivity = ParentsFragmentDirections.actionParentsFragmentToPosyanduActivity(mAdapter.getItem(position).id.defaultEmpty())
+        findNavController().navigate(toPosyanduActivity)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
+import com.oqurystudio.karanel.android.model.LoginParent
 import com.oqurystudio.karanel.android.model.LoginPosyandu
 import com.oqurystudio.karanel.android.model.UserType
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -52,6 +53,15 @@ class DataStoreManager @Inject constructor(@ApplicationContext private val conte
     }
 
     suspend fun storeUserPreference(data: LoginPosyandu.Data, userType: UserType) {
+        context.dataStore.edit {
+            it[booleanPreferencesKey(IS_LOGIN)] = true
+            it[stringPreferencesKey(USER_TYPE)] = userType.value
+            it[stringPreferencesKey(TOKEN)] = data.token.defaultEmpty()
+            it[stringPreferencesKey(REFRESH_TOKEN)] = data.refreshToken.defaultEmpty()
+        }
+    }
+
+    suspend fun storeUserPreference(data: LoginParent.Data, userType: UserType) {
         context.dataStore.edit {
             it[booleanPreferencesKey(IS_LOGIN)] = true
             it[stringPreferencesKey(USER_TYPE)] = userType.value

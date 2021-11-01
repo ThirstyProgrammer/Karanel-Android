@@ -15,6 +15,7 @@ import com.oqurystudio.karanel.android.databinding.FragmentSignInParentBinding
 import com.oqurystudio.karanel.android.model.UserType
 import com.oqurystudio.karanel.android.ui.MainActivity
 import com.oqurystudio.karanel.android.util.handleViewState
+import com.oqurystudio.karanel.android.util.makeToast
 import com.oqurystudio.karanel.android.util.setErrorMessage
 import com.oqurystudio.karanel.android.widget.hidePassword
 import com.oqurystudio.karanel.android.widget.setupEditText
@@ -41,7 +42,7 @@ class SignInParentFragment : Fragment() {
                     title = "ID Orang Tua",
                 )
                 etCustom.doOnTextChanged { text, _, _, _ ->
-                    btnSignIn.isEnabled = !text.isNullOrEmpty()
+                    mViewModel.updateIdParent(text.toString())
                 }
             }
             btnSignIn.setOnClickListener {
@@ -52,14 +53,16 @@ class SignInParentFragment : Fragment() {
     }
 
     private fun handleViewModelObserver() {
-        mViewModel.users.observe(viewLifecycleOwner, {
+        mViewModel.isSignInEnable.observe(viewLifecycleOwner, {
+            mViewBinding.btnSignIn.isEnabled = it
+        })
+        mViewModel.parent.observe(viewLifecycleOwner, {
             if (it.data != null) {
-                runBlocking {
-                    val job = mViewModel.updateUserPreferences(it.data, UserType.PARENT)
-                    job.join()
-                    requireActivity().setResult(Activity.RESULT_OK)
-                    requireActivity().finish()
-                }
+                mViewModel.updateUserPreferences(it.data, UserType.PARENT)
+                requireActivity().setResult(Activity.RESULT_OK)
+                requireActivity().finish()
+            } else {
+                makeToast(it.stat_msg)
             }
         })
         mViewModel.viewState.observe(viewLifecycleOwner, {

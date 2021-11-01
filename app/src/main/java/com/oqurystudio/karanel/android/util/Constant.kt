@@ -9,4 +9,8 @@ class Constant {
     object NetworkConfig {
         const val AUTHORIZATION = "Authorization"
     }
+
+    object Extras {
+        const val PARENT_ID = "parent_id"
+    }
 }

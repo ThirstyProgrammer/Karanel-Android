@@ -30,6 +30,9 @@ class SignInViewModel @Inject constructor(
     private val _users = MutableLiveData<LoginPosyandu.Response>()
     val users: LiveData<LoginPosyandu.Response> = _users
 
+    private val _parent = MutableLiveData<LoginParent.Response>()
+    val parent: LiveData<LoginParent.Response> = _parent
+
     private val _isSignInEnable: MutableLiveData<Boolean> = MutableLiveData()
     val isSignInEnable: MutableLiveData<Boolean> = _isSignInEnable
 
@@ -61,17 +64,17 @@ class SignInViewModel @Inject constructor(
     }
 
     fun signInParent() {
-        requestAPI(_users, NetworkRequestType.LOGIN) {
+        requestAPI(_parent, NetworkRequestType.LOGIN) {
             repo.loginParent(payloadParent)
         }
     }
 
     fun updateUserPreferences(data: LoginPosyandu.Data, userType: UserType): Job = viewModelScope.launch {
         dataStore.storeUserPreference(data, userType)
-//        dataStore.storeValue(booleanPreferencesKey(DataStoreManager.IS_LOGIN), true)
-//        dataStore.storeValue(stringPreferencesKey(DataStoreManager.USER_TYPE), userType.value)
-//        dataStore.storeValue(stringPreferencesKey(DataStoreManager.TOKEN), data.token.defaultEmpty())
-//        dataStore.storeValue(stringPreferencesKey(DataStoreManager.REFRESH_TOKEN), data.refreshToken.defaultEmpty())
+    }
+
+    fun updateUserPreferences(data: LoginParent.Data, userType: UserType): Job = viewModelScope.launch {
+        dataStore.storeUserPreference(data, userType)
     }
 
     private fun isSignInEnable(): Boolean =

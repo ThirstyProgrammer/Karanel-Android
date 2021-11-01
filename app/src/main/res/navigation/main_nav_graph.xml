@@ -15,11 +15,23 @@
         android:id="@+id/parentsFragment"
         android:name="com.oqurystudio.karanel.android.ui.parents.ParentsFragment"
         android:label="ParentsFragment"
-        tools:layout="@layout/fragment_parents" />
+        tools:layout="@layout/fragment_parents" >
+        <action
+            android:id="@+id/action_parentsFragment_to_posyanduActivity"
+            app:destination="@id/posyanduActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.oqurystudio.karanel.android.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+    <activity
+        android:id="@+id/posyanduActivity"
+        android:name="com.oqurystudio.karanel.android.ui.PosyanduActivity"
+        android:label="PosyanduActivity" >
+        <argument
+            android:name="idParent"
+            app:argType="string" />
+    </activity>
 </navigation>

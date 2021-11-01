@@ -41,6 +41,8 @@ class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
     override fun getItemCount(): Int = items.size
     override fun getItemViewType(position: Int): Int = items[position].typeItem
 
+    fun getItem(position: Int): Parents.Data = items[position]
+
     fun setOnItemClickListener(listener: OnItemClickListener) {
         mItemClickListener = listener
     }

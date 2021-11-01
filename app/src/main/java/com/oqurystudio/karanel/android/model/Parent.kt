@@ -1,22 +1,19 @@
 package com.oqurystudio.karanel.android.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
-class Parents {
+class Parent {
 
     @Serializable
     data class Response(
         override var stat_code: Int,
         override var stat_msg: String,
         override var meta: Meta? = null,
-        val data: List<Data>? = null
+        val data: Data? = null
     ) : BaseResponseModel()
 
-    @Parcelize
     @Serializable
     data class Data(
         val id: String? = "",
@@ -34,12 +31,28 @@ class Parents {
         @SerialName("nik_mother") val motherNIK: String? = "",
         @SerialName("nik_father") val fatherNIK: String? = "",
         @SerialName("count_child") val totalChild: Int? = 0,
+        val children: List<Child>? = arrayListOf(),
         @SerialName("created_at") val createdAt: String? = "",
         @SerialName("updated_at") val updatedAt: String? = "",
         @SerialName("deleted_at") val deletedAt: String? = "",
         @Transient
         val typeItem: Int = 0
-    ) : Parcelable
+    )
 
-
+    @Serializable
+    data class Child(
+        val id: String? = "",
+        val name: String? = "",
+        val gender: String? = "",
+        @SerialName("birth_place") val birthPlace: String? = "",
+        @SerialName("birth_date") val birthDate: String? = "",
+        val blood: String? = "",
+        @SerialName("child_order") val childOrder: Int? = 0,
+        @SerialName("profile_image_id") val profileImgId: String? = "",
+        @SerialName("profile_image_url") val profileImgUrl: String? = "",
+        @SerialName("parent_id") val parentId: String? = "",
+        @SerialName("created_at") val createdAt: String? = "",
+        @SerialName("updated_at") val updatedAt: String? = "",
+        @SerialName("deleted_at") val deletedAt: String? = "",
+    )
 }
