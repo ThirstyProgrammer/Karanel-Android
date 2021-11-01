@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.oqurystudio.karanel.android.databinding.ItemParentsBinding
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
+import com.oqurystudio.karanel.android.model.Parents
 
 class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
 
@@ -15,7 +16,7 @@ class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
     }
 
     private lateinit var mItemClickListener: OnItemClickListener
-    private var items: ArrayList<String> = arrayListOf()
+    private var items: ArrayList<Parents.Data> = arrayListOf()
     private var isLoading: Boolean = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentsViewHolder {
@@ -38,34 +39,24 @@ class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
     }
 
     override fun getItemCount(): Int = items.size
-    override fun getItemViewType(position: Int): Int = TYPE_ITEM
-    //    override fun getItemViewType(position: Int): Int = items[position].typeItem
+    override fun getItemViewType(position: Int): Int = items[position].typeItem
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         mItemClickListener = listener
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: List<String>) {
-        items.clear()
-        items.addAll(data)
-        notifyDataSetChanged()
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateData(data: List<String>, isNextPageAvailable: Boolean) {
+    fun updateData(data: List<Parents.Data>, isNextPageAvailable: Boolean, isAppend: Boolean) {
         val itemsSizeBeforeAdded = items.size
-        if (items.isNullOrEmpty()) {
+        if (isAppend) {
+            val currentPosition = items.size
+            removeFooter()
+            items.addAll(data)
+            notifyItemInserted(currentPosition)
+        } else {
             items.clear()
             items.addAll(data)
             notifyDataSetChanged()
-        } else {
-            if (data.size > items.size) {
-                val currentPosition = items.size
-                removeFooter()
-                items.addAll(data.subList(items.size, data.size - 1))
-                notifyItemInserted(currentPosition)
-            }
         }
         if (data.size != itemsSizeBeforeAdded && isNextPageAvailable) addFooter()
     }
