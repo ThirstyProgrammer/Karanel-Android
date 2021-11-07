@@ -1,12 +1,15 @@
 package com.oqurystudio.karanel.android.ui.form
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -18,6 +21,7 @@ import com.oqurystudio.karanel.android.databinding.FragmentFormChildBinding
 import com.oqurystudio.karanel.android.listener.AlertDialogButtonListener
 import com.oqurystudio.karanel.android.util.*
 import com.oqurystudio.karanel.android.widget.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class FormChildFragment : Fragment() {
@@ -68,7 +72,13 @@ class FormChildFragment : Fragment() {
                 setupSpinner(title = "Jenis Kelamin", adapter)
                 spCustom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(adapter: AdapterView<*>?, p1: View?, position: Int, id: Long) {
-                        mViewModel.childPayload.gender = adapter?.getItemAtPosition(position).toString()
+                        mViewModel.childPayload.gender =
+                            when (adapter?.getItemAtPosition(position).toString()) {
+                                "Laki-laki" -> "L"
+                                "Perempuan" -> "P"
+                                else -> "L"
+                            }
+
                         mViewModel.updateFormChildState()
                     }
 
@@ -96,7 +106,7 @@ class FormChildFragment : Fragment() {
                     title = "Tanggal Lahir",
                     suffixDrawable = R.drawable.ic_calendar
                 )
-                etCustom.transformIntoDatePicker(requireContext(), "dd/mm/yyyy", Date())
+                etCustom.transformIntoDatePicker(requireContext(), "dd/MM/yyyy", Date())
                 btnSuffix.setOnClickListener {
                     etCustom.performClick()
                 }
@@ -107,7 +117,7 @@ class FormChildFragment : Fragment() {
                     } else {
                         setupNormalState()
                     }
-                    mViewModel.childPayload.birthDate = text.toString()
+                    mViewModel.childPayload.birthDate = changeDateFormat(text.toString())
                     mViewModel.updateFormChildState()
                 }
             }
@@ -233,10 +243,19 @@ class FormChildFragment : Fragment() {
                 etCustom.filters = arrayOf(InputFilter.LengthFilter(2))
             }
             btnSubmit.setOnSafeClickListener {
+                val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
                 mViewModel.getToken()
             }
         }
         handleViewModelObserver()
+    }
+
+    private fun changeDateFormat(text: String): String {
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+        val output = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        val data = sdf.parse(text)
+        return output.format(data)
     }
 
     private fun handleViewModelObserver() {
@@ -244,30 +263,36 @@ class FormChildFragment : Fragment() {
             if (isFromParentForm) {
                 mViewModel.submitParent(it)
             } else {
-                //TODO
                 mViewModel.submitChild(token = it)
             }
         })
         mViewModel.responseSubmitParent.observe(viewLifecycleOwner, {
+            mViewModel.parentCode = it.data?.idKarnel.defaultDash()
             mViewModel.submitChild(parentId = it.data?.id.defaultEmpty())
         })
         mViewModel.responseSubmitChild.observe(viewLifecycleOwner, {
             // TODO Update Code
-            DialogFactory.createDialogCodeTracking(
-                requireContext(),
-                "29467ajdhauh4935438",
-                object : AlertDialogButtonListener {
-                    override fun onPositiveButtonClicked(dialog: Dialog) {
-                        Toast.makeText(requireContext(), "Download Card", Toast.LENGTH_LONG)
-                            .show()
-                        dialog.dismiss()
-                    }
+            if (isFromParentForm) {
+                DialogFactory.createDialogCodeTracking(
+                    requireContext(),
+                    mViewModel.parentCode,
+                    object : AlertDialogButtonListener {
+                        override fun onPositiveButtonClicked(dialog: Dialog) {
+                            Toast.makeText(requireContext(), "Download Card", Toast.LENGTH_LONG)
+                                .show()
+                            dialog.dismiss()
+                            requireActivity().finish()
+                        }
 
-                    override fun onNegativeButtonCLicked(dialog: Dialog) {
-                    }
+                        override fun onNegativeButtonCLicked(dialog: Dialog) {
+                        }
 
-                }
-            ).show()
+                    }
+                ).show()
+            } else {
+                makeToast("Data Anak Telah Ditambahkan")
+                requireActivity().onBackPressed()
+            }
         })
         mViewModel.isFormChildCompleted.observe(viewLifecycleOwner, {
             mViewBinding.btnSubmit.isEnabled = it

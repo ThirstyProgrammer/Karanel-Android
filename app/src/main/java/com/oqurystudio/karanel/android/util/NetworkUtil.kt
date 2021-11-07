@@ -1,7 +1,5 @@
 package com.oqurystudio.karanel.android.util
 
-import com.squareup.moshi.Moshi
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import org.json.JSONObject

@@ -3,6 +3,7 @@ package com.oqurystudio.karanel.android.repository
 import com.oqurystudio.karanel.android.model.*
 import com.oqurystudio.karanel.android.network.ApiService
 import com.oqurystudio.karanel.android.util.NetworkUtil
+import org.json.JSONObject
 import javax.inject.Inject
 
 class KaranelRepository @Inject constructor(private val service: ApiService) {
@@ -44,7 +45,14 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
     }
 
     suspend fun submitChild(token: String, payload: FormChild.Payload): FormChild.Response {
-        // TODO Update Payload Generator
+        val jsonObj = JSONObject(
+            mapOf(
+                "month" to payload.record.week,
+                "weight" to payload.record.weight,
+                "height" to payload.record.height,
+                "head_circumference" to payload.record.headCircumference
+            )
+        )
         return service.submitChild(
             generateBearerToken(token),
             NetworkUtil.createJsonRequestBodyWithAny(
@@ -53,7 +61,9 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
                 "birth_place" to payload.birthPlace,
                 "birth_date" to payload.birthDate,
                 "blood" to payload.bloodType,
-                "child_order" to payload.childOrder
+                "child_order" to payload.childOrder,
+                "parent_id" to payload.parentId,
+                "record" to jsonObj
             )
         )
     }

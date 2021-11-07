@@ -28,8 +28,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel.getToken()
         handleViewModelObserver()
+        mViewModel.getToken()
     }
 
     private fun handleViewModelObserver() {
@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
     private fun setupView(data: DashboardPosyandu.Data?) {
         mViewBinding.apply {
             tvPosyandu.text = data?.posyandu?.name.defaultEmpty()
-            tvAddress.text = data?.posyandu?.address.defaultEmpty()
+            tvAddress.text = "${data?.posyandu?.address.defaultEmpty()}, ${data?.posyandu?.city.defaultEmpty()}"
             tvTotalChild.text = data?.child.toString()
             tvTotalParent.text = data?.parent.toString()
             tvTotalHealthy.text = data?.healthy.toString()

@@ -34,6 +34,7 @@ class FormViewModel @Inject constructor(
     }
 
     var parentId: String = ""
+    var parentCode: String = ""
     val parentPayload = FormParent.Payload()
 
     private val _isFormParentCompleted: MutableLiveData<Boolean> = MutableLiveData()

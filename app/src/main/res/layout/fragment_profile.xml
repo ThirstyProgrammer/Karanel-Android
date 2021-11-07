@@ -1,25 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="PROFILE"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_16"
+            app:cardCornerRadius="@dimen/margin_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_posyandu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_color"
+                    android:textSize="@dimen/big_text_size"
+                    android:textStyle="bold"
+                    tools:text="Posyandu 1 Bangunasri" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_color"
+                    android:textSize="@dimen/normal_text_size"
+                    tools:text="Bangunasri, Magetan" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            android:text="Data Posyandu"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_8"
+            android:text="Nama"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/normal_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_title_name"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@+id/br_data"
+            tools:text=": Posyandu 1 Bangunasri" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:text="Email"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/normal_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_title_email"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@+id/br_data"
+            tools:text=": posbangunasri@gmail.com" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_hp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:text="No. HP"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_email"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_email" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_hp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/normal_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_title_hp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@+id/br_data"
+            tools:text=": 08912789742" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:text="Alamat"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_hp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_hp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_address_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/normal_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_title_address"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@+id/br_data"
+            tools:text=": 08912789742" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/br_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="tv_title_name, tv_title_email, tv_title_hp, tv_title_address" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
         android:id="@+id/view_state"
         layout="@layout/view_state"
         android:visibility="gone" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

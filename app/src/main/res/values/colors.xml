@@ -23,6 +23,7 @@
     <color name="error_light">#1AF45656</color>
     <color name="red">#AC4040</color>
     <color name="red_light">#FEEEEE</color>
+    <color name="red_text">#F45656</color>
 
     <color name="green">#23B0B0</color>
     <color name="green_light">#F0FFFF</color>
