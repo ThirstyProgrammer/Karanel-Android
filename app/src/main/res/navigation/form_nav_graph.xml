@@ -15,5 +15,10 @@
     <fragment
         android:id="@+id/formChildFragment"
         android:name="com.oqurystudio.karanel.android.ui.form.FormChildFragment"
-        android:label="FormChildFragment" />
+        android:label="FormChildFragment" >
+        <argument
+            android:name="isFromParentForm"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
 </navigation>

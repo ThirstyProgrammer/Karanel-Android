@@ -64,6 +64,13 @@
                 android:layout_marginHorizontal="@dimen/margin_16" />
 
             <include
+                android:id="@+id/til_birth_place"
+                layout="@layout/layout_text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16" />
+
+            <include
                 android:id="@+id/til_birth_date"
                 layout="@layout/layout_text_input"
                 android:layout_width="match_parent"
@@ -125,7 +132,8 @@
                 android:layout_marginHorizontal="@dimen/margin_16"
                 android:layout_marginTop="@dimen/margin_16"
                 android:layout_marginBottom="@dimen/margin_16"
-                android:text="Simpan"
+                android:enabled="false"
+                android:text="@string/save"
                 android:textAllCaps="false" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
