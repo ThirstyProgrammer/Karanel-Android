@@ -106,8 +106,8 @@
                 android:layout_marginHorizontal="@dimen/margin_16" />
 
             <include
-                android:id="@+id/til_blood_type"
-                layout="@layout/layout_text_input"
+                android:id="@+id/spinner_blood_type"
+                layout="@layout/layout_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_16" />

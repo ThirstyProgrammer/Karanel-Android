@@ -1,10 +1,17 @@
 package com.oqurystudio.karanel.android.ui.parents
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.os.bundleOf
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -48,6 +55,18 @@ class ParentsFragment : Fragment(), OnItemClickListener {
         mAdapter = ParentsAdapter()
         mAdapter.setOnItemClickListener(this)
         mViewBinding.apply {
+            containerSearch.etSearch.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+                override fun onEditorAction(p0: TextView?, p1: Int, p2: KeyEvent?): Boolean {
+                    if (p1 == EditorInfo.IME_ACTION_SEARCH) {
+                        mViewModel.getParents()
+                        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        imm.hideSoftInputFromWindow(view.windowToken, 0)
+                        return true
+                    }
+                    return false
+                }
+
+            })
             containerSearch.etSearch.doOnTextChanged { text, _, _, _ ->
                 mViewModel.updateQuery(text.toString())
             }

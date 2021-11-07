@@ -2,6 +2,7 @@ package com.oqurystudio.karanel.android.ui.form
 
 import android.app.Dialog
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,40 +57,46 @@ class FormChildFragment : Fragment() {
                 }
             }
             spinnerBirthType.apply {
-                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, arrayOf("Normal", "Stunting"))
+                val adapter =
+                    ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, arrayOf("Tunggal", "Kembar 1", "Kembar 2", "Kembar 3"))
                 setupSpinner(title = "Jenis Kelahiran", adapter)
             }
             tilAgeWhenBirth.apply {
                 setupEditText(
-                    title = "Usia Kehamilan Saat Lahir"
+                    title = "Usia Kehamilan Saat Lahir",
+                    inputType = InputType.TYPE_CLASS_NUMBER,
+                    indicator = "Minggu"
                 )
             }
             tilBodyWeight.apply {
                 setupEditText(
                     title = "Berat Badan Lahir",
+                    inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL,
                     indicator = "Kg"
                 )
             }
             tilBodyHeight.apply {
                 setupEditText(
                     title = "Panjang Badan Lahir",
+                    inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL,
                     indicator = "cm"
                 )
             }
             tilHeadCircumference.apply {
                 setupEditText(
                     title = "Lingkar Kepala Saat Lahir",
+                    inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL,
                     indicator = "cm"
                 )
             }
-            tilBloodType.apply {
-                setupEditText(
-                    title = "Golongan Darah"
-                )
+            spinnerBloodType.apply {
+                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, arrayOf("A", "AB", "B", "O"))
+                setupSpinner(title = "Golongan Darah", adapter)
             }
             tilChildOrder.apply {
                 setupEditText(
-                    title = "Urutan Anak"
+                    title = "Urutan Anak",
+                    inputType = InputType.TYPE_CLASS_NUMBER,
                 )
             }
             btnSubmit.setOnSafeClickListener {
