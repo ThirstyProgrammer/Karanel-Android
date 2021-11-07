@@ -16,9 +16,7 @@ import androidx.fragment.app.activityViewModels
 import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentFormChildBinding
 import com.oqurystudio.karanel.android.listener.AlertDialogButtonListener
-import com.oqurystudio.karanel.android.util.makeToast
-import com.oqurystudio.karanel.android.util.setOnSafeClickListener
-import com.oqurystudio.karanel.android.util.transformIntoDatePicker
+import com.oqurystudio.karanel.android.util.*
 import com.oqurystudio.karanel.android.widget.*
 import java.util.*
 
@@ -41,6 +39,7 @@ class FormChildFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isFromParentForm = FormChildFragmentArgs.fromBundle(arguments as Bundle).isFromParentForm
+        mViewModel.parentId = FormChildFragmentArgs.fromBundle(arguments as Bundle).idParent
         mViewBinding.apply {
             btnBack.setOnClickListener {
                 requireActivity().onBackPressed()
@@ -234,35 +233,51 @@ class FormChildFragment : Fragment() {
                 etCustom.filters = arrayOf(InputFilter.LengthFilter(2))
             }
             btnSubmit.setOnSafeClickListener {
-                // TODO HIT API
-                // ON SUCCESS SHOW DIALOG
-                if (isFromParentForm) {
-                    makeToast("from parent")
-                } else {
-                    DialogFactory.createDialogCodeTracking(
-                        requireContext(),
-                        "29467ajdhauh4935438",
-                        object : AlertDialogButtonListener {
-                            override fun onPositiveButtonClicked(dialog: Dialog) {
-                                Toast.makeText(requireContext(), "Download Card", Toast.LENGTH_LONG)
-                                    .show()
-                                dialog.dismiss()
-                            }
-
-                            override fun onNegativeButtonCLicked(dialog: Dialog) {
-                            }
-
-                        }
-                    ).show()
-                }
+                mViewModel.getToken()
             }
         }
         handleViewModelObserver()
     }
 
     private fun handleViewModelObserver() {
+        mViewModel.token.observe(viewLifecycleOwner, {
+            if (isFromParentForm) {
+                mViewModel.submitParent(it)
+            } else {
+                //TODO
+                mViewModel.submitChild(token = it)
+            }
+        })
+        mViewModel.responseSubmitParent.observe(viewLifecycleOwner, {
+            mViewModel.submitChild(parentId = it.data?.id.defaultEmpty())
+        })
+        mViewModel.responseSubmitChild.observe(viewLifecycleOwner, {
+            // TODO Update Code
+            DialogFactory.createDialogCodeTracking(
+                requireContext(),
+                "29467ajdhauh4935438",
+                object : AlertDialogButtonListener {
+                    override fun onPositiveButtonClicked(dialog: Dialog) {
+                        Toast.makeText(requireContext(), "Download Card", Toast.LENGTH_LONG)
+                            .show()
+                        dialog.dismiss()
+                    }
+
+                    override fun onNegativeButtonCLicked(dialog: Dialog) {
+                    }
+
+                }
+            ).show()
+        })
         mViewModel.isFormChildCompleted.observe(viewLifecycleOwner, {
             mViewBinding.btnSubmit.isEnabled = it
+        })
+        mViewModel.viewState.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.handleViewState(it.first, it.second)
+        })
+
+        mViewModel.error.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.setErrorMessage(it)
         })
     }
 }

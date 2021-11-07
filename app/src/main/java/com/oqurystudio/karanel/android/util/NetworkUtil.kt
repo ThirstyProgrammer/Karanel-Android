@@ -21,4 +21,9 @@ object NetworkUtil {
         RequestBody.create(
             "application/json; charset=utf-8".toMediaTypeOrNull(),
             JSONObject(mapOf(*params)).toString())
+
+    fun createJsonRequestBodyWithAny(vararg params: Pair<String, Any>) =
+        RequestBody.create(
+            "application/json; charset=utf-8".toMediaTypeOrNull(),
+            JSONObject(mapOf(*params)).toString())
 }

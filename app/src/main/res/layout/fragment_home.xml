@@ -1,203 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        app:cardCornerRadius="@dimen/margin_16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_16">
+            android:layout_margin="@dimen/margin_16"
+            app:cardCornerRadius="@dimen/margin_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_posyandu"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:textAlignment="center"
-                android:textColor="@color/text_primary_color"
-                android:textSize="@dimen/big_text_size"
-                android:textStyle="bold"
-                tools:text="Posyandu 1 Bangunasri" />
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/text_primary_color"
-                android:textSize="@dimen/normal_text_size"
-                tools:text="Bangunasri, Magetan" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_posyandu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_color"
+                    android:textSize="@dimen/big_text_size"
+                    android:textStyle="bold"
+                    tools:text="Posyandu 1 Bangunasri" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_total_child"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        app:cardCornerRadius="@dimen/margin_16"
-        app:layout_constraintEnd_toStartOf="@+id/center_horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_color"
+                    android:textSize="@dimen/normal_text_size"
+                    tools:text="Bangunasri, Magetan" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_total_child"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/blue_light"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_16">
+            android:layout_margin="@dimen/margin_16"
+            app:cardCornerRadius="@dimen/margin_16"
+            app:layout_constraintEnd_toStartOf="@+id/center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:text="@string/total_child"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/normal_text_size"
-                android:textStyle="bold" />
+                android:background="@color/blue_light"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_child"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/small_text_size"
-                tools:text="19.876" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:text="@string/total_child"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/normal_text_size"
+                    android:textStyle="bold" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_total_parent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        app:cardCornerRadius="@dimen/margin_16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/center_horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_total_child"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/small_text_size"
+                    tools:text="19.876" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_total_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/yellow_light"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_16">
+            android:layout_margin="@dimen/margin_16"
+            app:cardCornerRadius="@dimen/margin_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/center_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:text="@string/total_parent"
-                android:textColor="@color/yellow"
-                android:textSize="@dimen/normal_text_size"
-                android:textStyle="bold" />
+                android:background="@color/yellow_light"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/yellow"
-                android:textSize="@dimen/small_text_size"
-                tools:text="11.084" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:text="@string/total_parent"
+                    android:textColor="@color/yellow"
+                    android:textSize="@dimen/normal_text_size"
+                    android:textStyle="bold" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_total_healty_child"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        app:cardCornerRadius="@dimen/margin_16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/center_horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/card_total_parent">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_total_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow"
+                    android:textSize="@dimen/small_text_size"
+                    tools:text="11.084" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_total_healty_child"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/green_light"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_16">
+            android:layout_margin="@dimen/margin_16"
+            app:cardCornerRadius="@dimen/margin_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/center_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/card_total_parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:text="@string/total_stunting"
-                android:textColor="@color/green"
-                android:textSize="@dimen/normal_text_size"
-                android:textStyle="bold" />
+                android:background="@color/green_light"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_stunting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/green"
-                android:textSize="@dimen/small_text_size"
-                tools:text="1.000" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:text="@string/total_stunting"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/normal_text_size"
+                    android:textStyle="bold" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_total_stunting"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        android:layout_marginTop="@dimen/margin_16"
-        app:cardCornerRadius="@dimen/margin_16"
-        app:layout_constraintEnd_toStartOf="@+id/center_horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_total_child">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_total_stunting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/small_text_size"
+                    tools:text="1.000" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_total_stunting"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/red_light"
+            android:layout_margin="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            app:cardCornerRadius="@dimen/margin_16"
+            app:layout_constraintEnd_toStartOf="@+id/center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_total_child">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/red_light"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:text="@string/total_healthy"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/normal_text_size"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_total_healthy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/small_text_size"
+                    tools:text="18.876" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/margin_16">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:text="@string/total_healthy"
-                android:textColor="@color/red"
-                android:textSize="@dimen/normal_text_size"
-                android:textStyle="bold" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_healthy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/red"
-                android:textSize="@dimen/small_text_size"
-                tools:text="18.876" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
         android:id="@+id/view_state"
         layout="@layout/view_state"
         android:visibility="gone" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

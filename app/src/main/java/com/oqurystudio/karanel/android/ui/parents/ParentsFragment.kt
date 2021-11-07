@@ -1,6 +1,5 @@
 package com.oqurystudio.karanel.android.ui.parents
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,20 +10,14 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.os.bundleOf
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentParentsBinding
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
 import com.oqurystudio.karanel.android.model.Parents
-import com.oqurystudio.karanel.android.ui.PosyanduActivity
-import com.oqurystudio.karanel.android.ui.auth.AuthActivity
 import com.oqurystudio.karanel.android.ui.form.FormActivity
 import com.oqurystudio.karanel.android.util.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,8 +31,6 @@ class ParentsFragment : Fragment(), OnItemClickListener {
     private var isLoading: Boolean = false
 
     override fun onItemClicked(v: View, position: Int) {
-//        val intent = Intent(requireActivity(), PosyanduActivity::class.java)
-//        startActivity(intent, bundleOf(Constant.Extras.PARENT_ID to mAdapter.getItem(position).id))
         val toPosyanduActivity = ParentsFragmentDirections.actionParentsFragmentToPosyanduActivity(mAdapter.getItem(position).id.defaultEmpty())
         findNavController().navigate(toPosyanduActivity)
     }

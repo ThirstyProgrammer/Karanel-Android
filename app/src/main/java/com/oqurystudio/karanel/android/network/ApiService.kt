@@ -35,4 +35,16 @@ interface ApiService {
         @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
         @Path("id_parent") idParent: String
     ): Parent.Response
+
+    @POST("/v1/api/parent")
+    suspend fun submitParent(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Body body: RequestBody
+    ): FormParent.Response
+
+    @POST("/v1/api/child")
+    suspend fun submitChild(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Body body: RequestBody
+    ): FormChild.Response
 }

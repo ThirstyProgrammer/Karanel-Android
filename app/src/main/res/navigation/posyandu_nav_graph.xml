@@ -31,6 +31,10 @@
             android:name="isFromParentForm"
             android:defaultValue="false"
             app:argType="boolean" />
+        <argument
+            android:name="idParent"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/childFragment"

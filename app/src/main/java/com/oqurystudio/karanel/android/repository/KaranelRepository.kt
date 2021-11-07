@@ -27,5 +27,36 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         return service.getParent(generateBearerToken(token), idParent)
     }
 
+    suspend fun submitParent(token: String, payload: FormParent.Payload): FormParent.Response {
+        return service.submitParent(
+            generateBearerToken(token), NetworkUtil.createJsonRequestBody(
+                "name_mother" to payload.motherName,
+                "job_mother" to payload.motherWork,
+                "phone_mother" to payload.motherPhone,
+                "name_father" to payload.fatherName,
+                "job_father" to payload.fatherWork,
+                "phone_father" to payload.fatherPhone,
+                "address" to payload.address,
+                "nik_mother" to payload.nik,
+                "nik_father" to payload.nik,
+            )
+        )
+    }
+
+    suspend fun submitChild(token: String, payload: FormChild.Payload): FormChild.Response {
+        // TODO Update Payload Generator
+        return service.submitChild(
+            generateBearerToken(token),
+            NetworkUtil.createJsonRequestBodyWithAny(
+                "name" to payload.name,
+                "gender" to payload.gender,
+                "birth_place" to payload.birthPlace,
+                "birth_date" to payload.birthDate,
+                "blood" to payload.bloodType,
+                "child_order" to payload.childOrder
+            )
+        )
+    }
+
     private fun generateBearerToken(token: String): String = "Bearer $token"
 }

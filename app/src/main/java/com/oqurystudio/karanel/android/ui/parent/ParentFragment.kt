@@ -54,7 +54,8 @@ class ParentFragment : Fragment(), OnItemClickListener {
                 adapter = mAdapter
             }
             btnAddNewChild.setOnSafeClickListener {
-                findNavController().navigate(R.id.action_parentFragment_to_formChildFragment2)
+                val directions = ParentFragmentDirections.actionParentFragmentToFormChildFragment2(false, mViewModel.parentId)
+                findNavController().navigate(directions)
             }
         }
         mViewModel.getToken()
