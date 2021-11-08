@@ -1,5 +1,6 @@
 package com.oqurystudio.karanel.android.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.oqurystudio.karanel.android.databinding.FragmentProfileBinding
 import com.oqurystudio.karanel.android.model.DashboardPosyandu
-import com.oqurystudio.karanel.android.util.defaultDash
-import com.oqurystudio.karanel.android.util.defaultEmpty
-import com.oqurystudio.karanel.android.util.handleViewState
-import com.oqurystudio.karanel.android.util.setErrorMessage
+import com.oqurystudio.karanel.android.ui.MainActivity
+import com.oqurystudio.karanel.android.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,6 +52,12 @@ class ProfileFragment : Fragment() {
             tvPosyandu.text = data?.posyandu?.name.defaultEmpty()
             tvAddress.text = "${data?.posyandu?.address.defaultEmpty()}, ${data?.posyandu?.city.defaultEmpty()}"
             tvName.text = data?.posyandu?.name.defaultDash()
+            btnSignOut.setOnSafeClickListener {
+                mViewModel.signOut()
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
+            }
         }
     }
 }

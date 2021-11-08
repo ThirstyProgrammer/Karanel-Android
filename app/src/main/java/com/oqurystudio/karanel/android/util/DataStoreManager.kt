@@ -70,6 +70,15 @@ class DataStoreManager @Inject constructor(@ApplicationContext private val conte
         }
     }
 
+    suspend fun clearUserPreference() {
+        context.dataStore.edit {
+            it[booleanPreferencesKey(IS_LOGIN)] = false
+            it[stringPreferencesKey(USER_TYPE)] = ""
+            it[stringPreferencesKey(TOKEN)] = ""
+            it[stringPreferencesKey(REFRESH_TOKEN)] = ""
+        }
+    }
+
     suspend fun <T> storeValue(keyList: HashMap<Preferences.Key<T>, T>,) {
         context.dataStore.edit {
             for (key in keyList.keys){

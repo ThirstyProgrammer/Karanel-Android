@@ -21,6 +21,7 @@
     <string name="total_child">Jumlah Anak</string>
     <string name="total_parent">Jumlah Orangtua</string>
     <string name="next">Selanjutnya</string>
+    <string name="log_out">Keluar</string>
     <string-array name="gender">
         <item>Laki-Laki</item>
         <item>Perempuan</item>

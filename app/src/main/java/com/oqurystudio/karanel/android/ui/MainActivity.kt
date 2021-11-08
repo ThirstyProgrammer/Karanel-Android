@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -33,15 +34,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleViewModelObserver() {
-        mViewModel.isLogin.observe(this, {
-            if (!it){
+        val loginObserver = Observer<Boolean> {
+            if (!it) {
                 val intent = Intent(this, AuthActivity::class.java)
                 startActivity(intent)
-            }else{
+            } else {
                 mViewModel.getUserType()
             }
-        })
+        }
+        mViewModel.isLogin.observe(this, loginObserver)
         mViewModel.userType.observe(this, {
+            mViewModel.isLogin.removeObserver(loginObserver)
             when (it) {
                 UserType.PARENT -> {
                     setContentView(R.layout.activity_main_parent)
