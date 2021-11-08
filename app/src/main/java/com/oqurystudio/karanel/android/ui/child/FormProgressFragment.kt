@@ -27,19 +27,19 @@ class FormProgressFragment : Fragment() {
             }
             tilBodyWeight.apply {
                 setupEditText(
-                    title = "Berat Badan Lahir",
+                    title = "Berat Badan Saat Ini",
                     indicator = "Kg"
                 )
             }
             tilBodyHeight.apply {
                 setupEditText(
-                    title = "Panjang Badan Lahir",
+                    title = "Panjang Badan Saat Ini",
                     indicator = "cm"
                 )
             }
             tilHeadCircumference.apply {
                 setupEditText(
-                    title = "Lingkar Kepala Saat Lahir",
+                    title = "Lingkar Kepala Saat Ini",
                     indicator = "cm"
                 )
             }

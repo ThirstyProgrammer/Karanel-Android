@@ -44,11 +44,11 @@ class FormViewModel @Inject constructor(
     val responseSubmitParent: LiveData<FormParent.Response> = _responseSubmitParent
 
     fun updateFormParentState() {
-        if (parentPayload.nik.isBlank()) {
+        if (parentPayload.address.isBlank()) {
             _isFormParentCompleted.postValue(false)
             return
         }
-        if (parentPayload.address.isBlank()) {
+        if (parentPayload.motherNIK.isBlank()) {
             _isFormParentCompleted.postValue(false)
             return
         }
@@ -61,6 +61,10 @@ class FormViewModel @Inject constructor(
             return
         }
         if (parentPayload.motherPhone.isBlank()) {
+            _isFormParentCompleted.postValue(false)
+            return
+        }
+        if (parentPayload.fatherNIK.isBlank()) {
             _isFormParentCompleted.postValue(false)
             return
         }

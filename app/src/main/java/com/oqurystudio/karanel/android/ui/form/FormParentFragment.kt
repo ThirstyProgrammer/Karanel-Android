@@ -42,6 +42,22 @@ class FormParentFragment : Fragment() {
             btnBack.setOnClickListener {
                 requireActivity().onBackPressed()
             }
+            tilNikMother.apply {
+                setupEditText(
+                    title = "NIK Ibu",
+                    inputType = InputType.TYPE_CLASS_NUMBER,
+                )
+                setupErrorState("Silahkan Masukkan NIK")
+                etCustom.doOnTextChanged { text, start, before, count ->
+                    if (text.isNullOrBlank()) {
+                        setupErrorState("Silahkan Masukkan NIK")
+                    } else {
+                        setupNormalState()
+                    }
+                    mViewModel.parentPayload.motherNIK = text.toString()
+                    mViewModel.updateFormParentState()
+                }
+            }
             tilMotherName.apply {
                 setupEditText(
                     title = "Nama Ibu",
@@ -85,6 +101,22 @@ class FormParentFragment : Fragment() {
                         setupNormalState()
                     }
                     mViewModel.parentPayload.motherPhone = text.toString()
+                    mViewModel.updateFormParentState()
+                }
+            }
+            tilNikFather.apply {
+                setupEditText(
+                    title = "NIK Ayah",
+                    inputType = InputType.TYPE_CLASS_NUMBER,
+                )
+                setupErrorState("Silahkan Masukkan NIK")
+                etCustom.doOnTextChanged { text, start, before, count ->
+                    if (text.isNullOrBlank()) {
+                        setupErrorState("Silahkan Masukkan NIK")
+                    } else {
+                        setupNormalState()
+                    }
+                    mViewModel.parentPayload.fatherNIK = text.toString()
                     mViewModel.updateFormParentState()
                 }
             }
@@ -146,22 +178,6 @@ class FormParentFragment : Fragment() {
                         setupNormalState()
                     }
                     mViewModel.parentPayload.address = text.toString()
-                    mViewModel.updateFormParentState()
-                }
-            }
-            tilNik.apply {
-                setupEditText(
-                    title = "NIK",
-                    inputType = InputType.TYPE_CLASS_NUMBER,
-                )
-                setupErrorState("Silahkan Masukkan NIK")
-                etCustom.doOnTextChanged { text, start, before, count ->
-                    if (text.isNullOrBlank()) {
-                        setupErrorState("Silahkan Masukkan NIK")
-                    } else {
-                        setupNormalState()
-                    }
-                    mViewModel.parentPayload.nik = text.toString()
                     mViewModel.updateFormParentState()
                 }
             }

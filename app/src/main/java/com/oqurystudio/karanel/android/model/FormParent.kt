@@ -6,14 +6,15 @@ import kotlinx.serialization.Serializable
 class FormParent {
 
     data class Payload(
-        var nik: String = "",
-        var address: String = "",
+        var motherNIK: String = "",
         var motherName: String = "",
         var motherWork: String = "",
         var motherPhone: String = "",
+        var fatherNIK: String = "",
         var fatherName: String = "",
         var fatherWork: String = "",
-        var fatherPhone: String = ""
+        var fatherPhone: String = "",
+        var address: String = ""
     )
 
     @Serializable

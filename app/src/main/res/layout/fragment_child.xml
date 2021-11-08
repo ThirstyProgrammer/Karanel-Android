@@ -259,7 +259,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
-        android:text="@string/add_progress"
+        android:text="Input Data Pertumbuhan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_total_stunting" />

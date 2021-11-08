@@ -38,8 +38,8 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
                 "job_father" to payload.fatherWork,
                 "phone_father" to payload.fatherPhone,
                 "address" to payload.address,
-                "nik_mother" to payload.nik,
-                "nik_father" to payload.nik,
+                "nik_mother" to payload.motherNIK,
+                "nik_father" to payload.fatherNIK,
             )
         )
     }
@@ -47,7 +47,7 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
     suspend fun submitChild(token: String, payload: FormChild.Payload): FormChild.Response {
         val jsonObj = JSONObject(
             mapOf(
-                "month" to payload.record.week,
+                "month" to 0,
                 "weight" to payload.record.weight,
                 "height" to payload.record.height,
                 "head_circumference" to payload.record.headCircumference
