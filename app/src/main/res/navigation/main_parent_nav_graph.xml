@@ -3,18 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/parentFragment2">
-
-    <fragment
-        android:id="@+id/parentFragment2"
-        android:name="com.oqurystudio.karanel.android.ui.parent.ParentFragment"
-        android:label="ParentFragment"
-        tools:layout="@layout/fragment_parent" />
-
-
+    app:startDestination="@id/homeParentFragment">
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.oqurystudio.karanel.android.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/homeParentFragment"
+        android:name="com.oqurystudio.karanel.android.ui.home.HomeParentFragment"
+        android:label="HomeParentFragment"
+        tools:layout="@layout/fragment_parent" />
 </navigation>

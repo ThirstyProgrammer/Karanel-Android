@@ -141,4 +141,10 @@ class FormViewModel @Inject constructor(
             repo.submitChild(token, childPayload)
         }
     }
+
+    fun submitChildAsParent(token: String) {
+        requestAPI(_responseSubmitChild, NetworkRequestType.FORM_CHILD) {
+            repo.submitChildAsParent(token, childPayload)
+        }
+    }
 }

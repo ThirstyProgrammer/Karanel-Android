@@ -28,6 +28,10 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         return service.getParent(generateBearerToken(token), idParent)
     }
 
+    suspend fun getParentByToken(token: String): Parent.Response {
+        return service.getParentByToken(generateBearerToken(token))
+    }
+
     suspend fun submitParent(token: String, payload: FormParent.Payload): FormParent.Response {
         return service.submitParent(
             generateBearerToken(token), NetworkUtil.createJsonRequestBody(
@@ -63,6 +67,29 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
                 "blood" to payload.bloodType,
                 "child_order" to payload.childOrder,
                 "parent_id" to payload.parentId,
+                "record" to jsonObj
+            )
+        )
+    }
+
+    suspend fun submitChildAsParent(token: String, payload: FormChild.Payload): FormChild.Response {
+        val jsonObj = JSONObject(
+            mapOf(
+                "month" to 0,
+                "weight" to payload.record.weight,
+                "height" to payload.record.height,
+                "head_circumference" to payload.record.headCircumference
+            )
+        )
+        return service.submitChild(
+            generateBearerToken(token),
+            NetworkUtil.createJsonRequestBodyWithAny(
+                "name" to payload.name,
+                "gender" to payload.gender,
+                "birth_place" to payload.birthPlace,
+                "birth_date" to payload.birthDate,
+                "blood" to payload.bloodType,
+                "child_order" to payload.childOrder,
                 "record" to jsonObj
             )
         )

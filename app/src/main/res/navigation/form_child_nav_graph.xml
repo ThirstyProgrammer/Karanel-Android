@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/form_child_nav_graph"
+    app:startDestination="@id/formChildFragment3">
+
+    <fragment
+        android:id="@+id/formChildFragment3"
+        android:name="com.oqurystudio.karanel.android.ui.form.FormChildFragment"
+        android:label="FormChildFragment">
+        <argument
+            android:name="isFromParentForm"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="idParent"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+</navigation>

@@ -36,6 +36,11 @@ interface ApiService {
         @Path("id_parent") idParent: String
     ): Parent.Response
 
+    @GET("/v1/api/parent/token")
+    suspend fun getParentByToken(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+    ): Parent.Response
+
     @POST("/v1/api/parent")
     suspend fun submitParent(
         @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,

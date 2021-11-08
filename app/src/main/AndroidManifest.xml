@@ -29,6 +29,9 @@
             android:name=".ui.form.FormActivity"
             android:theme="@style/Theme.KaranelAndroid" />
         <activity
+            android:name=".ui.form.FormChildActivity"
+            android:theme="@style/Theme.KaranelAndroid" />
+        <activity
             android:name=".ui.PosyanduActivity"
             android:theme="@style/Theme.KaranelAndroid" />
     </application>

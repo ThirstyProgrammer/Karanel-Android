@@ -263,7 +263,11 @@ class FormChildFragment : Fragment() {
             if (isFromParentForm) {
                 mViewModel.submitParent(it)
             } else {
-                mViewModel.submitChild(token = it)
+                if (mViewModel.parentId.isBlank()) {
+                    mViewModel.submitChildAsParent(it)
+                } else {
+                    mViewModel.submitChild(token = it)
+                }
             }
         })
         mViewModel.responseSubmitParent.observe(viewLifecycleOwner, {
