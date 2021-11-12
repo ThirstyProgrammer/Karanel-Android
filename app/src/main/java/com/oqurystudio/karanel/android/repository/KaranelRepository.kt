@@ -32,6 +32,10 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         return service.getParentByToken(generateBearerToken(token))
     }
 
+    suspend fun getChild(token: String, idChild: String): Child.Response {
+        return service.getChild(generateBearerToken(token), idChild)
+    }
+
     suspend fun submitParent(token: String, payload: FormParent.Payload): FormParent.Response {
         return service.submitParent(
             generateBearerToken(token), NetworkUtil.createJsonRequestBody(

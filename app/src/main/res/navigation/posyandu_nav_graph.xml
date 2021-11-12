@@ -26,7 +26,7 @@
         android:name="com.oqurystudio.karanel.android.ui.form.FormChildFragment"
         android:label="FormChildFragment"
         tools:layout="@layout/fragment_form_child">
-        
+
         <argument
             android:name="isFromParentForm"
             android:defaultValue="false"
@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_childFragment_to_formProgressFragment"
             app:destination="@id/formProgressFragment" />
+        <argument
+            android:name="childId"
+            app:argType="string" />
     </fragment>
 
     <fragment

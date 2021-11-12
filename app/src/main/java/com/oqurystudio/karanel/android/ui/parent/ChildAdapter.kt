@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.oqurystudio.karanel.android.databinding.ItemChildBinding
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
 import com.oqurystudio.karanel.android.model.Parent
-import com.oqurystudio.karanel.android.ui.parents.ParentsAdapter
 
 class ChildAdapter : RecyclerView.Adapter<ChildViewHolder>() {
 
@@ -27,6 +26,8 @@ class ChildAdapter : RecyclerView.Adapter<ChildViewHolder>() {
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun getItem(position: Int): Parent.Child = items[position]
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         mItemClickListener = listener

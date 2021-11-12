@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentParentBinding
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
 import com.oqurystudio.karanel.android.model.Parent
@@ -34,7 +33,8 @@ class ParentFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClicked(v: View, position: Int) {
-        findNavController().navigate(R.id.action_parentFragment_to_childFragment)
+        val directions = ParentFragmentDirections.actionParentFragmentToChildFragment(mAdapter.getItem(position).id.toString())
+        findNavController().navigate(directions)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,8 +58,8 @@ class ParentFragment : Fragment(), OnItemClickListener {
                 findNavController().navigate(directions)
             }
         }
-        mViewModel.getToken()
         handleViewModelObserver()
+        mViewModel.getToken()
     }
 
     private fun handleViewModelObserver() {
