@@ -12,7 +12,6 @@ import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentChildBinding
 import com.oqurystudio.karanel.android.model.Child
 import com.oqurystudio.karanel.android.model.Gender
-import com.oqurystudio.karanel.android.ui.parent.ParentFragmentArgs
 import com.oqurystudio.karanel.android.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,13 +31,18 @@ class ChildFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (arguments != null) {
             mViewModel.childId = ChildFragmentArgs.fromBundle(arguments as Bundle).childId.defaultEmpty()
+            mViewModel.isParent = ChildFragmentArgs.fromBundle(arguments as Bundle).isParent
         }
         mViewBinding.apply {
             btnBack.setOnSafeClickListener {
                 requireActivity().onBackPressed()
             }
-            btnAddNewChild.setOnSafeClickListener {
-                findNavController().navigate(R.id.action_childFragment_to_formProgressFragment)
+            btnAddProgress.setOnSafeClickListener {
+                if (mViewModel.isParent) {
+                    findNavController().navigate(R.id.action_childFragment2_to_formProgressFragment2)
+                } else {
+                    findNavController().navigate(R.id.action_childFragment_to_formProgressFragment)
+                }
             }
         }
         handleViewModelObserver()

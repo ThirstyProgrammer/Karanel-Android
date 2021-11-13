@@ -38,7 +38,7 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClicked(v: View, position: Int) {
-        val toParentActivity = HomeParentFragmentDirections.actionHomeParentFragmentToParentActivity(mAdapter.getItem(position).id.toString())
+        val toParentActivity = HomeParentFragmentDirections.actionHomeParentFragmentToParentActivity(mAdapter.getItem(position).id.toString(), true)
         findNavController().navigate(toParentActivity)
     }
 
@@ -53,12 +53,7 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
                 adapter = mAdapter
             }
             btnAddNewChild.setOnSafeClickListener {
-//                val intent = Intent(requireActivity(), FormChildActivity::class.java)
-//                startActivity(intent)
                 findNavController().navigate(R.id.action_homeParentFragment_to_formChildActivity)
-                // TODO Update Journey
-//                val directions = ParentFragmentDirections.actionParentFragmentToFormChildFragment2(false, )
-//                findNavController().navigate(directions)
             }
         }
         mViewModel.getToken()

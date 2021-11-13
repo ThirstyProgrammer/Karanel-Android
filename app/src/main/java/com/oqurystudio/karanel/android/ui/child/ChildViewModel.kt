@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oqurystudio.karanel.android.base.BaseViewModel
 import com.oqurystudio.karanel.android.model.Child
-import com.oqurystudio.karanel.android.model.Parent
 import com.oqurystudio.karanel.android.network.NetworkRequestType
 import com.oqurystudio.karanel.android.repository.KaranelRepository
 import com.oqurystudio.karanel.android.util.DataStoreManager
@@ -32,6 +31,7 @@ class ChildViewModel @Inject constructor(
     }
 
     var childId: String = ""
+    var isParent: Boolean = false
 
     private val _response: MutableLiveData<Child.Response> = MutableLiveData()
     val response: LiveData<Child.Response> = _response

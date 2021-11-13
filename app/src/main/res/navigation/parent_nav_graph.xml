@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_nav_graph"
     app:startDestination="@id/childFragment2">
 
@@ -11,6 +12,10 @@
         <argument
             android:name="childId"
             app:argType="string" />
+        <argument
+            android:name="isParent"
+            android:defaultValue="false"
+            app:argType="boolean" />
         <action
             android:id="@+id/action_childFragment2_to_formProgressFragment2"
             app:destination="@id/formProgressFragment2" />
@@ -19,5 +24,6 @@
     <fragment
         android:id="@+id/formProgressFragment2"
         android:name="com.oqurystudio.karanel.android.ui.child.FormProgressFragment"
-        android:label="FormProgressFragment" />
+        android:label="FormProgressFragment"
+        tools:layout="@layout/fragment_form_progress" />
 </navigation>

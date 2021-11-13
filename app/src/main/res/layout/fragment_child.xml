@@ -278,7 +278,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_add_new_child"
+        android:id="@+id/btn_add_progress"
         style="@style/ButtonPrimary.R10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
