@@ -44,6 +44,13 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
         findNavController().navigate(toParentActivity)
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (!mViewModel.token.value.isNullOrBlank()) {
+            mViewModel.getParent(mViewModel.token.value.toString())
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mAdapter = ChildAdapter()

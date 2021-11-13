@@ -1,6 +1,5 @@
 package com.oqurystudio.karanel.android.ui.form
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -15,19 +14,21 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentFormChildBinding
 import com.oqurystudio.karanel.android.listener.AlertDialogButtonListener
 import com.oqurystudio.karanel.android.util.*
 import com.oqurystudio.karanel.android.widget.*
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class FormChildFragment : Fragment() {
 
     private lateinit var mViewBinding: FragmentFormChildBinding
-    private val mViewModel: FormViewModel by activityViewModels()
+    private val mViewModel: FormViewModel by viewModels()
     private var isFromParentForm = false
 
     override fun onCreateView(
@@ -44,6 +45,7 @@ class FormChildFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         isFromParentForm = FormChildFragmentArgs.fromBundle(arguments as Bundle).isFromParentForm
         mViewModel.parentId = FormChildFragmentArgs.fromBundle(arguments as Bundle).idParent
+        mViewModel.updateParentPayload(FormChildFragmentArgs.fromBundle(arguments as Bundle).parentPayload)
         mViewBinding.apply {
             btnBack.setOnClickListener {
                 requireActivity().onBackPressed()

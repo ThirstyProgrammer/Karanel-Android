@@ -1,10 +1,13 @@
 package com.oqurystudio.karanel.android.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 class FormParent {
 
+    @Parcelize
     data class Payload(
         var motherNIK: String = "",
         var motherName: String = "",
@@ -15,7 +18,7 @@ class FormParent {
         var fatherWork: String = "",
         var fatherPhone: String = "",
         var address: String = ""
-    )
+    ) : Parcelable
 
     @Serializable
     data class Response(

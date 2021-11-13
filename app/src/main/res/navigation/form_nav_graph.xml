@@ -24,5 +24,10 @@
             android:name="idParent"
             android:defaultValue=""
             app:argType="string" />
+        <argument
+            android:name="parentPayload"
+            android:defaultValue="@null"
+            app:argType="com.oqurystudio.karanel.android.model.FormParent$Payload"
+            app:nullable="true" />
     </fragment>
 </navigation>

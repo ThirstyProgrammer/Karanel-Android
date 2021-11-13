@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FormParentFragment : Fragment() {
 
     private lateinit var mViewBinding: FragmentFormParentBinding
-    private val mViewModel: FormViewModel by activityViewModels()
+    private val mViewModel: FormParentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -183,7 +183,11 @@ class FormParentFragment : Fragment() {
             }
             btnNext.setOnSafeClickListener {
                 val directions =
-                    FormParentFragmentDirections.actionFormParentFragmentToFormChildFragment(true)
+                    FormParentFragmentDirections.actionFormParentFragmentToFormChildFragment(
+                        true,
+                        mViewModel.parentId,
+                        parentPayload = mViewModel.parentPayload
+                    )
                 findNavController().navigate(directions)
             }
         }

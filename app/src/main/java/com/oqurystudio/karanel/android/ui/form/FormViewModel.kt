@@ -37,51 +37,21 @@ class FormViewModel @Inject constructor(
     var parentCode: String = ""
     val parentPayload = FormParent.Payload()
 
-    private val _isFormParentCompleted: MutableLiveData<Boolean> = MutableLiveData()
-    val isFormParentCompleted: MutableLiveData<Boolean> = _isFormParentCompleted
-
     private val _responseSubmitParent: MutableLiveData<FormParent.Response> = MutableLiveData()
     val responseSubmitParent: LiveData<FormParent.Response> = _responseSubmitParent
 
-    fun updateFormParentState() {
-        if (parentPayload.address.isBlank()) {
-            _isFormParentCompleted.postValue(false)
-            return
+    fun updateParentPayload(payload: FormParent.Payload?) {
+        if (payload != null) {
+            parentPayload.motherNIK = payload.motherNIK
+            parentPayload.motherName = payload.motherName
+            parentPayload.motherPhone = payload.motherPhone
+            parentPayload.motherWork = payload.motherWork
+            parentPayload.fatherNIK = payload.fatherNIK
+            parentPayload.fatherName = payload.fatherName
+            parentPayload.fatherPhone = payload.fatherPhone
+            parentPayload.fatherWork = payload.fatherWork
+            parentPayload.address = payload.address
         }
-        if (parentPayload.motherNIK.isBlank()) {
-            _isFormParentCompleted.postValue(false)
-            return
-        }
-        if (parentPayload.motherName.isBlank()) {
-            _isFormParentCompleted.postValue(false)
-            return
-        }
-        if (parentPayload.motherWork.isBlank()) {
-            _isFormParentCompleted.postValue(false)
-            return
-        }
-        if (parentPayload.motherPhone.isBlank()) {
-            _isFormParentCompleted.postValue(false)
-            return
-        }
-        if (parentPayload.fatherNIK.isBlank()) {
-            _isFormParentCompleted.postValue(false)
-            return
-        }
-        if (parentPayload.fatherName.isBlank()) {
-            _isFormParentCompleted.postValue(false)
-            return
-        }
-        if (parentPayload.fatherWork.isBlank()) {
-            _isFormParentCompleted.postValue(false)
-            return
-        }
-        if (parentPayload.fatherPhone.isBlank()) {
-            _isFormParentCompleted.postValue(false)
-            return
-        }
-        _isFormParentCompleted.postValue(true)
-        return
     }
 
     fun submitParent(token: String) {
