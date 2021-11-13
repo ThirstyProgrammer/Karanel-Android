@@ -40,8 +40,10 @@ class ChildFragment : Fragment() {
             }
             btnAddProgress.setOnSafeClickListener {
                 if (mViewModel.parentId.isBlank()) {
-                    val directions = ChildFragmentDirections.actionChildFragment2ToFormProgressFragment2(mViewModel.childId)
-                    findNavController().navigate(directions)
+                    findNavController().navigate(
+                        R.id.action_childFragment2_to_formProgressFragment2,
+                        bundleOf("childId" to mViewModel.childId)
+                    )
                 } else {
                     findNavController().navigate(
                         R.id.action_childFragment_to_formProgressFragment,
