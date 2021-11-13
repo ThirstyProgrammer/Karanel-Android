@@ -58,4 +58,10 @@ interface ApiService {
         @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
         @Body body: RequestBody
     ): FormChild.Response
+
+    @POST("/v1/api/record")
+    suspend fun submitProgress(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Body body: RequestBody
+    ): FormProgress.Response
 }

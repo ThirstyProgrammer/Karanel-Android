@@ -99,5 +99,30 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         )
     }
 
+    suspend fun submitProgressAsParent(token: String, payload: FormProgress.Payload): FormProgress.Response {
+        return service.submitProgress(
+            generateBearerToken(token),
+            NetworkUtil.createJsonRequestBodyWithAny(
+                "child_id" to payload.childId,
+                "weight" to payload.record.weight,
+                "height" to payload.record.height,
+                "head_circumference" to payload.record.headCircumference
+            )
+        )
+    }
+
+    suspend fun submitProgressAsPosyandu(token: String, payload: FormProgress.Payload): FormProgress.Response {
+        // TODO UPDATE
+        return service.submitProgress(
+            generateBearerToken(token),
+            NetworkUtil.createJsonRequestBodyWithAny(
+                "child_id" to payload.childId,
+                "weight" to payload.record.weight,
+                "height" to payload.record.height,
+                "head_circumference" to payload.record.headCircumference
+            )
+        )
+    }
+
     private fun generateBearerToken(token: String): String = "Bearer $token"
 }

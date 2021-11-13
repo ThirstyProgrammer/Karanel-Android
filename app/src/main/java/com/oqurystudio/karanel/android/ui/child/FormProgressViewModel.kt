@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.oqurystudio.karanel.android.base.BaseViewModel
 import com.oqurystudio.karanel.android.model.FormChild
 import com.oqurystudio.karanel.android.model.FormProgress
+import com.oqurystudio.karanel.android.model.Parent
+import com.oqurystudio.karanel.android.network.NetworkRequestType
 import com.oqurystudio.karanel.android.repository.KaranelRepository
 import com.oqurystudio.karanel.android.util.DataStoreManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -55,11 +57,19 @@ class FormProgressViewModel @Inject constructor(
         return
     }
 
+    private val _response: MutableLiveData<FormProgress.Response> = MutableLiveData()
+    val response: LiveData<FormProgress.Response> = _response
+
     fun submitProgress(token: String) {
         if (parentId.isBlank()) {
-            // TODO Treat as Parent
-        }else{
-            // TODO Treat as Posyandu
+            requestAPI(_response, NetworkRequestType.FORM_PROGRESS) {
+                repo.submitProgressAsParent(token, progressPayload)
+            }
+        } else {
+            // TODO CHECK UPDATE
+            requestAPI(_response, NetworkRequestType.FORM_PROGRESS) {
+                repo.submitProgressAsPosyandu(token, progressPayload)
+            }
         }
     }
 }
