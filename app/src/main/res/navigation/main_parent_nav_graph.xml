@@ -5,13 +5,31 @@
     android:id="@+id/main_graph"
     app:startDestination="@id/homeParentFragment">
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.oqurystudio.karanel.android.ui.profile.ProfileFragment"
-        android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
         android:id="@+id/homeParentFragment"
         android:name="com.oqurystudio.karanel.android.ui.home.HomeParentFragment"
         android:label="HomeParentFragment"
-        tools:layout="@layout/fragment_parent" />
+        tools:layout="@layout/fragment_parent">
+        <action
+            android:id="@+id/action_homeParentFragment_to_parentActivity"
+            app:destination="@id/parentActivity" />
+        <action
+            android:id="@+id/action_homeParentFragment_to_formChildActivity"
+            app:destination="@id/formChildActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/parentActivity"
+        android:name="com.oqurystudio.karanel.android.ui.ParentActivity"
+        android:label="ParentActivity">
+        <argument
+            android:name="childId"
+            app:argType="string" />
+    </activity>
+    <activity
+        android:id="@+id/formChildActivity"
+        android:name="com.oqurystudio.karanel.android.ui.form.FormChildActivity"
+        android:label="FormChildActivity" />
+    <fragment
+        android:id="@+id/profileParentFragment"
+        android:name="com.oqurystudio.karanel.android.ui.profile.ProfileParentFragment"
+        android:label="ProfileParentFragment" />
 </navigation>

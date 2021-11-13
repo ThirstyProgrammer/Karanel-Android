@@ -34,6 +34,9 @@
         <activity
             android:name=".ui.PosyanduActivity"
             android:theme="@style/Theme.KaranelAndroid" />
+        <activity
+            android:name=".ui.ParentActivity"
+            android:theme="@style/Theme.KaranelAndroid" />
     </application>
 
 </manifest>

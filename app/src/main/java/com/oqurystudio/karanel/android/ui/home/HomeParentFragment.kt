@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentHomeParentBinding
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
 import com.oqurystudio.karanel.android.model.Parent
 import com.oqurystudio.karanel.android.ui.form.FormChildActivity
 import com.oqurystudio.karanel.android.ui.parent.ChildAdapter
-import com.oqurystudio.karanel.android.util.Constant
-import com.oqurystudio.karanel.android.util.handleViewState
-import com.oqurystudio.karanel.android.util.setErrorMessage
-import com.oqurystudio.karanel.android.util.setOnSafeClickListener
+import com.oqurystudio.karanel.android.ui.parents.ParentsFragmentDirections
+import com.oqurystudio.karanel.android.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,7 +38,8 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClicked(v: View, position: Int) {
-//        findNavController().navigate(R.id.action_parentFragment_to_childFragment)
+        val toParentActivity = HomeParentFragmentDirections.actionHomeParentFragmentToParentActivity(mAdapter.getItem(position).id.toString())
+        findNavController().navigate(toParentActivity)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,8 +53,9 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
                 adapter = mAdapter
             }
             btnAddNewChild.setOnSafeClickListener {
-                val intent = Intent(requireActivity(), FormChildActivity::class.java)
-                startActivity(intent)
+//                val intent = Intent(requireActivity(), FormChildActivity::class.java)
+//                startActivity(intent)
+                findNavController().navigate(R.id.action_homeParentFragment_to_formChildActivity)
                 // TODO Update Journey
 //                val directions = ParentFragmentDirections.actionParentFragmentToFormChildFragment2(false, )
 //                findNavController().navigate(directions)

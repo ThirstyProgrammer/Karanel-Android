@@ -7,7 +7,7 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/profileParentFragment"
         android:icon="@drawable/ic_profile"
         android:title="@string/profile" />
 </menu>
