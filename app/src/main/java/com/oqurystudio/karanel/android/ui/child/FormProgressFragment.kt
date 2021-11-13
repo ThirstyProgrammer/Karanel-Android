@@ -9,10 +9,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.oqurystudio.karanel.android.databinding.FragmentFormProgressBinding
-import com.oqurystudio.karanel.android.util.defaultEmpty
-import com.oqurystudio.karanel.android.util.handleViewState
-import com.oqurystudio.karanel.android.util.setErrorMessage
-import com.oqurystudio.karanel.android.util.setOnSafeClickListener
+import com.oqurystudio.karanel.android.util.*
 import com.oqurystudio.karanel.android.widget.setupEditText
 import com.oqurystudio.karanel.android.widget.setupErrorState
 import com.oqurystudio.karanel.android.widget.setupNormalState
@@ -104,6 +101,10 @@ class FormProgressFragment : Fragment() {
     private fun handleViewModelObserver() {
         mViewModel.token.observe(viewLifecycleOwner, {
             mViewModel.submitProgress(it)
+        })
+        mViewModel.response.observe(viewLifecycleOwner, {
+            makeToast("Data Progress Telah Ditambahkan")
+            requireActivity().onBackPressed()
         })
         mViewModel.isFormProgressCompleted.observe(viewLifecycleOwner, {
             mViewBinding.btnSubmit.isEnabled = it

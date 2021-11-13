@@ -10,6 +10,7 @@ import com.oqurystudio.karanel.android.network.NetworkRequestType
 import com.oqurystudio.karanel.android.repository.KaranelRepository
 import com.oqurystudio.karanel.android.util.DataStoreManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,5 +38,9 @@ class HomeParentViewModel @Inject constructor(
         requestAPI(_response, NetworkRequestType.PARENT) {
             repo.getParentByToken(token)
         }
+    }
+
+    fun signOut(): Job = viewModelScope.launch {
+        dataStore.clearUserPreference()
     }
 }

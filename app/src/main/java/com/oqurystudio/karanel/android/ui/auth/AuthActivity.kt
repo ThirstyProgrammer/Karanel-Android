@@ -3,8 +3,6 @@ package com.oqurystudio.karanel.android.ui.auth
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.oqurystudio.karanel.android.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,5 +20,10 @@ class AuthActivity : AppCompatActivity() {
             R.navigation.auth_nav_graph,
             intent.extras
         )
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }

@@ -13,6 +13,8 @@ import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentHomeParentBinding
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
 import com.oqurystudio.karanel.android.model.Parent
+import com.oqurystudio.karanel.android.network.ViewState
+import com.oqurystudio.karanel.android.ui.MainActivity
 import com.oqurystudio.karanel.android.ui.form.FormChildActivity
 import com.oqurystudio.karanel.android.ui.parent.ChildAdapter
 import com.oqurystudio.karanel.android.ui.parents.ParentsFragmentDirections
@@ -68,7 +70,14 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
             if (it.data != null) setupView(it.data)
         })
         mViewModel.viewState.observe(viewLifecycleOwner, {
-            mViewBinding.viewState.handleViewState(it.first, it.second)
+            if (it.first == ViewState.UNAUTHORIZED) {
+                mViewModel.signOut()
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
+            } else {
+                mViewBinding.viewState.handleViewState(it.first, it.second)
+            }
         })
 
         mViewModel.error.observe(viewLifecycleOwner, {

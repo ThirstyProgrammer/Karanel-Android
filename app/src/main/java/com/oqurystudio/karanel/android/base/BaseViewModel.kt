@@ -1,6 +1,5 @@
 package com.oqurystudio.karanel.android.base
 
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.*
 import com.oqurystudio.karanel.android.network.NetworkRequestType
@@ -11,6 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
+import java.lang.Exception
 
 abstract class BaseViewModel : ViewModel() {
 
@@ -34,8 +34,18 @@ abstract class BaseViewModel : ViewModel() {
                     data.postValue(result)
                     if (viewStateActive) _viewState.postValue(Pair(ViewState.SUCCESS, requestType))
                 } catch (throwable: Throwable) {
-                    handleNetworkError(throwable)
-                    if (viewStateActive) _viewState.postValue(Pair(ViewState.ERROR, requestType))
+                    try {
+                        val code = (throwable as HttpException).code()
+                        if (code == 401) {
+                            _viewState.postValue(Pair(ViewState.UNAUTHORIZED, requestType))
+                        } else {
+                            handleNetworkError(throwable)
+                            if (viewStateActive) _viewState.postValue(Pair(ViewState.ERROR, requestType))
+                        }
+                    } catch (e: Exception) {
+                        handleNetworkError(throwable)
+                        if (viewStateActive) _viewState.postValue(Pair(ViewState.ERROR, requestType))
+                    }
                 }
             }
         }
