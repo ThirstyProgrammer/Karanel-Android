@@ -31,7 +31,7 @@ class ChildViewModel @Inject constructor(
     }
 
     var childId: String = ""
-    var isParent: Boolean = false
+    var parentId: String = ""
 
     private val _response: MutableLiveData<Child.Response> = MutableLiveData()
     val response: LiveData<Child.Response> = _response

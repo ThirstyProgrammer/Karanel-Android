@@ -38,7 +38,7 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClicked(v: View, position: Int) {
-        val toParentActivity = HomeParentFragmentDirections.actionHomeParentFragmentToParentActivity(mAdapter.getItem(position).id.toString(), true)
+        val toParentActivity = HomeParentFragmentDirections.actionHomeParentFragmentToParentActivity(mAdapter.getItem(position).id.toString())
         findNavController().navigate(toParentActivity)
     }
 

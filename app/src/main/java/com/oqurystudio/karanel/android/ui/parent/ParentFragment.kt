@@ -33,7 +33,10 @@ class ParentFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClicked(v: View, position: Int) {
-        val directions = ParentFragmentDirections.actionParentFragmentToChildFragment(mAdapter.getItem(position).id.toString())
+        val directions = ParentFragmentDirections.actionParentFragmentToChildFragment(
+            childId = mAdapter.getItem(position).id.toString(),
+            parentId = (mViewModel.parentId)
+        )
         findNavController().navigate(directions)
     }
 

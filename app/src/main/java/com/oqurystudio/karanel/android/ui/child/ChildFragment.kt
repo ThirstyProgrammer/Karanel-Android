@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -31,17 +32,21 @@ class ChildFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (arguments != null) {
             mViewModel.childId = ChildFragmentArgs.fromBundle(arguments as Bundle).childId.defaultEmpty()
-            mViewModel.isParent = ChildFragmentArgs.fromBundle(arguments as Bundle).isParent
+            mViewModel.parentId = ChildFragmentArgs.fromBundle(arguments as Bundle).parentId
         }
         mViewBinding.apply {
             btnBack.setOnSafeClickListener {
                 requireActivity().onBackPressed()
             }
             btnAddProgress.setOnSafeClickListener {
-                if (mViewModel.isParent) {
-                    findNavController().navigate(R.id.action_childFragment2_to_formProgressFragment2)
+                if (mViewModel.parentId.isBlank()) {
+                    val directions = ChildFragmentDirections.actionChildFragment2ToFormProgressFragment2(mViewModel.childId)
+                    findNavController().navigate(directions)
                 } else {
-                    findNavController().navigate(R.id.action_childFragment_to_formProgressFragment)
+                    findNavController().navigate(
+                        R.id.action_childFragment_to_formProgressFragment,
+                        bundleOf("childId" to mViewModel.childId, "parentId" to mViewModel.parentId)
+                    )
                 }
             }
         }

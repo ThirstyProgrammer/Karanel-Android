@@ -11,11 +11,12 @@
         android:label="ChildFragment">
         <argument
             android:name="childId"
+            android:defaultValue=""
             app:argType="string" />
         <argument
-            android:name="isParent"
-            android:defaultValue="false"
-            app:argType="boolean" />
+            android:name="parentId"
+            android:defaultValue=""
+            app:argType="string" />
         <action
             android:id="@+id/action_childFragment2_to_formProgressFragment2"
             app:destination="@id/formProgressFragment2" />
@@ -25,5 +26,14 @@
         android:id="@+id/formProgressFragment2"
         android:name="com.oqurystudio.karanel.android.ui.child.FormProgressFragment"
         android:label="FormProgressFragment"
-        tools:layout="@layout/fragment_form_progress" />
+        tools:layout="@layout/fragment_form_progress">
+        <argument
+            android:name="childId"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="parentId"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 </navigation>

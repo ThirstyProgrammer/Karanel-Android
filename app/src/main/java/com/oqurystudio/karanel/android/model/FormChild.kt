@@ -16,13 +16,6 @@ class FormChild {
         var record: Record = Record()
     )
 
-    data class Record(
-        var week: Int = 0,
-        var weight: Double = 0.0,
-        var height: Double = 0.0,
-        var headCircumference: Double = 0.0
-    )
-
     @Serializable
     data class Response(
         override var stat_code: Int,

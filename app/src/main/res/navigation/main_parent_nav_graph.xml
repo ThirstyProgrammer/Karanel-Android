@@ -22,11 +22,12 @@
         android:label="ParentActivity">
         <argument
             android:name="childId"
+            android:defaultValue=""
             app:argType="string" />
         <argument
-            android:name="isParent"
-            android:defaultValue="false"
-            app:argType="boolean" />
+            android:name="parentId"
+            android:defaultValue=""
+            app:argType="string" />
     </activity>
     <activity
         android:id="@+id/formChildActivity"
