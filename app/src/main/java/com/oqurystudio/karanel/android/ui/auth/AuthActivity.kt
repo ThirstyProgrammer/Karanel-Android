@@ -24,6 +24,9 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        finishAffinity()
+        val currentFragment = supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.fragments?.first()
+        if (currentFragment is SignInOptionsFragment) {
+            finishAffinity()
+        }
     }
 }

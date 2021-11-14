@@ -4,5 +4,6 @@ enum class ViewState {
     LOADING,
     SUCCESS,
     ERROR,
-    UNAUTHORIZED
+    UNAUTHORIZED,
+    INVALID_LOGIN
 }

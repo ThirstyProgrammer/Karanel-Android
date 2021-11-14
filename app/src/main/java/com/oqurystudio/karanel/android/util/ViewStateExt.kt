@@ -13,12 +13,12 @@ fun ViewStateBinding.handleViewState(state: ViewState, requestType: NetworkReque
             containerError.visibility = View.GONE
             containerLoading.visibility = View.VISIBLE
         }
-        ViewState.SUCCESS -> {
+        ViewState.SUCCESS, ViewState.INVALID_LOGIN -> {
             containerViewState.visibility = View.GONE
             containerError.visibility = View.GONE
             containerLoading.visibility = View.GONE
         }
-        ViewState.ERROR -> {
+        ViewState.ERROR, ViewState.UNAUTHORIZED -> {
             containerViewState.visibility = View.VISIBLE
             containerError.visibility = View.VISIBLE
             containerLoading.visibility = View.GONE

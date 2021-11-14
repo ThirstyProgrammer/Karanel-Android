@@ -13,12 +13,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.oqurystudio.karanel.android.databinding.FragmentSignInParentBinding
 import com.oqurystudio.karanel.android.model.UserType
+import com.oqurystudio.karanel.android.network.ViewState
 import com.oqurystudio.karanel.android.ui.MainActivity
 import com.oqurystudio.karanel.android.util.handleViewState
 import com.oqurystudio.karanel.android.util.makeToast
 import com.oqurystudio.karanel.android.util.setErrorMessage
 import com.oqurystudio.karanel.android.widget.hidePassword
 import com.oqurystudio.karanel.android.widget.setupEditText
+import com.oqurystudio.karanel.android.widget.setupErrorState
+import com.oqurystudio.karanel.android.widget.setupNormalState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 
@@ -43,6 +46,7 @@ class SignInParentFragment : Fragment() {
                 )
                 etCustom.doOnTextChanged { text, _, _, _ ->
                     mViewModel.updateIdParent(text.toString())
+                    setupNormalState()
                 }
             }
             btnSignIn.setOnClickListener {
@@ -66,6 +70,9 @@ class SignInParentFragment : Fragment() {
             }
         })
         mViewModel.viewState.observe(viewLifecycleOwner, {
+            if (it.first == ViewState.INVALID_LOGIN) {
+                makeToast("ID Tidak Ditemukan")
+            }
             mViewBinding.viewState.handleViewState(it.first, it.second)
         })
 

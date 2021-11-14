@@ -8,6 +8,8 @@ import com.oqurystudio.karanel.android.util.DataStoreManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.HttpException
 import java.io.IOException
 import java.lang.Exception
@@ -35,12 +37,19 @@ abstract class BaseViewModel : ViewModel() {
                     if (viewStateActive) _viewState.postValue(Pair(ViewState.SUCCESS, requestType))
                 } catch (throwable: Throwable) {
                     try {
-                        val code = (throwable as HttpException).code()
-                        if (code == 401) {
-                            _viewState.postValue(Pair(ViewState.UNAUTHORIZED, requestType))
-                        } else {
-                            handleNetworkError(throwable)
-                            if (viewStateActive) _viewState.postValue(Pair(ViewState.ERROR, requestType))
+                        when ((throwable as HttpException).code()) {
+                            401 -> _viewState.postValue(Pair(ViewState.UNAUTHORIZED, requestType))
+                            400 -> {
+                                val errorBody = JSONObject(throwable.response()?.errorBody()!!.charStream().readText())
+                                val msg = errorBody.getString("stat_msg")
+                                if (msg == "invalid_credentials" && requestType == NetworkRequestType.LOGIN) {
+                                    _viewState.postValue(Pair(ViewState.INVALID_LOGIN, requestType))
+                                }
+                            }
+                            else -> {
+                                handleNetworkError(throwable)
+                                if (viewStateActive) _viewState.postValue(Pair(ViewState.ERROR, requestType))
+                            }
                         }
                     } catch (e: Exception) {
                         handleNetworkError(throwable)

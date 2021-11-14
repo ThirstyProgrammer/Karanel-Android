@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.oqurystudio.karanel.android.databinding.FragmentSignInPosyanduBinding
 import com.oqurystudio.karanel.android.model.UserType
+import com.oqurystudio.karanel.android.network.ViewState
 import com.oqurystudio.karanel.android.ui.MainActivity
 import com.oqurystudio.karanel.android.util.*
 import com.oqurystudio.karanel.android.widget.hidePassword
@@ -82,6 +83,9 @@ class SignInPosyanduFragment : Fragment() {
             }
         })
         mViewModel.viewState.observe(viewLifecycleOwner, {
+            if (it.first == ViewState.INVALID_LOGIN) {
+                makeToast("Email/Password Tidak Tepat")
+            }
             mViewBinding.viewState.handleViewState(it.first, it.second)
         })
 
