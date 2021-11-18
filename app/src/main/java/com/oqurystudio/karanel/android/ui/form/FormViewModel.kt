@@ -85,7 +85,7 @@ class FormViewModel @Inject constructor(
             _isFormChildCompleted.postValue(false)
             return
         }
-        if (childPayload.record.week == 0) {
+        if (childPayload.ageOfBirth == 0) {
             _isFormChildCompleted.postValue(false)
             return
         }

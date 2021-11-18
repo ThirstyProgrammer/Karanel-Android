@@ -64,4 +64,17 @@ interface ApiService {
         @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
         @Body body: RequestBody
     ): FormProgress.Response
+
+    @POST("/v1/api/record/id/{record_id}")
+    suspend fun updateProgress(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Path("record_id") recordId: String,
+        @Body body: RequestBody
+    ): FormProgress.Response
+
+    @GET("/v1/api/chart/bbu/{child_id}?page=1&limit=12")
+    suspend fun getChartBbu(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Path("child_id") childId: String
+    ): Chart.Response
 }

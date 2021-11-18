@@ -111,6 +111,19 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         )
     }
 
+    suspend fun updateProgressAsParent(token: String, recordId: String, payload: FormProgress.Payload): FormProgress.Response {
+        return service.updateProgress(
+            generateBearerToken(token),
+            recordId,
+            NetworkUtil.createJsonRequestBodyWithAny(
+                "child_id" to payload.childId,
+                "weight" to payload.record.weight,
+                "height" to payload.record.height,
+                "head_circumference" to payload.record.headCircumference
+            )
+        )
+    }
+
     suspend fun submitProgressAsPosyandu(token: String, payload: FormProgress.Payload): FormProgress.Response {
         // TODO UPDATE
         return service.submitProgress(
@@ -122,6 +135,10 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
                 "head_circumference" to payload.record.headCircumference
             )
         )
+    }
+
+    suspend fun getChartBbu(token: String, childId: String): Chart.Response {
+        return service.getChartBbu(generateBearerToken(token), childId)
     }
 
     private fun generateBearerToken(token: String): String = "Bearer $token"

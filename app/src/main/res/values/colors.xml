@@ -32,5 +32,9 @@
     <color name="yellow_light">#FFFBEC</color>
 
     <color name="text_primary_color">#22215B</color>
+    <color name="text_primary_color_60">#9622215B</color>
+    <color name="text_grey_color">#9A99A2</color>
     <color name="text_secondary_color">#7B7F9E</color>
+
+    <color name="table_row_odd">#F7F7FA</color>
 </resources>

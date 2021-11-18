@@ -13,6 +13,7 @@ class FormChild {
         var bloodType: String = "A",
         var childOrder: Int = 0,
         var parentId: String = "",
+        var ageOfBirth: Int = 0,
         var record: Record = Record()
     )
 

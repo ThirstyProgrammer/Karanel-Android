@@ -92,7 +92,7 @@ class FormProgressFragment : Fragment() {
                 requireActivity().onBackPressed()
             }
             btnSubmit.setOnSafeClickListener {
-                requireActivity().onBackPressed()
+                mViewModel.getToken()
             }
         }
         handleViewModelObserver()
@@ -100,7 +100,11 @@ class FormProgressFragment : Fragment() {
 
     private fun handleViewModelObserver() {
         mViewModel.token.observe(viewLifecycleOwner, {
-            mViewModel.submitProgress(it)
+            if (mViewModel.recordId.isBlank()) {
+                mViewModel.submitProgress(it)
+            } else {
+                mViewModel.updateProgress(it)
+            }
         })
         mViewModel.response.observe(viewLifecycleOwner, {
             makeToast("Data Progress Telah Ditambahkan")

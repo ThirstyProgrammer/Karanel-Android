@@ -76,6 +76,15 @@ class ChildFragment : Fragment() {
         mViewBinding.apply {
             tvName.text = data.name
             tvAge.text = Helper.getChildAge(data.birthDate.defaultEmpty())
+            containerBbu.setOnSafeClickListener {
+                findNavController().navigate(
+                    R.id.action_childFragment2_to_ChartBbuFragment,
+                    bundleOf(
+                        "childId" to mViewModel.childId,
+                        "parentId" to mViewModel.parentId
+                    )
+                )
+            }
         }
         setupGender(data.gender.defaultEmpty())
     }

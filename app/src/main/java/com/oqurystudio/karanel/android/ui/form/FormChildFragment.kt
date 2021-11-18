@@ -154,7 +154,7 @@ class FormChildFragment : Fragment() {
                     } else {
                         setupNormalState()
                     }
-                    mViewModel.childPayload.record.week = if (!text.isNullOrBlank()) text.toString().toInt() else 0
+                    mViewModel.childPayload.ageOfBirth = if (!text.isNullOrBlank()) text.toString().toInt() else 1
                     mViewModel.updateFormChildState()
                 }
                 etCustom.filters = arrayOf(InputFilter.LengthFilter(3))

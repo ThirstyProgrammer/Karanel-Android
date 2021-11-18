@@ -131,6 +131,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_title_childs">
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/container_bbu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue_light"

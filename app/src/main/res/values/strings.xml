@@ -22,6 +22,10 @@
     <string name="total_parent">Jumlah Orangtua</string>
     <string name="next">Selanjutnya</string>
     <string name="log_out">Keluar</string>
+    <string name="my_history">History-Ku</string>
+    <string name="baby_status">Status Bayi Anda</string>
+    <string name="baby_age">Umur Bayi</string>
+    <string name="baby_weight">Berat Badan Bayi</string>
     <string-array name="gender">
         <item>Laki-Laki</item>
         <item>Perempuan</item>

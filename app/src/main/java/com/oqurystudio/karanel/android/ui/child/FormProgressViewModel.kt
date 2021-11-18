@@ -32,6 +32,7 @@ class FormProgressViewModel @Inject constructor(
         }
     }
 
+    var recordId: String = ""
     var childId: String = ""
     var parentId: String = ""
     val progressPayload = FormProgress.Payload()
@@ -61,15 +62,32 @@ class FormProgressViewModel @Inject constructor(
     val response: LiveData<FormProgress.Response> = _response
 
     fun submitProgress(token: String) {
+        progressPayload.childId = childId
         if (parentId.isBlank()) {
             requestAPI(_response, NetworkRequestType.FORM_PROGRESS) {
                 repo.submitProgressAsParent(token, progressPayload)
             }
         } else {
+            progressPayload.parentId = parentId
             // TODO CHECK UPDATE
             requestAPI(_response, NetworkRequestType.FORM_PROGRESS) {
                 repo.submitProgressAsPosyandu(token, progressPayload)
             }
+        }
+    }
+
+    fun updateProgress(token: String) {
+        progressPayload.childId = childId
+        if (parentId.isBlank()) {
+            requestAPI(_response, NetworkRequestType.FORM_PROGRESS) {
+                repo.updateProgressAsParent(token, recordId, progressPayload)
+            }
+        } else {
+            progressPayload.parentId = parentId
+            // TODO CHECK UPDATE
+//            requestAPI(_response, NetworkRequestType.FORM_PROGRESS) {
+//                repo.submitProgressAsPosyandu(token, progressPayload)
+//            }
         }
     }
 }

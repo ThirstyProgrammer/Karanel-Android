@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_childFragment2_to_formProgressFragment2"
             app:destination="@id/formProgressFragment2" />
+        <action
+            android:id="@+id/action_childFragment2_to_ChartBbuFragment"
+            app:destination="@id/ChartBbuFragment" />
     </fragment>
 
     <fragment
@@ -27,6 +30,19 @@
         android:name="com.oqurystudio.karanel.android.ui.child.FormProgressFragment"
         android:label="FormProgressFragment"
         tools:layout="@layout/fragment_form_progress">
+        <argument
+            android:name="childId"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="parentId"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/ChartBbuFragment"
+        android:name="com.oqurystudio.karanel.android.ui.chart.bbu.ChartBbuFragment"
+        android:label="ChartBbuFragment">
         <argument
             android:name="childId"
             android:defaultValue=""
