@@ -65,7 +65,7 @@ interface ApiService {
         @Body body: RequestBody
     ): FormProgress.Response
 
-    @POST("/v1/api/record/id/{record_id}")
+    @PUT("/v1/api/record/id/{record_id}")
     suspend fun updateProgress(
         @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
         @Path("record_id") recordId: String,

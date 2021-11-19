@@ -35,6 +35,11 @@
             android:name="idParent"
             android:defaultValue=""
             app:argType="string" />
+        <argument
+            android:name="parentPayload"
+            android:defaultValue="@null"
+            app:argType="com.oqurystudio.karanel.android.model.FormParent$Payload"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/childFragment"
@@ -52,6 +57,9 @@
             android:name="parentId"
             android:defaultValue=""
             app:argType="string" />
+        <action
+            android:id="@+id/action_childFragment_to_ChartBbuFragment2"
+            app:destination="@id/ChartBbuFragment2" />
     </fragment>
 
     <fragment
@@ -60,6 +68,10 @@
         android:label="FormProgressFragment"
         tools:layout="@layout/fragment_form_progress">
         <argument
+            android:name="recordId"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
             android:name="childId"
             android:defaultValue=""
             app:argType="string" />
@@ -67,5 +79,21 @@
             android:name="parentId"
             android:defaultValue=""
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/ChartBbuFragment2"
+        android:name="com.oqurystudio.karanel.android.ui.chart.bbu.ChartBbuFragment"
+        android:label="ChartBbuFragment">
+        <argument
+            android:name="childId"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="parentId"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_ChartBbuFragment2_to_formProgressFragment"
+            app:destination="@id/formProgressFragment" />
     </fragment>
 </navigation>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,71 +36,75 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <include
-        android:id="@+id/til_body_weight"
-        layout="@layout/layout_text_input"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16"
-        android:layout_marginTop="@dimen/margin_16"
-        app:layout_constraintTop_toBottomOf="@+id/container_toolbar"
-        tools:layout_editor_absoluteX="16dp" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/container_toolbar">
 
-    <include
-        android:id="@+id/til_body_height"
-        layout="@layout/layout_text_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16"
-        app:layout_constraintTop_toBottomOf="@+id/til_body_weight" />
+        <include
+            android:id="@+id/til_body_weight"
+            layout="@layout/layout_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/til_head_circumference"
-        layout="@layout/layout_text_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16"
-        app:layout_constraintTop_toBottomOf="@+id/til_body_height" />
+        <include
+            android:id="@+id/til_body_height"
+            layout="@layout/layout_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            app:layout_constraintTop_toBottomOf="@+id/til_body_weight" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_cancel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16"
-        android:background="?attr/selectableItemBackground"
-        android:text="@string/cancel"
-        android:textAllCaps="false"
-        android:textColor="@color/text_primary_color"
-        android:textSize="@dimen/big_text_size"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_submit"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="parent" />
+        <include
+            android:id="@+id/til_head_circumference"
+            layout="@layout/layout_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            app:layout_constraintTop_toBottomOf="@+id/til_body_height" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_submit"
-        style="@style/ButtonPrimary"
-        android:layout_width="0dp"
-        android:layout_marginHorizontal="@dimen/margin_16"
-        android:layout_marginTop="@dimen/margin_16"
-        android:text="@string/save"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/til_head_circumference" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/text_primary_color"
+            android:textSize="@dimen/big_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_submit"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_submit"
+            style="@style/ButtonPrimary"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/til_head_circumference" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
         android:id="@+id/view_state"
         layout="@layout/view_state"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_toolbar" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@id/container_toolbar"
+        android:visibility="gone" />
+</RelativeLayout>

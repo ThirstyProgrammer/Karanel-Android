@@ -31,6 +31,10 @@
         android:label="FormProgressFragment"
         tools:layout="@layout/fragment_form_progress">
         <argument
+            android:name="recordId"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
             android:name="childId"
             android:defaultValue=""
             app:argType="string" />
@@ -51,5 +55,8 @@
             android:name="parentId"
             android:defaultValue=""
             app:argType="string" />
+        <action
+            android:id="@+id/action_ChartBbuFragment_to_formProgressFragment2"
+            app:destination="@id/formProgressFragment2" />
     </fragment>
 </navigation>

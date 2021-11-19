@@ -30,8 +30,9 @@ class FormProgressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (arguments != null) {
-            mViewModel.childId = ChildFragmentArgs.fromBundle(arguments as Bundle).childId.defaultEmpty()
-            mViewModel.parentId = ChildFragmentArgs.fromBundle(arguments as Bundle).parentId
+            mViewModel.childId = FormProgressFragmentArgs.fromBundle(arguments as Bundle).childId.defaultEmpty()
+            mViewModel.parentId = FormProgressFragmentArgs.fromBundle(arguments as Bundle).parentId
+            mViewModel.recordId = FormProgressFragmentArgs.fromBundle(arguments as Bundle).recordId
         }
         mViewBinding.apply {
             btnBack.setOnSafeClickListener {
