@@ -77,4 +77,22 @@ interface ApiService {
         @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
         @Path("child_id") childId: String
     ): Chart.Response
+
+    @GET("/v1/api/chart/bbu/{child_id}?page=1&limit=12")
+    suspend fun getChartPbu(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Path("child_id") childId: String
+    ): Chart.Response
+
+    @GET("/v1/api/chart/bbu/{child_id}?page=1&limit=12")
+    suspend fun getChartBbpb(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Path("child_id") childId: String
+    ): Chart.Response
+
+    @GET("/v1/api/chart/bbu/{child_id}?page=1&limit=12")
+    suspend fun getChartLku(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Path("child_id") childId: String
+    ): Chart.Response
 }

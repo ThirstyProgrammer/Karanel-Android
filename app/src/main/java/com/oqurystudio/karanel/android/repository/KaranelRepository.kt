@@ -70,6 +70,7 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
                 "blood" to payload.bloodType,
                 "child_order" to payload.childOrder,
                 "parent_id" to payload.parentId,
+                "age_of_birth" to payload.ageOfBirth,
                 "record" to jsonObj
             )
         )
@@ -92,6 +93,7 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
                 "birth_date" to payload.birthDate,
                 "blood" to payload.bloodType,
                 "child_order" to payload.childOrder,
+                "age_of_birth" to payload.ageOfBirth,
                 "record" to jsonObj
             )
         )
@@ -124,6 +126,18 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
 
     suspend fun getChartBbu(token: String, childId: String): Chart.Response {
         return service.getChartBbu(generateBearerToken(token), childId)
+    }
+
+    suspend fun getChartPbu(token: String, childId: String): Chart.Response {
+        return service.getChartPbu(generateBearerToken(token), childId)
+    }
+
+    suspend fun getChartBbpb(token: String, childId: String): Chart.Response {
+        return service.getChartBbpb(generateBearerToken(token), childId)
+    }
+
+    suspend fun getChartLku(token: String, childId: String): Chart.Response {
+        return service.getChartLku(generateBearerToken(token), childId)
     }
 
     private fun generateBearerToken(token: String): String = "Bearer $token"

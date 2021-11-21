@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_childFragment_to_ChartBbuFragment2"
             app:destination="@id/ChartBbuFragment2" />
+        <action
+            android:id="@+id/action_childFragment_to_chartPbuFragment2"
+            app:destination="@id/chartPbuFragment2" />
     </fragment>
 
     <fragment
@@ -94,6 +97,22 @@
             app:argType="string" />
         <action
             android:id="@+id/action_ChartBbuFragment2_to_formProgressFragment"
+            app:destination="@id/formProgressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chartPbuFragment2"
+        android:name="com.oqurystudio.karanel.android.ui.chart.pbu.ChartPbuFragment"
+        android:label="ChartPbuFragment">
+        <argument
+            android:name="childId"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="parentId"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_chartPbuFragment2_to_formProgressFragment"
             app:destination="@id/formProgressFragment" />
     </fragment>
 </navigation>
