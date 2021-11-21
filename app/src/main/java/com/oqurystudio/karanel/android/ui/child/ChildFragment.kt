@@ -137,6 +137,25 @@ class ChildFragment : Fragment() {
                     )
                 }
             }
+            containerLku.setOnSafeClickListener {
+                if (mViewModel.parentId.isBlank()) {
+                    findNavController().navigate(
+                        R.id.action_childFragment2_to_chartLkuFragment,
+                        bundleOf(
+                            "childId" to mViewModel.childId,
+                            "parentId" to mViewModel.parentId
+                        )
+                    )
+                } else {
+                    findNavController().navigate(
+                        R.id.action_childFragment_to_chartLkuFragment2,
+                        bundleOf(
+                            "childId" to mViewModel.childId,
+                            "parentId" to mViewModel.parentId
+                        )
+                    )
+                }
+            }
         }
         setupGender(data.gender.defaultEmpty())
     }

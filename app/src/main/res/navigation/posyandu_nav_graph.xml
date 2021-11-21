@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_childFragment_to_chartBbpbFragment2"
             app:destination="@id/chartBbpbFragment2" />
+        <action
+            android:id="@+id/action_childFragment_to_chartLkuFragment2"
+            app:destination="@id/chartLkuFragment2" />
     </fragment>
 
     <fragment
@@ -132,6 +135,22 @@
             app:argType="string" />
         <action
             android:id="@+id/action_chartBbpbFragment2_to_formProgressFragment"
+            app:destination="@id/formProgressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chartLkuFragment2"
+        android:name="com.oqurystudio.karanel.android.ui.chart.lku.ChartLkuFragment"
+        android:label="ChartLkuFragment">
+        <argument
+            android:name="childId"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="parentId"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_chartLkuFragment2_to_formProgressFragment"
             app:destination="@id/formProgressFragment" />
     </fragment>
 
