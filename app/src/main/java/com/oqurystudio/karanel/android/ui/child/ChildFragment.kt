@@ -118,6 +118,25 @@ class ChildFragment : Fragment() {
                     )
                 }
             }
+            containerBbpb.setOnSafeClickListener {
+                if (mViewModel.parentId.isBlank()) {
+                    findNavController().navigate(
+                        R.id.action_childFragment2_to_chartBbpbFragment,
+                        bundleOf(
+                            "childId" to mViewModel.childId,
+                            "parentId" to mViewModel.parentId
+                        )
+                    )
+                } else {
+                    findNavController().navigate(
+                        R.id.action_childFragment_to_chartBbpbFragment2,
+                        bundleOf(
+                            "childId" to mViewModel.childId,
+                            "parentId" to mViewModel.parentId
+                        )
+                    )
+                }
+            }
         }
         setupGender(data.gender.defaultEmpty())
     }

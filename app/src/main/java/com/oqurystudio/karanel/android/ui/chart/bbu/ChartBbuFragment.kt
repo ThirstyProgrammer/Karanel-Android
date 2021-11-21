@@ -152,12 +152,12 @@ class ChartBbuFragment : Fragment() {
         return textView
     }
 
-    private fun initBB(status: String): TextView {
+    private fun initBB(text: String): TextView {
         val textView = TextView(requireContext())
         val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT)
         layoutParams.column = 3
         layoutParams.weight = 0.1F
-        textView.text = status
+        textView.text = text
         textView.setPadding(ViewUtil.dpToPx(8))
         textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_grey_color))
         textView.textAlignment = View.TEXT_ALIGNMENT_CENTER

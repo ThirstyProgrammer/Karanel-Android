@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ChartBbtbViewModel @Inject constructor(
+class ChartBbpbViewModel @Inject constructor(
     private var dataStore: DataStoreManager,
     private val repo: KaranelRepository
 ) : BaseViewModel() {
@@ -36,7 +36,7 @@ class ChartBbtbViewModel @Inject constructor(
     private val _response: MutableLiveData<Chart.Response> = MutableLiveData()
     val response: LiveData<Chart.Response> = _response
 
-    fun getBbtb(token: String) {
+    fun getBbpb(token: String) {
         requestAPI(_response, NetworkRequestType.CHART_BBU) {
             repo.getChartBbpb(token, childId)
         }

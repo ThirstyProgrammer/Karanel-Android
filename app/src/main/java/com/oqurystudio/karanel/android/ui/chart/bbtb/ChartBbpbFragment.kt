@@ -1,4 +1,4 @@
-package com.oqurystudio.karanel.android.ui.chart.pbu
+package com.oqurystudio.karanel.android.ui.chart.bbtb
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,20 +13,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.oqurystudio.karanel.android.R
-import com.oqurystudio.karanel.android.databinding.FragmentPbuBinding
+import com.oqurystudio.karanel.android.databinding.FragmentBbpbBinding
 import com.oqurystudio.karanel.android.model.Chart
+import com.oqurystudio.karanel.android.ui.chart.pbu.ChartPbuFragmentArgs
 import com.oqurystudio.karanel.android.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ChartPbuFragment : Fragment() {
+class ChartBbpbFragment : Fragment() {
 
-    private lateinit var mViewBinding: FragmentPbuBinding
-    private val mViewModel: ChartPbuViewModel by viewModels()
+    private lateinit var mViewBinding: FragmentBbpbBinding
+    private val mViewModel: ChartBbpbViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        mViewBinding = FragmentPbuBinding.inflate(inflater)
+        mViewBinding = FragmentBbpbBinding.inflate(inflater)
         return mViewBinding.root
     }
 
@@ -47,7 +48,7 @@ class ChartPbuFragment : Fragment() {
 
     private fun handleViewModelObserver() {
         mViewModel.token.observe(viewLifecycleOwner, {
-            mViewModel.getPbu(it)
+            mViewModel.getBbpb(it)
         })
         mViewModel.response.observe(viewLifecycleOwner, {
             if (it.data != null) {
@@ -65,8 +66,8 @@ class ChartPbuFragment : Fragment() {
 
     private fun setupView(data: Chart.Data) {
         mViewBinding.apply {
+            tvWeight.text = ": ${data.weight} Kg"
             tvHeight.text = ": ${data.height} cm"
-            tvAge.text = ": ${data.age}"
             tvStatus.text = ": ${data.status}"
             if (table.childCount > 1) {
                 table.removeViews(1, (table.childCount - 1))
@@ -111,6 +112,7 @@ class ChartPbuFragment : Fragment() {
         tableRow.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.table_row_odd))
         tableRow.addView(initAge(record.month.toString()))
         tableRow.addView(initStatus(record.status.defaultDash()))
+        tableRow.addView(initBB(record.weight.toString()))
         tableRow.addView(initPB(record.height.toString()))
         tableRow.addView(initAction { goToFormProgress(record) })
         return tableRow
@@ -123,6 +125,7 @@ class ChartPbuFragment : Fragment() {
         tableRow.layoutParams = layoutParams
         tableRow.addView(initAge(record.month.toString()))
         tableRow.addView(initStatus(record.status.defaultDash()))
+        tableRow.addView(initBB(record.weight.toString()))
         tableRow.addView(initPB(record.height.toString()))
         tableRow.addView(initAction { goToFormProgress(record) })
         return tableRow
@@ -152,10 +155,23 @@ class ChartPbuFragment : Fragment() {
         return textView
     }
 
-    private fun initPB(text: String): TextView {
+    private fun initBB(text: String): TextView {
         val textView = TextView(requireContext())
         val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT)
         layoutParams.column = 3
+        layoutParams.weight = 0.1F
+        textView.text = text
+        textView.setPadding(ViewUtil.dpToPx(8))
+        textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_grey_color))
+        textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        textView.layoutParams = layoutParams
+        return textView
+    }
+
+    private fun initPB(text: String): TextView {
+        val textView = TextView(requireContext())
+        val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT)
+        layoutParams.column = 4
         layoutParams.weight = 0.1F
         textView.text = text
         textView.setPadding(ViewUtil.dpToPx(8))
