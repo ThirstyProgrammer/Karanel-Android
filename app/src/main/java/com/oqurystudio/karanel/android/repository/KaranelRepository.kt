@@ -55,7 +55,6 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
     suspend fun submitChild(token: String, payload: FormChild.Payload): FormChild.Response {
         val jsonObj = JSONObject(
             mapOf(
-                "month" to 0,
                 "weight" to payload.record.weight,
                 "height" to payload.record.height,
                 "head_circumference" to payload.record.headCircumference
@@ -79,7 +78,6 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
     suspend fun submitChildAsParent(token: String, payload: FormChild.Payload): FormChild.Response {
         val jsonObj = JSONObject(
             mapOf(
-                "month" to 0,
                 "weight" to payload.record.weight,
                 "height" to payload.record.height,
                 "head_circumference" to payload.record.headCircumference
@@ -99,7 +97,7 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         )
     }
 
-    suspend fun submitProgressAsParent(token: String, payload: FormProgress.Payload): FormProgress.Response {
+    suspend fun submitProgress(token: String, payload: FormProgress.Payload): FormProgress.Response {
         return service.submitProgress(
             generateBearerToken(token),
             NetworkUtil.createJsonRequestBodyWithAny(
@@ -111,23 +109,10 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         )
     }
 
-    suspend fun updateProgressAsParent(token: String, recordId: String, payload: FormProgress.Payload): FormProgress.Response {
+    suspend fun updateProgress(token: String, recordId: String, payload: FormProgress.Payload): FormProgress.Response {
         return service.updateProgress(
             generateBearerToken(token),
             recordId,
-            NetworkUtil.createJsonRequestBodyWithAny(
-                "child_id" to payload.childId,
-                "weight" to payload.record.weight,
-                "height" to payload.record.height,
-                "head_circumference" to payload.record.headCircumference
-            )
-        )
-    }
-
-    suspend fun submitProgressAsPosyandu(token: String, payload: FormProgress.Payload): FormProgress.Response {
-        // TODO UPDATE
-        return service.submitProgress(
-            generateBearerToken(token),
             NetworkUtil.createJsonRequestBodyWithAny(
                 "child_id" to payload.childId,
                 "weight" to payload.record.weight,
