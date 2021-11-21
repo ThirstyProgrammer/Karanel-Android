@@ -29,5 +29,14 @@ class Child {
         @SerialName("created_at") val createdAt: String? = "",
         @SerialName("updated_at") val updatedAt: String? = "",
         @SerialName("deleted_at") val deletedAt: String? = "",
+        val status: Status? = null
+    )
+
+    @Serializable
+    data class Status(
+        @SerialName("BBU") val bbu: String? = "",
+        @SerialName("PBU") val pbu: String? = "",
+        @SerialName("BBTB") val bbtb: String? = "",
+        @SerialName("LKU") val lku: String? = "",
     )
 }

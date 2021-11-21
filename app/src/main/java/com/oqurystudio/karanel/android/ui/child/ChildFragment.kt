@@ -76,6 +76,10 @@ class ChildFragment : Fragment() {
         mViewBinding.apply {
             tvName.text = data.name
             tvAge.text = Helper.getChildAge(data.birthDate.defaultEmpty())
+            tvBbuStatus.text = data.status?.bbu.defaultDash()
+            tvPbuStatus.text = data.status?.pbu.defaultDash()
+            tvBbtbStatus.text = data.status?.bbtb.defaultDash()
+            tvLkuStatus.text = data.status?.lku.defaultDash()
             containerBbu.setOnSafeClickListener {
                 if (mViewModel.parentId.isBlank()) {
                     findNavController().navigate(
