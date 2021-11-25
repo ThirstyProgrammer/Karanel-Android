@@ -8,6 +8,7 @@ class FormProgress {
     data class Payload(
         var parentId: String = "",
         var childId: String = "",
+        var growthDate: String = "",
         var record: Record = Record()
     )
 

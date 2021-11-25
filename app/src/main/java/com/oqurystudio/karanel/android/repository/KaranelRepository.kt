@@ -106,6 +106,7 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
             generateBearerToken(token),
             NetworkUtil.createJsonRequestBodyWithAny(
                 "child_id" to payload.childId,
+                "growth_date" to payload.growthDate,
                 "weight" to payload.record.weight,
                 "height" to payload.record.height,
                 "head_circumference" to payload.record.headCircumference
@@ -119,6 +120,7 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
             recordId,
             NetworkUtil.createJsonRequestBodyWithAny(
                 "child_id" to payload.childId,
+                "growth_date" to payload.growthDate,
                 "weight" to payload.record.weight,
                 "height" to payload.record.height,
                 "head_circumference" to payload.record.headCircumference

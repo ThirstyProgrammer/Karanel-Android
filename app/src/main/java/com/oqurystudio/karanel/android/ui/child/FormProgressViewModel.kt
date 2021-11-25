@@ -42,6 +42,10 @@ class FormProgressViewModel @Inject constructor(
 
 
     fun updateFormProgressState() {
+        if (progressPayload.growthDate == "") {
+            _isFormProgressCompleted.postValue(false)
+            return
+        }
         if (progressPayload.record.weight == 0.0) {
             _isFormProgressCompleted.postValue(false)
             return

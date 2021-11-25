@@ -42,13 +42,21 @@
         android:layout_below="@id/container_toolbar">
 
         <include
-            android:id="@+id/til_body_weight"
+            android:id="@+id/til_growth_date"
             layout="@layout/layout_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_16"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/til_body_weight"
+            layout="@layout/layout_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            app:layout_constraintTop_toBottomOf="@id/til_growth_date" />
 
         <include
             android:id="@+id/til_body_height"
