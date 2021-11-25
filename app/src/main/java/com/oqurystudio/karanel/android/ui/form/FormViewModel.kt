@@ -70,6 +70,10 @@ class FormViewModel @Inject constructor(
     val responseSubmitChild: LiveData<FormChild.Response> = _responseSubmitChild
 
     fun updateFormChildState() {
+        if (childPayload.nik.isBlank()) {
+            _isFormChildCompleted.postValue(false)
+            return
+        }
         if (childPayload.name.isBlank()) {
             _isFormChildCompleted.postValue(false)
             return

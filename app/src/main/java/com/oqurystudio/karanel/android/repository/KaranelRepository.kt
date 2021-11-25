@@ -63,6 +63,7 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         return service.submitChild(
             generateBearerToken(token),
             NetworkUtil.createJsonRequestBodyWithAny(
+                "nik" to payload.nik,
                 "name" to payload.name,
                 "gender" to payload.gender,
                 "birth_place" to payload.birthPlace,
@@ -87,6 +88,7 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         return service.submitChild(
             generateBearerToken(token),
             NetworkUtil.createJsonRequestBodyWithAny(
+                "nik" to payload.nik,
                 "name" to payload.name,
                 "gender" to payload.gender,
                 "birth_place" to payload.birthPlace,

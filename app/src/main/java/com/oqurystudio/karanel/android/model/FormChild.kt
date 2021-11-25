@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 class FormChild {
 
     data class Payload(
+        var nik: String = "",
         var name: String = "",
         var gender: String = "Laki-laki",
         var birthPlace: String = "",

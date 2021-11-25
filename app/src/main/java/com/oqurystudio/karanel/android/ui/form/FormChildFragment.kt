@@ -69,6 +69,22 @@ class FormChildFragment : Fragment() {
             btnBack.setOnClickListener {
                 requireActivity().onBackPressed()
             }
+            tilNikChild.apply {
+                setupEditText(
+                    title = "NIK Anak",
+                    inputType = InputType.TYPE_CLASS_NUMBER,
+                )
+                setupErrorState("Silahkan Masukkan NIK")
+                etCustom.doOnTextChanged { text, start, before, count ->
+                    if (text.isNullOrBlank()) {
+                        setupErrorState("Silahkan Masukkan NIK")
+                    } else {
+                        setupNormalState()
+                    }
+                    mViewModel.childPayload.nik = text.toString()
+                    mViewModel.updateFormChildState()
+                }
+            }
             tilName.apply {
                 setupEditText(
                     title = "Nama Anak",
