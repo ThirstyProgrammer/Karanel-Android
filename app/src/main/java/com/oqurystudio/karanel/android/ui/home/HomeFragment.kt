@@ -13,7 +13,6 @@ import com.oqurystudio.karanel.android.network.ViewState
 import com.oqurystudio.karanel.android.ui.MainActivity
 import com.oqurystudio.karanel.android.util.defaultEmpty
 import com.oqurystudio.karanel.android.util.handleViewState
-import com.oqurystudio.karanel.android.util.makeToast
 import com.oqurystudio.karanel.android.util.setErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,7 +47,7 @@ class HomeFragment : Fragment() {
                 val intent = Intent(requireActivity(), MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
-            }else{
+            } else {
                 mViewBinding.viewState.handleViewState(it.first, it.second)
             }
         })

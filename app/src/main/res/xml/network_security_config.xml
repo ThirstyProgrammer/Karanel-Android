@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">karanel.website</domain>
         <domain includeSubdomains="true">104.248.151.102</domain>
     </domain-config>
 </network-security-config>

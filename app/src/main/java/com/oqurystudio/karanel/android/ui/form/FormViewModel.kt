@@ -35,6 +35,7 @@ class FormViewModel @Inject constructor(
 
     var parentId: String = ""
     var parentCode: String = ""
+    var parentImgUrl: String = ""
     val parentPayload = FormParent.Payload()
 
     private val _responseSubmitParent: MutableLiveData<FormParent.Response> = MutableLiveData()

@@ -31,6 +31,7 @@ class FormParent {
     @Serializable
     data class Data(
         val id: String? = "",
-        @SerialName("id_karnel") val idKarnel: String? = ""
+        @SerialName("id_karnel") val idKarnel: String? = "",
+        @SerialName("image_karnel_path") val imgUrl: String? = ""
     )
 }
