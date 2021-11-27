@@ -68,6 +68,7 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
                 "gender" to payload.gender,
                 "birth_place" to payload.birthPlace,
                 "birth_date" to payload.birthDate,
+                "birth_type" to payload.birthType,
                 "blood" to payload.bloodType,
                 "child_order" to payload.childOrder,
                 "parent_id" to payload.parentId,
@@ -93,10 +94,38 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
                 "gender" to payload.gender,
                 "birth_place" to payload.birthPlace,
                 "birth_date" to payload.birthDate,
+                "birth_type" to payload.birthType,
                 "blood" to payload.bloodType,
                 "child_order" to payload.childOrder,
                 "age_of_birth" to payload.ageOfBirth,
                 "record" to jsonObj
+            )
+        )
+    }
+
+    suspend fun updateChild(token: String, childId: String, payload: FormChild.Payload): FormChild.Response {
+//        val jsonObj = JSONObject(
+//            mapOf(
+//                "weight" to payload.record.weight,
+//                "height" to payload.record.height,
+//                "head_circumference" to payload.record.headCircumference
+//            )
+//        )
+        return service.updateChild(
+            generateBearerToken(token),
+            childId,
+            NetworkUtil.createJsonRequestBodyWithAny(
+                "nik" to payload.nik,
+                "name" to payload.name,
+                "gender" to payload.gender,
+                "birth_place" to payload.birthPlace,
+                "birth_date" to payload.birthDate,
+                "birth_type" to payload.birthType,
+                "blood" to payload.bloodType,
+                "child_order" to payload.childOrder,
+                "parent_id" to payload.parentId,
+                "age_of_birth" to payload.ageOfBirth,
+//                "record" to jsonObj
             )
         )
     }

@@ -291,16 +291,31 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_edit_child"
+            style="@style/ButtonYellow.R10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:text="@string/edit_child_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_total_stunting" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add_progress"
             style="@style/ButtonPrimary.R10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_16"
-            android:layout_marginTop="@dimen/margin_16"
-            android:text="Input Data Pertumbuhan"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:text="@string/input_growth_data"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_total_stunting" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_edit_child"
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center_horizontal"

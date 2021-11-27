@@ -5,13 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oqurystudio.karanel.android.base.BaseViewModel
-import com.oqurystudio.karanel.android.model.FormChild
-import com.oqurystudio.karanel.android.model.FormParent
-import com.oqurystudio.karanel.android.model.Parent
-import com.oqurystudio.karanel.android.model.Parents
+import com.oqurystudio.karanel.android.model.*
 import com.oqurystudio.karanel.android.network.NetworkRequestType
 import com.oqurystudio.karanel.android.repository.KaranelRepository
 import com.oqurystudio.karanel.android.util.DataStoreManager
+import com.oqurystudio.karanel.android.util.defaultEmpty
+import com.oqurystudio.karanel.android.util.defaultZero
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,6 +33,7 @@ class FormViewModel @Inject constructor(
     }
 
     var parentId: String = ""
+    var childId: String = ""
     var parentCode: String = ""
     var parentImgUrl: String = ""
     val parentPayload = FormParent.Payload()
@@ -55,6 +55,19 @@ class FormViewModel @Inject constructor(
         }
     }
 
+    fun updateChildPayload(data: Child.Data?) {
+        if (data != null) {
+            childPayload.nik = data.nik.defaultEmpty()
+            childPayload.name = data.name.defaultEmpty()
+            childPayload.gender = data.gender.defaultEmpty()
+            childPayload.birthPlace = data.birthPlace.defaultEmpty()
+            childPayload.birthDate = data.birthDate.defaultEmpty()
+            childPayload.birthType = data.birthType ?: "Tunggal"
+            childPayload.bloodType = data.blood.defaultEmpty()
+            childPayload.childOrder = data.childOrder.defaultZero()
+        }
+    }
+
     fun submitParent(token: String) {
         requestAPI(_responseSubmitParent, NetworkRequestType.FORM_PARENT) {
             repo.submitParent(token, parentPayload)
@@ -68,6 +81,9 @@ class FormViewModel @Inject constructor(
 
     private val _responseSubmitChild: MutableLiveData<FormChild.Response> = MutableLiveData()
     val responseSubmitChild: LiveData<FormChild.Response> = _responseSubmitChild
+
+    private val _responseGetChild: MutableLiveData<Child.Response> = MutableLiveData()
+    val responseGetChild: LiveData<Child.Response> = _responseGetChild
 
     fun updateFormChildState() {
         if (childPayload.nik.isBlank()) {
@@ -94,20 +110,26 @@ class FormViewModel @Inject constructor(
             _isFormChildCompleted.postValue(false)
             return
         }
-        if (childPayload.record.weight == 0.0) {
+        if (childPayload.record.weight == 0.0 && childId.isBlank()) {
             _isFormChildCompleted.postValue(false)
             return
         }
-        if (childPayload.record.height == 0.0) {
+        if (childPayload.record.height == 0.0 && childId.isBlank()) {
             _isFormChildCompleted.postValue(false)
             return
         }
-        if (childPayload.record.headCircumference == 0.0) {
+        if (childPayload.record.headCircumference == 0.0 && childId.isBlank()) {
             _isFormChildCompleted.postValue(false)
             return
         }
         _isFormChildCompleted.postValue(true)
         return
+    }
+
+    fun getChild(token: String) {
+        requestAPI(_responseGetChild, NetworkRequestType.PARENT) {
+            repo.getChild(token, childId)
+        }
     }
 
     fun submitChild(token: String = this.token.value.toString(), parentId: String = this.parentId) {
@@ -120,6 +142,12 @@ class FormViewModel @Inject constructor(
     fun submitChildAsParent(token: String) {
         requestAPI(_responseSubmitChild, NetworkRequestType.FORM_CHILD) {
             repo.submitChildAsParent(token, childPayload)
+        }
+    }
+
+    fun updateChild(token: String = this.token.value.toString()) {
+        requestAPI(_responseSubmitChild, NetworkRequestType.FORM_CHILD) {
+            repo.updateChild(token, childId, childPayload)
         }
     }
 }

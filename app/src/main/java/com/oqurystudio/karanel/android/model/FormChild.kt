@@ -7,7 +7,7 @@ class FormChild {
     data class Payload(
         var nik: String = "",
         var name: String = "",
-        var gender: String = "Laki-laki",
+        var gender: String = "L",
         var birthPlace: String = "",
         var birthDate: String = "",
         var birthType: String = "Tunggal",

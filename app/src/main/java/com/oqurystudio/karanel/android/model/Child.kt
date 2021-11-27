@@ -20,6 +20,7 @@ class Child {
         val name: String? = "",
         val gender: String? = "",
         @SerialName("birth_place") val birthPlace: String? = "",
+        @SerialName("birth_type") val birthType: String? = "Tunggal",
         @SerialName("birth_date") val birthDate: String? = "",
         val blood: String? = "",
         @SerialName("child_order") val childOrder: Int? = 0,

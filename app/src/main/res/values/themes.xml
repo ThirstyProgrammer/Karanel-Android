@@ -44,4 +44,17 @@
         <item name="android:padding">@dimen/margin_16</item>
         <item name="android:background">@drawable/state_button_secondary_r10</item>
     </style>
+
+    <style name="ButtonYellow" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/big_text_size</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/state_button_yellow_rounded</item>
+    </style>
+
+    <style name="ButtonYellow.R10" parent="ButtonYellow">
+        <item name="android:padding">@dimen/margin_16</item>
+        <item name="android:background">@drawable/state_button_yellow_r10</item>
+    </style>
 </resources>

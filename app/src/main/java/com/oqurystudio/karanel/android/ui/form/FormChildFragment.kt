@@ -21,6 +21,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -64,6 +65,7 @@ class FormChildFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         isFromParentForm = FormChildFragmentArgs.fromBundle(arguments as Bundle).isFromParentForm
         mViewModel.parentId = FormChildFragmentArgs.fromBundle(arguments as Bundle).idParent
+        mViewModel.childId = FormChildFragmentArgs.fromBundle(arguments as Bundle).childId
         mViewModel.updateParentPayload(FormChildFragmentArgs.fromBundle(arguments as Bundle).parentPayload)
         mViewBinding.apply {
             btnBack.setOnClickListener {
@@ -103,7 +105,8 @@ class FormChildFragment : Fragment() {
             spinnerGender.apply {
                 val adapter = ArrayAdapter(
                     requireContext(),
-                    android.R.layout.simple_spinner_item,
+                    R.layout.item_spinner,
+                    R.id.tv_spinner,
                     arrayOf("Laki-laki", "Perempuan")
                 )
                 setupSpinner(title = "Jenis Kelamin", adapter)
@@ -162,7 +165,8 @@ class FormChildFragment : Fragment() {
                 val adapter =
                     ArrayAdapter(
                         requireContext(),
-                        android.R.layout.simple_spinner_item,
+                        R.layout.item_spinner,
+                        R.id.tv_spinner,
                         arrayOf("Tunggal", "Kembar 1", "Kembar 2", "Kembar 3")
                     )
                 setupSpinner(title = "Jenis Kelahiran", adapter)
@@ -248,7 +252,8 @@ class FormChildFragment : Fragment() {
             spinnerBloodType.apply {
                 val adapter = ArrayAdapter(
                     requireContext(),
-                    android.R.layout.simple_spinner_item,
+                    R.layout.item_spinner,
+                    R.id.tv_spinner,
                     arrayOf("A", "AB", "B", "O")
                 )
                 setupSpinner(title = "Golongan Darah", adapter)
@@ -282,10 +287,15 @@ class FormChildFragment : Fragment() {
             btnSubmit.setOnSafeClickListener {
                 val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view.windowToken, 0)
-                mViewModel.getToken()
+                if (mViewModel.childId.isBlank()) {
+                    mViewModel.getToken()
+                } else {
+                    mViewModel.updateChild()
+                }
             }
         }
         handleViewModelObserver()
+        if (mViewModel.childId.isNotBlank()) mViewModel.getToken()
     }
 
     private fun changeDateFormat(text: String): String {
@@ -295,17 +305,31 @@ class FormChildFragment : Fragment() {
         return output.format(data)
     }
 
+    private fun changeBackDateFormat(text: String): String {
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        val output = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+        val data = sdf.parse(text)
+        return output.format(data)
+    }
+
     private fun handleViewModelObserver() {
         mViewModel.token.observe(viewLifecycleOwner, {
             if (isFromParentForm) {
                 mViewModel.submitParent(it)
             } else {
-                if (mViewModel.parentId.isBlank()) {
-                    mViewModel.submitChildAsParent(it)
-                } else {
-                    mViewModel.submitChild(token = it)
+                when {
+                    mViewModel.childId.isNotBlank() -> {
+//                        mViewModel.updateChild(it)
+                        mViewModel.getChild(it)
+                    }
+                    mViewModel.parentId.isNotBlank() -> mViewModel.submitChild(token = it)
+                    else -> mViewModel.submitChildAsParent(it)
                 }
             }
+        })
+        mViewModel.responseGetChild.observe(viewLifecycleOwner, {
+            mViewModel.updateChildPayload(it.data)
+            updateField()
         })
         mViewModel.responseSubmitParent.observe(viewLifecycleOwner, {
             mViewModel.parentCode = it.data?.idKarnel.defaultDash()
@@ -331,7 +355,11 @@ class FormChildFragment : Fragment() {
                     }
                 ).show()
             } else {
-                makeToast("Data Anak Telah Ditambahkan")
+                if (mViewModel.childId.isBlank()){
+                    makeToast("Data Anak Telah Ditambahkan")
+                }else{
+                    makeToast("Data Anak Telah Diperbaharui")
+                }
                 requireActivity().onBackPressed()
             }
         })
@@ -346,6 +374,51 @@ class FormChildFragment : Fragment() {
             mViewBinding.viewState.setErrorMessage(it)
         })
     }
+
+    private fun updateField() {
+        mViewBinding.apply {
+            tilNikChild.etCustom.setText(mViewModel.childPayload.nik)
+            tilName.etCustom.setText(mViewModel.childPayload.name)
+            val gender = when (mViewModel.childPayload.gender) {
+                "L" -> "Laki-laki"
+                "P" -> "Perempuan"
+                else -> "Laki-laki"
+            }
+            spinnerGender.spCustom.setSelection(getIndex(spinnerGender.spCustom, gender))
+            tilBirthPlace.etCustom.setText(mViewModel.childPayload.birthPlace)
+            tilBirthDate.apply {
+                etCustom.setText(changeBackDateFormat(mViewModel.childPayload.birthDate))
+                val output = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+                val date = try {
+                    output.parse(mViewModel.childPayload.birthDate)
+                } catch (e: Exception) {
+                    Date()
+                }
+                etCustom.transformIntoDatePicker(requireContext(), "dd/MM/yyyy", date)
+            }
+            spinnerBirthType.spCustom.setSelection(getIndex(spinnerBirthType.spCustom, mViewModel.childPayload.birthType))
+            if (mViewModel.childPayload.ageOfBirth > 0) {
+                tilAgeWhenBirth.etCustom.setText(mViewModel.childPayload.ageOfBirth.toString())
+            }
+            spinnerBloodType.spCustom.setSelection(getIndex(spinnerBloodType.spCustom, mViewModel.childPayload.bloodType))
+            tilChildOrder.etCustom.setText(mViewModel.childPayload.childOrder.toString())
+            tilBodyWeight.containerTil.visibility = View.GONE
+            tilBodyHeight.containerTil.visibility = View.GONE
+            tilHeadCircumference.containerTil.visibility = View.GONE
+        }
+    }
+
+    private fun getIndex(spinner: Spinner, value: String): Int {
+        val totalItem = spinner.count - 1
+        for (index in 0..totalItem) {
+            if (spinner.getItemAtPosition(index).toString() == value) {
+                return index
+            }
+        }
+        return 0
+    }
+
+    // DOWNLOAD SECTION
 
     override fun onDestroyView() {
         super.onDestroyView()

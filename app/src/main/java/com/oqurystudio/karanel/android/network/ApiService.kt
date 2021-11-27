@@ -59,6 +59,13 @@ interface ApiService {
         @Body body: RequestBody
     ): FormChild.Response
 
+    @PUT("/v1/api/child/id/{id_child}")
+    suspend fun updateChild(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Path("id_child") idChild: String,
+        @Body body: RequestBody
+    ): FormChild.Response
+
     @POST("/v1/api/record")
     suspend fun submitProgress(
         @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,

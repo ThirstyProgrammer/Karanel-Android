@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_childFragment2_to_chartLkuFragment"
             app:destination="@id/chartLkuFragment" />
+        <action
+            android:id="@+id/action_childFragment2_to_formChildFragment4"
+            app:destination="@id/formChildFragment4" />
     </fragment>
 
     <fragment
@@ -115,5 +118,27 @@
         <action
             android:id="@+id/action_chartLkuFragment_to_formProgressFragment2"
             app:destination="@id/formProgressFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/formChildFragment4"
+        android:name="com.oqurystudio.karanel.android.ui.form.FormChildFragment"
+        android:label="FormChildFragment">
+        <argument
+            android:name="isFromParentForm"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="idParent"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="parentPayload"
+            android:defaultValue="@null"
+            app:argType="com.oqurystudio.karanel.android.model.FormParent$Payload"
+            app:nullable="true" />
+        <argument
+            android:name="childId"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -38,6 +38,19 @@ class ChildFragment : Fragment() {
             btnBack.setOnSafeClickListener {
                 requireActivity().onBackPressed()
             }
+            btnEditChild.setOnSafeClickListener {
+                if (mViewModel.parentId.isBlank()) {
+                    findNavController().navigate(
+                        R.id.action_childFragment2_to_formChildFragment4,
+                        bundleOf("childId" to mViewModel.childId)
+                    )
+                }else{
+                    findNavController().navigate(
+                        R.id.action_childFragment_to_formChildFragment2,
+                        bundleOf("childId" to mViewModel.childId)
+                    )
+                }
+            }
             btnAddProgress.setOnSafeClickListener {
                 if (mViewModel.parentId.isBlank()) {
                     findNavController().navigate(

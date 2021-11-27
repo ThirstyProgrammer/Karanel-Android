@@ -26,7 +26,6 @@
         android:name="com.oqurystudio.karanel.android.ui.form.FormChildFragment"
         android:label="FormChildFragment"
         tools:layout="@layout/fragment_form_child">
-
         <argument
             android:name="isFromParentForm"
             android:defaultValue="false"
@@ -40,6 +39,10 @@
             android:defaultValue="@null"
             app:argType="com.oqurystudio.karanel.android.model.FormParent$Payload"
             app:nullable="true" />
+        <argument
+            android:name="childId"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/childFragment"
@@ -69,6 +72,9 @@
         <action
             android:id="@+id/action_childFragment_to_chartLkuFragment2"
             app:destination="@id/chartLkuFragment2" />
+        <action
+            android:id="@+id/action_childFragment_to_formChildFragment2"
+            app:destination="@id/formChildFragment2" />
     </fragment>
 
     <fragment
