@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.oqurystudio.karanel.android.R
@@ -38,6 +37,7 @@ class FormParentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mViewModel.isEditParentData = FormParentFragmentArgs.fromBundle(arguments as Bundle).isEditParentData
         mViewBinding.apply {
             btnBack.setOnClickListener {
                 requireActivity().onBackPressed()
@@ -181,23 +181,59 @@ class FormParentFragment : Fragment() {
                     mViewModel.updateFormParentState()
                 }
             }
-            btnNext.setOnSafeClickListener {
-                val directions =
-                    FormParentFragmentDirections.actionFormParentFragmentToFormChildFragment(
-                        true,
-                        mViewModel.parentId,
-                        parentPayload = mViewModel.parentPayload
-                    )
-                findNavController().navigate(directions)
+            if (mViewModel.isEditParentData) {
+                btnNext.text = getString(R.string.save)
+                btnNext.setOnSafeClickListener {
+                    mViewModel.updateParentData()
+                }
+            } else {
+                btnNext.text = getString(R.string.next)
+                btnNext.setOnSafeClickListener {
+                    val directions =
+                        FormParentFragmentDirections.actionFormParentFragmentToFormChildFragment(
+                            true,
+                            parentPayload = mViewModel.parentPayload
+                        )
+                    findNavController().navigate(directions)
+                }
             }
         }
         handleViewModelObserver()
+        if (mViewModel.isEditParentData) mViewModel.getToken()
     }
 
     private fun handleViewModelObserver() {
         mViewModel.isFormParentCompleted.observe(viewLifecycleOwner, {
             mViewBinding.btnNext.isEnabled = it
         })
+        mViewModel.token.observe(viewLifecycleOwner, {
+            mViewModel.getParent(it)
+        })
+        mViewModel.responseGetParent.observe(viewLifecycleOwner, {
+            mViewModel.updateParentPayload(it.data)
+            updateField()
+        })
+        mViewModel.viewState.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.handleViewState(it.first, it.second)
+        })
+
+        mViewModel.error.observe(viewLifecycleOwner, {
+            mViewBinding.viewState.setErrorMessage(it)
+        })
+    }
+
+    private fun updateField() {
+        mViewBinding.apply {
+            tilNikMother.etCustom.setText(mViewModel.parentPayload.motherNIK)
+            tilMotherName.etCustom.setText(mViewModel.parentPayload.motherName)
+            tilMotherPhone.etCustom.setText(mViewModel.parentPayload.motherWork)
+            tilMotherWork.etCustom.setText(mViewModel.parentPayload.motherPhone)
+            tilNikFather.etCustom.setText(mViewModel.parentPayload.fatherNIK)
+            tilFatherName.etCustom.setText(mViewModel.parentPayload.fatherName)
+            tilFatherPhone.etCustom.setText(mViewModel.parentPayload.fatherWork)
+            tilFatherWork.etCustom.setText(mViewModel.parentPayload.fatherPhone)
+            tilAddress.etCustom.setText(mViewModel.parentPayload.address)
+        }
     }
 
 

@@ -286,6 +286,20 @@
             app:constraint_referenced_ids="tv_title_mother_name, tv_title_mother_nik, tv_title_mother_work, tv_title_mother_phone, tv_title_father_name, tv_title_father_nik, tv_title_father_work, tv_title_father_phone, tv_title_address" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_edit_profile"
+            style="@style/ButtonYellow.R10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:text="@string/edit_profile"
+            app:layout_constraintBottom_toTopOf="@+id/btn_sign_out"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_address"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_sign_out"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

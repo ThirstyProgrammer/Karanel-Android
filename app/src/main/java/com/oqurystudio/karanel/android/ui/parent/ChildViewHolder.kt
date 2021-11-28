@@ -28,17 +28,23 @@ class ChildViewHolder constructor(private var mViewBinding: ItemChildBinding) : 
     private fun setupGender(gender: String) {
         when (Gender.getEnum(gender)) {
             Gender.LAKI_LAKI -> {
-                mViewBinding.tvGender.apply {
-                    text = "Laki-laki"
-                    setTextColor(ContextCompat.getColor(mViewBinding.root.context, R.color.primary_color))
-                    background = ContextCompat.getDrawable(mViewBinding.root.context, R.drawable.bg_rounded_male)
+                mViewBinding.apply {
+                    ivAvatar.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.il_profile_male))
+                    tvGender.apply {
+                        text = "Laki-laki"
+                        setTextColor(ContextCompat.getColor(mViewBinding.root.context, R.color.primary_color))
+                        background = ContextCompat.getDrawable(mViewBinding.root.context, R.drawable.bg_rounded_male)
+                    }
                 }
             }
             Gender.PEREMPUAN -> {
-                mViewBinding.tvGender.apply {
-                    text = "Perempuan"
-                    setTextColor(ContextCompat.getColor(mViewBinding.root.context, R.color.red_text))
-                    background = ContextCompat.getDrawable(mViewBinding.root.context, R.drawable.bg_rounded_female)
+                mViewBinding.apply {
+                    ivAvatar.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.il_profile_female))
+                    tvGender.apply {
+                        text = "Perempuan"
+                        setTextColor(ContextCompat.getColor(mViewBinding.root.context, R.color.red_text))
+                        background = ContextCompat.getDrawable(mViewBinding.root.context, R.drawable.bg_rounded_female)
+                    }
                 }
             }
         }

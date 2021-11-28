@@ -85,7 +85,7 @@ class ChartLkuFragment : Fragment() {
     private fun goToFormProgress(record: Chart.Record) {
         if (mViewModel.parentId.isBlank()) {
             findNavController().navigate(
-                R.id.action_ChartBbuFragment_to_formProgressFragment2,
+                R.id.action_chartLkuFragment_to_formProgressFragment2,
                 bundleOf(
                     "childId" to mViewModel.childId,
                     "parentId" to mViewModel.parentId,
@@ -94,7 +94,7 @@ class ChartLkuFragment : Fragment() {
             )
         } else {
             findNavController().navigate(
-                R.id.action_ChartBbuFragment2_to_formProgressFragment,
+                R.id.action_chartLkuFragment2_to_formProgressFragment,
                 bundleOf(
                     "childId" to mViewModel.childId,
                     "parentId" to mViewModel.parentId,

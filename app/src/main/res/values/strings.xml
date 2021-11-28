@@ -30,6 +30,7 @@
     <string name="baby_head_circumference">Lingkar Kepala Bayi</string>
     <string name="input_growth_data">Input Data Pertumbuhan</string>
     <string name="edit_child_profile">Edit Profil Anak</string>
+    <string name="edit_profile">Edit Profil</string>
     <string-array name="gender">
         <item>Laki-Laki</item>
         <item>Perempuan</item>

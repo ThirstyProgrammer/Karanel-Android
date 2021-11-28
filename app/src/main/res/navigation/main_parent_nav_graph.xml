@@ -36,5 +36,18 @@
     <fragment
         android:id="@+id/profileParentFragment"
         android:name="com.oqurystudio.karanel.android.ui.profile.ProfileParentFragment"
-        android:label="ProfileParentFragment" />
+        android:label="ProfileParentFragment">
+        <action
+            android:id="@+id/action_profileParentFragment_to_formActivity"
+            app:destination="@id/formActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/formActivity"
+        android:name="com.oqurystudio.karanel.android.ui.form.FormActivity"
+        android:label="FormActivity">
+        <argument
+            android:name="isEditParentData"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </activity>
 </navigation>

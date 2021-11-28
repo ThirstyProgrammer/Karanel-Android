@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentProfileParentBinding
 import com.oqurystudio.karanel.android.model.Parent
 import com.oqurystudio.karanel.android.ui.MainActivity
@@ -67,6 +70,12 @@ class ProfileParentFragment : Fragment() {
                 val intent = Intent(requireActivity(), MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+            }
+            btnEditProfile.setOnSafeClickListener {
+                findNavController().navigate(
+                    R.id.action_profileParentFragment_to_formActivity,
+                    bundleOf("isEditParentData" to true)
+                )
             }
         }
     }

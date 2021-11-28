@@ -11,6 +11,10 @@
         <action
             android:id="@+id/action_formParentFragment_to_formChildFragment"
             app:destination="@id/formChildFragment" />
+        <argument
+            android:name="isEditParentData"
+            android:defaultValue="false"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/formChildFragment"
