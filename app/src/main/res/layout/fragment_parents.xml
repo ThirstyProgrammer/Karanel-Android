@@ -38,6 +38,41 @@
             android:id="@+id/view_state"
             layout="@layout/view_state"
             android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/container_empty_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_search">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/il_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_32"
+                android:layout_marginBottom="@dimen/margin_16"
+                app:srcCompat="@drawable/il_empty_search" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/il_empty"
+                android:layout_marginHorizontal="@dimen/margin_32"
+                android:layout_marginTop="@dimen/margin_16"
+                android:gravity="center"
+                android:text="Data yang anda cari tidak tersedia"
+                android:textColor="@color/text_secondary_color"
+                android:textSize="@dimen/big_text_size" />
+
+        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

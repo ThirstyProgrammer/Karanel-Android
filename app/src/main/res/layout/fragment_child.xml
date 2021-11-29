@@ -180,7 +180,7 @@
                 android:id="@+id/container_pbu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/yellow_light"
+                android:background="@color/red_light"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_16">
 
@@ -188,20 +188,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_16"
-                    app:srcCompat="@drawable/ic_folder_yellow" />
+                    app:srcCompat="@drawable/ic_folder_red" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PB/U"
-                    android:textColor="@color/yellow"
+                    android:text="PB - TB/U"
+                    android:textColor="@color/red"
                     android:textSize="@dimen/big_text_size" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_pbu_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/yellow"
+                    android:textColor="@color/red"
                     android:textSize="@dimen/small_text_size"
                     tools:text="Tinggi Normal" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -263,7 +263,7 @@
                 android:id="@+id/container_bbpb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/red_light"
+                android:background="@color/yellow_light"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_16">
 
@@ -271,20 +271,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_16"
-                    app:srcCompat="@drawable/ic_folder_red" />
+                    app:srcCompat="@drawable/ic_folder_yellow" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="BB/TB"
-                    android:textColor="@color/red"
+                    android:text="BB/PB - TB"
+                    android:textColor="@color/yellow"
                     android:textSize="@dimen/big_text_size" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_bbtb_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/red"
+                    android:textColor="@color/yellow"
                     android:textSize="@dimen/small_text_size"
                     tools:text="Status Normal" />
             </androidx.appcompat.widget.LinearLayoutCompat>

@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -101,6 +100,13 @@ class ParentsFragment : Fragment(), OnItemClickListener {
         })
         mViewModel.response.observe(viewLifecycleOwner, {
             isLoading = false
+            if (it.data.isNullOrEmpty()) {
+                mViewBinding.containerEmptySearch.visibility = View.VISIBLE
+                mViewBinding.rvParents.visibility = View.GONE
+            } else {
+                mViewBinding.containerEmptySearch.visibility = View.GONE
+                mViewBinding.rvParents.visibility = View.VISIBLE
+            }
             if (it.meta?.last_page.defaultZero() > it.meta?.current_page.defaultZero()) {
                 mViewModel.updateNextPage(it.meta?.current_page.defaultZero() + 1)
             } else {

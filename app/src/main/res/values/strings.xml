@@ -16,8 +16,8 @@
     <string name="add_progress">Input Data Perkembangan</string>
     <string name="cancel">Batal</string>
     <string name="save">Simpan</string>
-    <string name="total_stunting">Jumlah Stunting</string>
-    <string name="total_healthy">Jumlah Anak Sehat</string>
+    <string name="stunting_child">Anak Stunting</string>
+    <string name="healty_child">Anak Sehat</string>
     <string name="total_child">Jumlah Anak</string>
     <string name="total_parent">Jumlah Orangtua</string>
     <string name="next">Selanjutnya</string>

@@ -15,10 +15,11 @@ import com.oqurystudio.karanel.android.listener.OnItemClickListener
 import com.oqurystudio.karanel.android.model.Parent
 import com.oqurystudio.karanel.android.network.ViewState
 import com.oqurystudio.karanel.android.ui.MainActivity
-import com.oqurystudio.karanel.android.ui.form.FormChildActivity
 import com.oqurystudio.karanel.android.ui.parent.ChildAdapter
-import com.oqurystudio.karanel.android.ui.parents.ParentsFragmentDirections
-import com.oqurystudio.karanel.android.util.*
+import com.oqurystudio.karanel.android.util.Constant
+import com.oqurystudio.karanel.android.util.handleViewState
+import com.oqurystudio.karanel.android.util.setErrorMessage
+import com.oqurystudio.karanel.android.util.setOnSafeClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -95,6 +96,7 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
     private fun setupView(data: Parent.Data) {
         mViewBinding.apply {
             tvMotherName.text = data.motherName
+            tvFatherName.text = data.fatherName
             tvAddress.text = data.address
         }
         mAdapter.setData(data.children ?: arrayListOf())

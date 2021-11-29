@@ -84,6 +84,7 @@ class ParentFragment : Fragment(), OnItemClickListener {
     private fun setupView(data: Parent.Data) {
         mViewBinding.apply {
             tvMotherName.text = data.motherName
+            tvFatherName.text = data.fatherName
             tvAddress.text = data.address
         }
         mAdapter.setData(data.children ?: arrayListOf())

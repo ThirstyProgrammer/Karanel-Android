@@ -13,7 +13,7 @@ class Parents {
         override var stat_code: Int,
         override var stat_msg: String,
         override var meta: Meta? = null,
-        val data: List<Data>? = null
+        val data: List<Data>? = arrayListOf()
     ) : BaseResponseModel()
 
     @Parcelize

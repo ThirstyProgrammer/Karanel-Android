@@ -78,14 +78,15 @@
                         tools:text="Randi Apriansyah" />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_father_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_8"
-                        android:text="14 April 1996"
                         android:textAlignment="center"
                         android:textColor="@color/text_primary_color"
                         android:textSize="@dimen/normal_text_size"
-                        android:visibility="gone" />
+                        android:visibility="visible"
+                        tools:text="Budi" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_address"
