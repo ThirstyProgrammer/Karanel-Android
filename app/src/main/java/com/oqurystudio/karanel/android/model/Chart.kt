@@ -19,6 +19,7 @@ class Chart {
         val weight: Double? = 0.0,
         val height: Double? = 0.0,
         val age: String? = "",
+        @SerialName("head_circumference") var headCircumference: Double? = 0.0,
         val status: String? = "",
         val records: List<Record>? = emptyList()
     )

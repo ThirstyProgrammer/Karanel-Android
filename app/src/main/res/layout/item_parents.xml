@@ -7,6 +7,17 @@
     android:background="@drawable/bg_rounded_outlined_r16"
     android:paddingVertical="@dimen/margin_16">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_parent" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_name"
         android:layout_width="0dp"
@@ -16,7 +27,7 @@
         android:textSize="@dimen/normal_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/bg_total_child"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Randi Apriansyah" />
 
@@ -28,7 +39,7 @@
         android:layout_marginTop="@dimen/margin_8"
         android:textSize="@dimen/normal_text_size"
         app:layout_constraintEnd_toStartOf="@+id/bg_total_child"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
         tools:text="14 April 1994" />
 

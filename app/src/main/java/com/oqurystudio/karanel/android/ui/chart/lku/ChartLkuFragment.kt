@@ -66,7 +66,7 @@ class ChartLkuFragment : Fragment() {
 
     private fun setupView(data: Chart.Data) {
         mViewBinding.apply {
-            tvHeadCircumference.text = ": {kurang parameter head_circumference dari BE} cm"
+            tvHeadCircumference.text = ": ${data.headCircumference} cm"
             tvAge.text = ": ${data.age}"
             tvStatus.text = ": ${data.status}"
             if (table.childCount > 1) {

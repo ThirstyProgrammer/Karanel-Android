@@ -25,6 +25,13 @@
                 android:orientation="vertical"
                 android:padding="@dimen/margin_16">
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    app:srcCompat="@drawable/ic_house" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_posyandu"
                     android:layout_width="match_parent"

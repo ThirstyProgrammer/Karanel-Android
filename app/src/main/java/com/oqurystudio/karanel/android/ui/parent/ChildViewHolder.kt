@@ -48,6 +48,5 @@ class ChildViewHolder constructor(private var mViewBinding: ItemChildBinding) : 
                 }
             }
         }
-
     }
 }
