@@ -1,9 +1,11 @@
 package com.oqurystudio.karanel.android.ui.chart.bbtb
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -79,6 +81,20 @@ class ChartBbpbFragment : Fragment() {
                     table.addView(initRowOdd(record))
                 }
             }
+        }
+        setupWebview(data.imgPath.defaultEmpty())
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setupWebview(url: String) {
+        mViewBinding.webview.apply {
+            settings.apply {
+                loadsImagesAutomatically = true
+                javaScriptEnabled = true
+                domStorageEnabled = true
+            }
+            webViewClient = WebViewClient()
+            loadUrl(url)
         }
     }
 

@@ -30,6 +30,7 @@ import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentFormChildBinding
 import com.oqurystudio.karanel.android.listener.AlertDialogButtonListener
 import com.oqurystudio.karanel.android.util.*
+import com.oqurystudio.karanel.android.util.Constant.Companion.WRITE_EXTERNAL_STORAGE
 import com.oqurystudio.karanel.android.widget.*
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -500,9 +501,5 @@ class FormChildFragment : Fragment() {
                 }
             }
         }
-    }
-
-    companion object {
-        const val WRITE_EXTERNAL_STORAGE = 99
     }
 }

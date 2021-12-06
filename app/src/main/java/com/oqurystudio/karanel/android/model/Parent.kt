@@ -19,6 +19,7 @@ class Parent {
         val id: String? = "",
         val address: String? = "",
         @SerialName("id_karnel") val idKarnel: String? = "",
+        @SerialName("image_karnel_path") val imgUrl: String? = "",
         @SerialName("name_mother") val motherName: String? = "",
         @SerialName("job_mother") val motherJob: String? = "",
         @SerialName("phone_mother") val motherPhone: String? = "",

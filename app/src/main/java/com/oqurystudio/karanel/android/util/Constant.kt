@@ -4,6 +4,7 @@ class Constant {
 
     companion object {
         const val TIME_OUT = 180L
+        const val WRITE_EXTERNAL_STORAGE = 99
     }
 
     object NetworkConfig {
