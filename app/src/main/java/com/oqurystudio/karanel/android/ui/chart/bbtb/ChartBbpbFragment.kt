@@ -20,6 +20,9 @@ import com.oqurystudio.karanel.android.model.Chart
 import com.oqurystudio.karanel.android.ui.chart.pbu.ChartPbuFragmentArgs
 import com.oqurystudio.karanel.android.util.*
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class ChartBbpbFragment : Fragment() {
@@ -128,6 +131,7 @@ class ChartBbpbFragment : Fragment() {
         tableRow.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.table_row_odd))
         tableRow.addView(initAge(record.month.toString()))
         tableRow.addView(initStatus(record.status.defaultDash()))
+        tableRow.addView(initGrowthDate(changeDateFormat(record.growthDate.defaultEmpty())))
         tableRow.addView(initBB(record.weight.toString()))
         tableRow.addView(initPB(record.height.toString()))
         tableRow.addView(initAction { goToFormProgress(record) })
@@ -141,6 +145,7 @@ class ChartBbpbFragment : Fragment() {
         tableRow.layoutParams = layoutParams
         tableRow.addView(initAge(record.month.toString()))
         tableRow.addView(initStatus(record.status.defaultDash()))
+        tableRow.addView(initGrowthDate(changeDateFormat(record.growthDate.defaultEmpty())))
         tableRow.addView(initBB(record.weight.toString()))
         tableRow.addView(initPB(record.height.toString()))
         tableRow.addView(initAction { goToFormProgress(record) })
@@ -163,7 +168,7 @@ class ChartBbpbFragment : Fragment() {
         val textView = TextView(requireContext())
         val layoutParams = TableRow.LayoutParams()
         layoutParams.column = 2
-        layoutParams.weight = 0.7F
+        layoutParams.weight = 0.3F
         textView.text = status
         textView.setPadding(ViewUtil.dpToPx(8))
         textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_grey_color))
@@ -171,10 +176,23 @@ class ChartBbpbFragment : Fragment() {
         return textView
     }
 
+    private fun initGrowthDate(text: String): TextView {
+        val textView = TextView(requireContext())
+        val layoutParams = TableRow.LayoutParams()
+        layoutParams.column = 3
+        layoutParams.weight = 0.3F
+        textView.text = text
+        textView.setPadding(ViewUtil.dpToPx(8))
+        textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_grey_color))
+        textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        textView.layoutParams = layoutParams
+        return textView
+    }
+
     private fun initBB(text: String): TextView {
         val textView = TextView(requireContext())
         val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT)
-        layoutParams.column = 3
+        layoutParams.column = 4
         layoutParams.weight = 0.1F
         textView.text = text
         textView.setPadding(ViewUtil.dpToPx(8))
@@ -187,7 +205,7 @@ class ChartBbpbFragment : Fragment() {
     private fun initPB(text: String): TextView {
         val textView = TextView(requireContext())
         val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT)
-        layoutParams.column = 4
+        layoutParams.column = 5
         layoutParams.weight = 0.1F
         textView.text = text
         textView.setPadding(ViewUtil.dpToPx(8))
@@ -211,5 +229,16 @@ class ChartBbpbFragment : Fragment() {
         textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
         textView.layoutParams = layoutParams
         return textView
+    }
+
+    private fun changeDateFormat(text: String): String {
+        return try {
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+            val output = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+            val data = sdf.parse(text)
+            output.format(data)
+        } catch (e: Exception) {
+            "-"
+        }
     }
 }

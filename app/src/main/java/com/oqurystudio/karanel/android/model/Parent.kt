@@ -52,6 +52,7 @@ class Parent {
         @SerialName("profile_image_id") val profileImgId: String? = "",
         @SerialName("profile_image_url") val profileImgUrl: String? = "",
         @SerialName("parent_id") val parentId: String? = "",
+        @SerialName("status_gizi") val status: String? = "",
         @SerialName("created_at") val createdAt: String? = "",
         @SerialName("updated_at") val updatedAt: String? = "",
         @SerialName("deleted_at") val deletedAt: String? = "",

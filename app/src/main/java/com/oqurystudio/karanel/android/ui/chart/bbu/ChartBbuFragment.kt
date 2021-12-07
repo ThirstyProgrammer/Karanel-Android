@@ -19,6 +19,9 @@ import com.oqurystudio.karanel.android.databinding.FragmentBbuBinding
 import com.oqurystudio.karanel.android.model.Chart
 import com.oqurystudio.karanel.android.util.*
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class ChartBbuFragment : Fragment() {
@@ -127,7 +130,7 @@ class ChartBbuFragment : Fragment() {
         tableRow.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.table_row_odd))
         tableRow.addView(initAge(record.month.toString()))
         tableRow.addView(initStatus(record.status.defaultDash()))
-        tableRow.addView(initStartDate(record.status.defaultDash()))
+        tableRow.addView(initGrowthDate(changeDateFormat(record.growthDate.defaultEmpty())))
         tableRow.addView(initBB(record.weight.toString()))
         tableRow.addView(initAction { goToFormProgress(record) })
         return tableRow
@@ -140,7 +143,7 @@ class ChartBbuFragment : Fragment() {
         tableRow.layoutParams = layoutParams
         tableRow.addView(initAge(record.month.toString()))
         tableRow.addView(initStatus(record.status.defaultDash()))
-        tableRow.addView(initStartDate(record.status.defaultDash()))
+        tableRow.addView(initGrowthDate(changeDateFormat(record.growthDate.defaultEmpty())))
         tableRow.addView(initBB(record.weight.toString()))
         tableRow.addView(initAction { goToFormProgress(record) })
         return tableRow
@@ -170,7 +173,7 @@ class ChartBbuFragment : Fragment() {
         return textView
     }
 
-    private fun initStartDate(text: String): TextView {
+    private fun initGrowthDate(text: String): TextView {
         val textView = TextView(requireContext())
         val layoutParams = TableRow.LayoutParams()
         layoutParams.column = 3
@@ -178,6 +181,7 @@ class ChartBbuFragment : Fragment() {
         textView.text = text
         textView.setPadding(ViewUtil.dpToPx(8))
         textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_grey_color))
+        textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
         textView.layoutParams = layoutParams
         return textView
     }
@@ -209,5 +213,16 @@ class ChartBbuFragment : Fragment() {
         textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
         textView.layoutParams = layoutParams
         return textView
+    }
+
+    private fun changeDateFormat(text: String): String {
+        return try {
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+            val output = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+            val data = sdf.parse(text)
+            output.format(data)
+        } catch (e: Exception) {
+            "-"
+        }
     }
 }

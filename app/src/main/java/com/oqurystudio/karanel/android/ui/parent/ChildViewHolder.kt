@@ -1,6 +1,7 @@
 package com.oqurystudio.karanel.android.ui.parent
 
 import android.os.Build
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,12 @@ class ChildViewHolder constructor(private var mViewBinding: ItemChildBinding) : 
             tvName.text = data.name
             tvAge.text = Helper.getChildAge(data.birthDate.defaultEmpty())
             setupGender(data.gender.defaultEmpty())
+            setupStatus(data.status.defaultEmpty())
+            tvStatus.visibility = if (data.status.isNullOrBlank()) {
+                View.GONE
+            } else {
+                View.VISIBLE
+            }
         }
     }
 
@@ -41,6 +48,29 @@ class ChildViewHolder constructor(private var mViewBinding: ItemChildBinding) : 
                         text = "Perempuan"
                         setTextColor(ContextCompat.getColor(mViewBinding.root.context, R.color.red_text))
                         background = ContextCompat.getDrawable(mViewBinding.root.context, R.drawable.bg_rounded_female)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setupStatus(status: String) {
+        when (status) {
+            "Stunting" -> {
+                mViewBinding.apply {
+                    tvStatus.apply {
+                        text = status
+                        setTextColor(ContextCompat.getColor(mViewBinding.root.context, R.color.red_text))
+                        background = ContextCompat.getDrawable(mViewBinding.root.context, R.drawable.bg_rounded_female)
+                    }
+                }
+            }
+            else -> {
+                mViewBinding.apply {
+                    tvStatus.apply {
+                        text = status
+                        setTextColor(ContextCompat.getColor(mViewBinding.root.context, R.color.green_text))
+                        background = ContextCompat.getDrawable(mViewBinding.root.context, R.drawable.bg_rounded_normal)
                     }
                 }
             }

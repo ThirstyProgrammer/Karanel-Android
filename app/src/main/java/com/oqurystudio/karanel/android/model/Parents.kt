@@ -34,6 +34,7 @@ class Parents {
         @SerialName("nik_mother") val motherNIK: String? = "",
         @SerialName("nik_father") val fatherNIK: String? = "",
         @SerialName("count_child") val totalChild: Int? = 0,
+        @SerialName("count_child_stunting") val totalChildStunting: Int? = 0,
         @SerialName("created_at") val createdAt: String? = "",
         @SerialName("updated_at") val updatedAt: String? = "",
         @SerialName("deleted_at") val deletedAt: String? = "",

@@ -32,6 +32,7 @@
     <string name="edit_child_profile">Edit Profil Anak</string>
     <string name="edit_profile">Edit Profil</string>
     <string name="download_id_karanel">Download ID Karanel</string>
+    <string name="total_child_stunting">Jumlah Anak Stunting</string>
     <string-array name="gender">
         <item>Laki-Laki</item>
         <item>Perempuan</item>

@@ -20,6 +20,55 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/container_search"
+            app:layout_constraintStart_toStartOf="@+id/container_search"
+            app:layout_constraintTop_toBottomOf="@+id/container_search">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/bg_total_child_stunting"
+                android:layout_width="@dimen/margin_16"
+                android:layout_height="@dimen/margin_16"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/bg_total_child"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bg_circle_red" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_child_stunting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_child"
+                android:textSize="@dimen/normal_text_size" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/bg_total_child"
+                android:layout_width="@dimen/margin_16"
+                android:layout_height="@dimen/margin_16"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/bg_total_child"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bg_circle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_child"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:text="@string/total_child_stunting"
+                android:textSize="@dimen/normal_text_size" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_parents"
             android:layout_width="match_parent"
@@ -31,7 +80,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/container_search"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
             tools:listitem="@layout/item_parents" />
 
         <include

@@ -31,6 +31,7 @@ class Chart {
         var weight: Double? = 0.0,
         var height: Double? = 0.0,
         @SerialName("head_circumference") var headCircumference: Double? = 0.0,
+        @SerialName("growth_date") var growthDate: String? = "",
         var status: String? = ""
     )
 }
