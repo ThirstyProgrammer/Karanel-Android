@@ -28,7 +28,7 @@ class ParentsViewModel @Inject constructor(
     private val _token: MutableLiveData<String> = MutableLiveData()
     val token: LiveData<String> = _token
 
-    private var nextPage: Int = 0
+    var nextPage: Int = 0
     private var query: String = ""
 
     fun isNextUrlAvailable() = nextPage > 0

@@ -115,11 +115,11 @@ class ParentsFragment : Fragment(), OnItemClickListener {
             setupView(it)
         })
         mViewModel.viewState.observe(viewLifecycleOwner, {
-            mViewBinding.viewState.handleViewState(it.first, it.second)
+            if (!isLoading) mViewBinding.viewState.handleViewState(it.first, it.second)
         })
 
         mViewModel.error.observe(viewLifecycleOwner, {
-            mViewBinding.viewState.setErrorMessage(it)
+            if (!isLoading) mViewBinding.viewState.setErrorMessage(it)
         })
     }
 

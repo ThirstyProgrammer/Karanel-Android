@@ -22,7 +22,7 @@ interface ApiService {
         @Header(Constant.NetworkConfig.AUTHORIZATION) value: String
     ): DashboardPosyandu.Response
 
-    @GET("/v1/api/parent?page=1")
+    @GET("/v1/api/parent")
     suspend fun getParents(
         @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
         @Query("page") page: Int,
@@ -65,6 +65,12 @@ interface ApiService {
         @Path("id_child") idChild: String,
         @Body body: RequestBody
     ): FormChild.Response
+
+    @GET("/v1/api/record/id/{id_record}")
+    suspend fun getProgress(
+        @Header(Constant.NetworkConfig.AUTHORIZATION) value: String,
+        @Path("id_record") idRecord: String
+    ): RecordResponse.Response
 
     @POST("/v1/api/record")
     suspend fun submitProgress(

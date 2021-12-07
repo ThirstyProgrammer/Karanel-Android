@@ -4,11 +4,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.ItemParentsBinding
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
 import com.oqurystudio.karanel.android.model.Parents
 
-class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
+class ParentsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val TYPE_ITEM = 0
@@ -19,15 +20,15 @@ class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
     private var items: ArrayList<Parents.Data> = arrayListOf()
     private var isLoading: Boolean = false
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val mViewBinding: ItemParentsBinding = ItemParentsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return when (viewType) {
             TYPE_ITEM -> ParentsViewHolder(mViewBinding)
-            else -> ParentsViewHolder(mViewBinding)
+            else -> LoadMoreViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_parents_placeholder, parent, false))
         }
     }
 
-    override fun onBindViewHolder(holder: ParentsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is ParentsViewHolder -> {
                 holder.bind(items[position])
@@ -65,7 +66,7 @@ class ParentsAdapter : RecyclerView.Adapter<ParentsViewHolder>() {
 
     private fun addFooter() {
         isLoading = true
-//        items.add(User(typeItem = TYPE_LOADING))
+        items.add(Parents.Data(typeItem = TYPE_LOADING))
         notifyItemInserted(items.size)
     }
 

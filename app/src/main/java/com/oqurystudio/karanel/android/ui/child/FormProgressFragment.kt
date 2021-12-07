@@ -24,7 +24,7 @@ class FormProgressFragment : Fragment() {
     private lateinit var mViewBinding: FragmentFormProgressBinding
     private val mViewModel: FormProgressViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
         mViewBinding = FragmentFormProgressBinding.inflate(inflater)
         return mViewBinding.root
@@ -117,10 +117,35 @@ class FormProgressFragment : Fragment() {
                 requireActivity().onBackPressed()
             }
             btnSubmit.setOnSafeClickListener {
-                mViewModel.getToken()
+                if (mViewModel.recordId.isBlank()) {
+                    mViewModel.getToken()
+                } else {
+                    mViewModel.updateProgress()
+                }
             }
         }
         handleViewModelObserver()
+        if (mViewModel.recordId.isNotBlank()) mViewModel.getToken()
+    }
+
+    private fun updateField() {
+        mViewBinding.apply {
+            if (mViewModel.progressPayload.growthDate.isNotBlank()){
+                tilGrowthDate.apply {
+                    etCustom.setText(changeBackDateFormat(mViewModel.progressPayload.growthDate))
+                    val output = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+                    val date = try {
+                        output.parse(mViewModel.progressPayload.growthDate)
+                    } catch (e: Exception) {
+                        Date()
+                    }
+                    etCustom.transformIntoDatePicker(requireContext(), "dd/MM/yyyy", date)
+                }
+            }
+            tilBodyHeight.etCustom.setText(mViewModel.progressPayload.record.height.toString())
+            tilBodyWeight.etCustom.setText(mViewModel.progressPayload.record.weight.toString())
+            tilHeadCircumference.etCustom.setText(mViewModel.progressPayload.record.headCircumference.toString())
+        }
     }
 
     private fun handleViewModelObserver() {
@@ -128,8 +153,12 @@ class FormProgressFragment : Fragment() {
             if (mViewModel.recordId.isBlank()) {
                 mViewModel.submitProgress(it)
             } else {
-                mViewModel.updateProgress(it)
+                mViewModel.getRecord(it)
             }
+        })
+        mViewModel.responseGetRecord.observe(viewLifecycleOwner, {
+            mViewModel.updateProgressPayload(it.data)
+            updateField()
         })
         mViewModel.response.observe(viewLifecycleOwner, {
             makeToast("Data Progress Telah Ditambahkan")
@@ -150,6 +179,13 @@ class FormProgressFragment : Fragment() {
     private fun changeDateFormat(text: String): String {
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         val output = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        val data = sdf.parse(text)
+        return output.format(data)
+    }
+
+    private fun changeBackDateFormat(text: String): String {
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        val output = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         val data = sdf.parse(text)
         return output.format(data)
     }

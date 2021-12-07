@@ -8,6 +8,7 @@ import com.oqurystudio.karanel.android.base.BaseViewModel
 import com.oqurystudio.karanel.android.model.FormChild
 import com.oqurystudio.karanel.android.model.FormProgress
 import com.oqurystudio.karanel.android.model.Parent
+import com.oqurystudio.karanel.android.model.RecordResponse
 import com.oqurystudio.karanel.android.network.NetworkRequestType
 import com.oqurystudio.karanel.android.repository.KaranelRepository
 import com.oqurystudio.karanel.android.util.DataStoreManager
@@ -62,6 +63,15 @@ class FormProgressViewModel @Inject constructor(
         return
     }
 
+    fun updateProgressPayload(data: RecordResponse.Data?) {
+        if (data != null) {
+            progressPayload.growthDate = data.growthDate
+            progressPayload.record.headCircumference = data.headCircumference
+            progressPayload.record.weight = data.weight
+            progressPayload.record.height = data.height
+        }
+    }
+
     private val _response: MutableLiveData<FormProgress.Response> = MutableLiveData()
     val response: LiveData<FormProgress.Response> = _response
 
@@ -73,10 +83,19 @@ class FormProgressViewModel @Inject constructor(
 
     }
 
-    fun updateProgress(token: String) {
+    fun updateProgress() {
         progressPayload.childId = childId
         requestAPI(_response, NetworkRequestType.FORM_PROGRESS) {
-            repo.updateProgress(token, recordId, progressPayload)
+            repo.updateProgress(token.value.toString(), recordId, progressPayload)
+        }
+    }
+
+    private val _responseGetRecord: MutableLiveData<RecordResponse.Response> = MutableLiveData()
+    val responseGetRecord: LiveData<RecordResponse.Response> = _responseGetRecord
+
+    fun getRecord(token: String) {
+        requestAPI(_responseGetRecord, NetworkRequestType.PARENT) {
+            repo.getProgress(token, recordId)
         }
     }
 }

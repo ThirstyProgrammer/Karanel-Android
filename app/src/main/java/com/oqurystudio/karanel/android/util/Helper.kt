@@ -41,18 +41,12 @@ class Helper {
         }
 
         private fun getWording(months: Int, weeks: Int): String {
-            val year = months / 12
-            val modulusMonth = months % 12
             return when {
-                months >= 12 -> {
-                    "$year Tahun $modulusMonth Bulan"
-
-                }
-                months > 0 -> {
-                    "$months Bulan"
+                months <= 0 -> {
+                    "$weeks Minggu"
                 }
                 else -> {
-                    "$weeks Minggu"
+                    "$months Bulan"
                 }
             }
         }

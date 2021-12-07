@@ -10,9 +10,6 @@ import com.oqurystudio.karanel.android.model.Gender
 import com.oqurystudio.karanel.android.model.Parent
 import com.oqurystudio.karanel.android.util.Helper
 import com.oqurystudio.karanel.android.util.defaultEmpty
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.math.abs
 
 class ChildViewHolder constructor(private var mViewBinding: ItemChildBinding) : RecyclerView.ViewHolder(mViewBinding.root) {
 

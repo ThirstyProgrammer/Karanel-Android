@@ -130,6 +130,10 @@ class KaranelRepository @Inject constructor(private val service: ApiService) {
         )
     }
 
+    suspend fun getProgress(token: String, idRecord: String): RecordResponse.Response {
+        return service.getProgress(generateBearerToken(token), idRecord)
+    }
+
     suspend fun submitProgress(token: String, payload: FormProgress.Payload): FormProgress.Response {
         return service.submitProgress(
             generateBearerToken(token),
