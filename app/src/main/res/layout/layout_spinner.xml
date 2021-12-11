@@ -9,6 +9,7 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:labelFor="@id/sp_custom"
         android:textColor="@color/text_primary_color"
         android:textSize="@dimen/big_text_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,27 +60,6 @@
             app:barrierDirection="left"
             app:constraint_referenced_ids="btn_suffix" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--    <RelativeLayout-->
-    <!--        android:id="@+id/container_spinner"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="@dimen/margin_4"-->
-    <!--        android:background="@drawable/bg_rect_rounded_grey"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_title">-->
-
-    <!--        <androidx.appcompat.widget.AppCompatSpinner-->
-    <!--            android:id="@+id/sp_custom"-->
-    <!--            style="@style/Widget.AppCompat.Spinner.DropDown.ActionBar"-->
-    <!--            android:layout_width="fill_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginHorizontal="@dimen/margin_16"-->
-    <!--            android:layout_marginVertical="@dimen/margin_16"-->
-    <!--            android:background="@android:color/transparent"-->
-    <!--            android:inputType="none" />-->
-    <!--    </RelativeLayout>-->
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_error_message"
