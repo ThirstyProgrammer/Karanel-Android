@@ -55,8 +55,8 @@ class ChildViewHolder constructor(private var mViewBinding: ItemChildBinding) : 
     }
 
     private fun setupStatus(status: String) {
-        when (status) {
-            "Stunting" -> {
+        when (status.lowercase()) {
+            "stunting", "pendek", "sangat pendek" -> {
                 mViewBinding.apply {
                     tvStatus.apply {
                         text = status

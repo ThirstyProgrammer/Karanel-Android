@@ -60,6 +60,7 @@ class FormViewModel @Inject constructor(
             childPayload.nik = data.nik.defaultEmpty()
             childPayload.name = data.name.defaultEmpty()
             childPayload.gender = data.gender.defaultEmpty()
+            childPayload.ageOfBirth = data.ageOfBirth.defaultZero()
             childPayload.birthPlace = data.birthPlace.defaultEmpty()
             childPayload.birthDate = data.birthDate.defaultEmpty()
             childPayload.birthType = data.birthType ?: "Tunggal"

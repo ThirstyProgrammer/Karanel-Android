@@ -22,7 +22,7 @@ android {
         applicationId "com.oqurystudio.karanel.android"
         minSdk 23
         targetSdk 31
-        versionCode 4
+        versionCode 5
         versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
