@@ -2,6 +2,7 @@ package com.oqurystudio.karanel.android.ui.home
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -22,6 +23,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.oqurystudio.karanel.android.R
 import com.oqurystudio.karanel.android.databinding.FragmentHomeParentBinding
+import com.oqurystudio.karanel.android.listener.AlertDialogButtonListener
 import com.oqurystudio.karanel.android.listener.OnItemClickListener
 import com.oqurystudio.karanel.android.model.Parent
 import com.oqurystudio.karanel.android.network.ViewState
@@ -29,6 +31,7 @@ import com.oqurystudio.karanel.android.ui.MainActivity
 import com.oqurystudio.karanel.android.ui.parent.ChildAdapter
 import com.oqurystudio.karanel.android.util.*
 import com.oqurystudio.karanel.android.util.Constant.Companion.WRITE_EXTERNAL_STORAGE
+import com.oqurystudio.karanel.android.widget.DialogFactory
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -122,8 +125,42 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
             } else {
                 View.VISIBLE
             }
+            if(checkIfThereIsStuntingChildren(data.children)){
+                val number = "+6283291317367"
+                DialogFactory.createDialogStunting(
+                    requireContext(),
+                    number,
+                    object : AlertDialogButtonListener {
+                        override fun onPositiveButtonClicked(dialog: Dialog) {
+                            val smsIntent = Intent(Intent.ACTION_VIEW)
+                            smsIntent.type = "vnd.android-dir/mms-sms"
+                            smsIntent.putExtra("address", number)
+//                            smsIntent.putExtra("sms_body", "Body of Message")
+                            startActivity(smsIntent)
+                            dialog.dismiss()
+                        }
+
+                        override fun onNegativeButtonCLicked(dialog: Dialog) {
+                        }
+
+                    }
+                ).show()
+            }
         }
         mAdapter.setData(data.children ?: arrayListOf())
+    }
+
+    private fun checkIfThereIsStuntingChildren(data: List<Parent.Child>?): Boolean {
+        if (data.isNullOrEmpty()) {
+            return false
+        } else {
+            data.forEach {
+                when (it.status.defaultEmpty().lowercase()) {
+                    "stunting", "pendek", "sangat pendek" -> return true
+                }
+            }
+            return false
+        }
     }
 
     // DOWNLOAD SECTION
