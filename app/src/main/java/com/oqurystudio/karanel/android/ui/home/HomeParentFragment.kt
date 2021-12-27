@@ -126,7 +126,7 @@ class HomeParentFragment : Fragment(), OnItemClickListener {
                 View.VISIBLE
             }
             if(checkIfThereIsStuntingChildren(data.children)){
-                val number = "+6283291317367"
+                val number = data.posyandu?.phoneNumber ?: "+6283291317367"
                 DialogFactory.createDialogStunting(
                     requireContext(),
                     number,

@@ -36,6 +36,7 @@ class Parent {
         @SerialName("created_at") val createdAt: String? = "",
         @SerialName("updated_at") val updatedAt: String? = "",
         @SerialName("deleted_at") val deletedAt: String? = "",
+        val posyandu : Posyandu? = null,
         @Transient
         val typeItem: Int = 0
     )
@@ -56,5 +57,10 @@ class Parent {
         @SerialName("created_at") val createdAt: String? = "",
         @SerialName("updated_at") val updatedAt: String? = "",
         @SerialName("deleted_at") val deletedAt: String? = "",
+    )
+
+    @Serializable
+    data class Posyandu(
+        @SerialName("phone_number") val phoneNumber: String? = ""
     )
 }
